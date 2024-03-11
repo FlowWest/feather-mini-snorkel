@@ -10,7 +10,7 @@ mdb.get(mini_snork_db, tables = T)
 
 # tables
 all_fish_obs <- mdb.get(mini_snork_db, tables = "All fish observations")
-phys_hab_available <- mdb.get(mini_snork_db, tables = "chn0 Phys Avail for All Fish")
+phys_hab_available <- mdb.get(mini_snork_db, tables = "chn0 Phys Avail for All Fish") # subset of all_fish_obs, physical habitat associated with grid chinook salmon found
 phys_hab_available_minus_obs <- mdb.get(mini_snork_db, tables = "chn0 Phys Avail minus observations") # same number of obs/rows as above
 phys <- mdb.get(mini_snork_db, tables = "PhysDataTbl")
 rbt0_phys_available <- mdb.get(mini_snork_db, tables = "rbt0 Phys Avail for All Fish")
