@@ -44,7 +44,7 @@ source("data-raw/query_4mac.R")
 Read in data from google cloud, glimpse raw data and domain description sheet: 
 ```{r}
 # read in data to clean 
-microhabitat |> glimpse()
+all_fish_obs |> glimpse()
 ```
 
 ## Data transformations
@@ -57,12 +57,10 @@ Columns removed:
 
 ```{r}
 # For different excel sheets for each year read in and combine years here
-joined_fish_obs <- microhabitat |> 
-  left_join(fish_data) |>
-  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> 
-  select(-c(SpeciesCode, Species)) |>
-  rename(species = Species.y, 
-         percent_fine_substrate = Sub1, 
+joined_fish_obs <- all_fish_obs |> 
+  left_join(species_code_lookup) |> 
+  select(-c(SpeciesCodeID, SpeciesCode)) |>
+  rename(percent_fine_substrate = Sub1, 
          percent_sand_substrate = Sub2, 
          percent_small_gravel_substrate = Sub3, 
          percent_large_gravel_substrate = Sub4, 
@@ -77,17 +75,15 @@ joined_fish_obs <- microhabitat |>
          percent_cover_half_meter_overhead = Ocov1, 
          percent_cover_more_than_half_meter_overhead = Ocov2)|> 
   # Clean in separate file
-  left_join(location_table, by = c("PDatID" = "PhysDataTblID")) |> 
+  # left_join(location_table |> mutate(PhysDataTblID = as.numeric(PhysDataTblID),
+  #                                    Location = as.character(Location))) |> 
   janitor::clean_names() |> 
+  select(-spec_age) |> #same as species + age
   left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
-  select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum) |> 
+  select(-cgu, -CGUCodeID) |> 
   rename(channel_geomorphic_unit = CGU) |> 
-  mutate(start_time = time(start_time),
-         end_time = time(end_time)) |> 
   glimpse()
   
-# HOW many have fish 
-joined_fish_obs |> filter(count >= 0) |> nrow()
 ```
 
 ## Explore Numeric Variables: {.tabset}
@@ -105,7 +101,7 @@ joined_fish_obs %>% select_if(is.numeric) %>% colnames()
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
 joined_fish_obs %>% 
-  ggplot(aes(x = rm, y = count, group = 1))+
+  ggplot(aes(x = date, y = count, group = 1))+
   # geom_line()+
   geom_point(aes(x=date, y = count))+
   theme_minimal()+
@@ -566,26 +562,6 @@ summary(joined_fish_obs$fish_age)
 **NA and Unknown Values**
 
 There are `r is.na(joined_fish_obs$fish_age) |> sum()` NA values
-
-### Variable: `TODO`
-TODO Add 
-- fish_data_id, micro_hab_data_tbl_id, start_time, end_time, water_temp, weather, flow, number_of_divers, reach_length, reach_width, chanel_type, chanel_width 
-
-**Plotting TODO over Period of Record**
-
-```{r}
-
-```
-
-**Numeric Summary of TODO over Period of Record**
-
-```{r}
-# Table with summary statistics
-```
-
-**NA and Unknown Values**
-
-<!-- There are `r is.na(joined_fish_obs$TODO) |> sum()` NA values -->
 
 ## Explore Categorical variables: {.tabset}
 
