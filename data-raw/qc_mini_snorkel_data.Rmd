@@ -32,8 +32,7 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 
 ## Questions 
 
-- what is distance 
-- what is t_code
+- what is t_code (transect code, code for specific sq meter transect)
 
 ## Source Database pull
 
@@ -54,11 +53,17 @@ All of the substrate and cover lookups are not true look ups. Substrate and cove
 
 Columns removed: 
 - SpecAge removed - just a combination of species and age
+- i_cov_sum - removed because sum of other columns
+- o_cov_sum - removed because sum of other columns
+- sub_sum - removed because sum of other columns
+- start_time - just a date that seemed wrong 
+- end_time - also just a date that seemed wrong
+- crew - specific crew names do not need to be present on public EDI dataset
 
 ```{r}
 # For different excel sheets for each year read in and combine years here
 joined_fish_obs <- microhabitat |> 
-  left_join(fish_data) |>
+  left_join(fish_data, by = c("TCode" = "TCode", "PDatID" = "PDatID")) |> 
   left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> 
   select(-c(SpeciesCode, Species)) |>
   rename(species = Species.y, 
@@ -78,13 +83,16 @@ joined_fish_obs <- microhabitat |>
          percent_cover_more_than_half_meter_overhead = Ocov2)|> 
   # Clean in separate file
   left_join(location_table, by = c("PDatID" = "PhysDataTblID")) |> 
+  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |>
+  select(-WeatherCode, -Weather) |> 
+  rename(weather = Weather.y) |> 
+  left_join(channel_lookup, by = c("ChannelType" = "ChannelTypeCode")) |> 
+  select(-ChannelType, -ChannelTypeCodeID) |> 
+  rename(channel_type = ChannelType.y) |> 
   janitor::clean_names() |> 
   left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
-  select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum) |> 
-  rename(channel_geomorphic_unit = CGU) |> 
-  mutate(start_time = time(start_time),
-         end_time = time(end_time)) |> 
-  glimpse()
+  select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum, -start_time, -end_time, -crew) |> 
+  rename(channel_geomorphic_unit = CGU) |> glimpse()
   
 # HOW many have fish 
 joined_fish_obs |> filter(count >= 0) |> nrow()
@@ -513,14 +521,14 @@ summary(joined_fish_obs$sur_turb)
 
 There are `r is.na(joined_fish_obs$sur_turb) |> sum()` NA values
 
-### Variable: `distance`
+### Variable: `dist_to_bottom`
 
-**Plotting distance over Period of Record**
+**Plotting dist_to_bottom over Period of Record**
 
 ```{r}
 joined_fish_obs |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
-  ggplot(aes(x = distance)) + 
+  ggplot(aes(x = dist_to_bottom)) + 
   geom_histogram(breaks=seq(0, 5, by=1)) + 
   scale_x_continuous(breaks=seq(0, 5, by=1)) +
   theme_minimal() +
@@ -529,63 +537,223 @@ joined_fish_obs |>
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
 
-**Numeric Summary of distance over Period of Record**
+**Numeric Summary of dist_to_bottom over Period of Record**
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$distance)
+summary(joined_fish_obs$dist_to_bottom)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$distance) |> sum()` NA values
+There are `r is.na(joined_fish_obs$dist_to_bottom) |> sum()` NA values
 
-### Variable: `fish_age`
+### Variable: `fish_data_id`
 
-**Plotting fish_age over Period of Record**
+
+Looks like there are one more unique fish data id than there is number of rows where joined fish has a count greater than o
+
+```{r}
+nrow(joined_fish_obs |> filter(count > 0)) == length(unique(joined_fish_obs$fish_data_id))
+```
+
+**Numeric Summary of fish_data_id over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$fish_data_id)
+
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$fish_data_id) |> sum()` NA values
+
+### Variable: `micro_hab_data_tbl_id`
+
+There are more observations than unique micro hab ids so there are some micro habitat transects that have more than one row in the table
+
+```{r}
+nrow(joined_fish_obs) == length(unique(joined_fish_obs$micro_hab_data_tbl_id))
+
+```
+
+**Numeric Summary of micro_hab_data_tbl_id over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$micro_hab_data_tbl_id)
+
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$micro_hab_data_tbl_id) |> sum()` NA values
+
+### Variable: `water_temp`
+**Plotting water_temp over Period of Record**
 
 ```{r}
 joined_fish_obs |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
-  ggplot(aes(x = fish_age)) + 
-  geom_histogram(breaks=seq(0, 5, by=.25)) + 
-  scale_x_continuous(breaks=seq(0, 5, by=1)) +
+  ggplot(aes(x = water_temp)) + 
+  geom_histogram(breaks=seq(0, 90, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 90, by=5)) +
   theme_minimal() +
-  labs(title = "Distance") + 
+  labs(title = "Temperature distribution") + 
   theme(text = element_text(size = 18),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
 
-**Numeric Summary of fish_age over Period of Record**
+**Numeric Summary of water_temp over Period of Record**
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$fish_age)
+summary(joined_fish_obs$water_temp)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$fish_age) |> sum()` NA values
+There are `r is.na(joined_fish_obs$water_temp) |> sum()` NA values
 
-### Variable: `TODO`
-TODO Add 
-- fish_data_id, micro_hab_data_tbl_id, start_time, end_time, water_temp, weather, flow, number_of_divers, reach_length, reach_width, chanel_type, chanel_width 
+### Variable: `flow`
 
-**Plotting TODO over Period of Record**
+
+**Plotting flow over Period of Record**
 
 ```{r}
-
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = flow)) + 
+  geom_histogram(breaks=seq(0, 3500, by=50)) + 
+  scale_x_continuous(breaks=seq(0, 3500, by=1000)) +
+  theme_minimal() +
+  labs(title = "Flow distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
 
-**Numeric Summary of TODO over Period of Record**
+**Numeric Summary of flow over Period of Record**
 
 ```{r}
 # Table with summary statistics
+summary(joined_fish_obs$flow)
 ```
 
 **NA and Unknown Values**
 
-<!-- There are `r is.na(joined_fish_obs$TODO) |> sum()` NA values -->
+There are `r is.na(joined_fish_obs$flow) |> sum()` NA values
+
+### Variable: `number_of_divers`
+
+**Plotting number_of_divers over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  ggplot(aes(x = number_of_divers)) + 
+  geom_histogram(breaks=seq(0, 6, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 6, by=1)) +
+  theme_minimal() +
+  labs(title = "Number of Divers distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of number_of_divers over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$number_of_divers)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$number_of_divers) |> sum()` NA values
+
+### Variable: `reach_length`
+
+All of the reach lengths are 25 (m?)
+
+**Plotting reach_length over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  ggplot(aes(x = reach_length)) + 
+  geom_histogram(breaks=seq(0, 100, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 100, by=25)) +
+  theme_minimal() +
+  labs(title = "Reach Length distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of reach_length over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$reach_length)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$reach_length) |> sum()` NA values
+
+### Variable: `reach_width`
+
+All of the reach widths are 4 meters
+
+**Plotting reach_width over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  ggplot(aes(x = reach_width)) + 
+  geom_histogram(breaks=seq(0, 10, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 10, by=1)) +
+  theme_minimal() +
+  labs(title = "Reach Width distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of reach_width over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$reach_width)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$reach_width) |> sum()` NA values
+
+### Variable: `chanel_width`
+
+**Plotting chanel_width over Period of Record**
+
+Even through reach width measured is only ever 4 meters sometimes channel width is much larger
+
+```{r}
+joined_fish_obs |> 
+  ggplot(aes(x = channel_width)) + 
+  geom_histogram(breaks=seq(0, 170, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 170, by=50)) +
+  theme_minimal() +
+  labs(title = "Channel Width distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of chanel_width over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$channel_width)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$chanel_width) |> sum()` NA values
+
 
 ## Explore Categorical variables: {.tabset}
 
@@ -609,6 +777,11 @@ Fix inconsistencies with spelling, capitalization, and abbreviations.
 # Fix any inconsistencies with categorical variables
 joined_fish_obs$location <- tolower(joined_fish_obs$location)
 table(joined_fish_obs$location) 
+
+joined_fish_obs <- joined_fish_obs |> 
+  mutate(location = case_when(location %in% c("aleck riffle", "alec riffle") ~ "aleck riffle",
+                              location == "hatchery  ditch" ~ "hatchery ditch",
+                              location %in% c("hour bars", "hour bar") ~ "hour bars"))
 
 # FIX aleck riffle and alec riffle
 # FIX hatchery  ditch and hatchery ditch
@@ -639,15 +812,74 @@ table(joined_fish_obs$channel_geomorphic_unit)
 
 There are `r is.na(joined_fish_obs$channel_geomorphic_unit) |> sum()` NA values
 
+### Variable: `gps_coordinate`
+```{r}
+table(joined_fish_obs$gps_coordinate) 
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$gps_coordinate) |> sum()` NA values
+
+### Variable: `weather`
+```{r}
+table(joined_fish_obs$weather) 
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$weather) |> sum()` NA values
+
+### Variable: `channel_type`
+```{r}
+table(joined_fish_obs$channel_type) 
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$channel_type) |> sum()` NA values
+
+
+
 ## Summary of identified issues
 
 * percent cover that is > or < 100% 
-* location variables that I need to change 
+* did some location name clean up but could be better
+* remove sac squawfish 
+* other? 
 
+```{r}
+microhabitat_with_fish_detections <- joined_fish_obs |> 
+  filter(species != "Sacramento squawfish") |> 
+  rename(transect_code = t_code,
+         location_table_id = p_dat_id,
+         surface_turbidity = sur_turb) |> 
+  select(-c(location, water_temp, 
+        weather, river_mile, flow, number_of_divers, 
+        reach_length, reach_width, channel_width, 
+        channel_type, gps_coordinate))
+
+survey_locations <- joined_fish_obs |> 
+  filter(species != "Sacramento squawfish") |> 
+  rename(transect_code = t_code,
+         location_table_id = p_dat_id) |> 
+  select(location_table_id, date, location, water_temp, 
+        weather, river_mile, flow, number_of_divers, 
+        reach_length, reach_width, channel_width, 
+        channel_type, gps_coordinate) |> 
+  distinct()
+  
+
+```
 
 ## Save cleaned data to data/
 
 ```{r}
 # Save to data folder
 # Name file [watershed]_[data type].csv
+write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
+write_csv(survey_locations, "data/survey_locations.csv")
+
+# TODO descide if we want to seperate out substrate and cover
+
 ```

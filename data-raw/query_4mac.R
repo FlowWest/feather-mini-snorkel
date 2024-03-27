@@ -11,7 +11,6 @@ mdb.get(mini_snork_db, tables = T)
 # tables
 all_fish_obs <- mdb.get(mini_snork_db, tables = "All fish observations") |> glimpse()
 write_csv(all_fish_obs, "data-raw/database-tables/all_fish_obs.csv")
-
 all_fish_obs <- read_csv("data-raw/database-tables/all_fish_obs.csv") |> glimpse()
 
 # phys_hab_available <- mdb.get(mini_snork_db, tables = "chn0 Phys Avail for All Fish") |> glimpse() # subset of all_fish_obs, physical habitat associated with grid chinook salmon found

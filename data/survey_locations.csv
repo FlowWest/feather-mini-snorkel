@@ -1,0 +1,61 @@
+location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_divers,reach_length,reach_width,channel_width,channel_type,gps_coordinate
+11,2001-03-14,NA,47,Direct Sunlight,66.6,12,3,25,4,7,Sidechannel,NA
+12,2001-03-15,hour bars,56,Overcast,56,1700,2,25,4,160,Mainchannel Branch,NA
+14,2001-08-20,NA,55,Direct Sunlight,66.6,600,2,25,4,0,Sidechannel,"N 39* 30.952,  W 21* 33.215"
+18,2001-08-20,NA,59.5,Direct Sunlight,61.5,600,2,25,4,14,Sidechannel,"N 39* 27.804', W 121* 36.240'"
+19,2001-08-20,NA,62.5,Direct Sunlight,61,600,2,25,4,8,Sidechannel,"N 39* 27.755', W 121* 36.201'"
+33,2001-07-18,NA,68,Direct Sunlight,48.5,1900,2,25,4,48,Mainchannel,N 39* 20.733'  W 121* 37.574
+36,2001-07-10,NA,59,Direct Sunlight,66.5,600,2,25,4,9,Sidechannel,N 39º 30.961'  W 121º 33.529
+47,2001-06-19,NA,69,Direct Sunlight,56,1900,2,25,4,65,Sidechannel,NA
+53,2001-06-11,hatchery ditch,53,Direct Sunlight,66.5,0,2,25,4,8,Sidechannel,NA
+54,2001-06-11,NA,56,Overcast,66.5,600,2,25,4,0,Mainchannel,NA
+57,2001-06-11,NA,59,Direct Sunlight,64,600,2,25,4,77,Mainchannel,N 39º 29.575'   W 121º 34.795'
+58,2001-06-11,aleck riffle,60.5,Direct Sunlight,63.5,600,1,25,4,104,Mainchannel,N 39º 29.066'  W121º 34.739'
+59,2001-06-12,NA,58,Direct Sunlight,62,600,2,25,4,18,Sidechannel,N 39° 27.895'  W 121° 35.857
+62,2001-06-12,NA,61.5,Direct Sunlight,61,600,2,25,4,30,Sidechannel,NA
+70,2001-05-21,NA,54,Direct Sunlight,66.5,0,3,25,4,0,Sidechannel,NA
+71,2001-05-21,NA,57,Direct Sunlight,66.5,600,3,25,4,0,Mainchannel,N 39° 30.94'  W 121° 33.28'
+72,2001-05-21,NA,57,Direct Sunlight,66,600,2,25,4,60,Mainchannel,N 39° 30.92'  W 121° 33.54'
+73,2001-05-22,NA,55,Direct Sunlight,65.8,600,3,25,4,56,Mainchannel,N 39° 30.750'  W 121° 34.166'
+74,2001-05-22,aleck riffle,62.5,Direct Sunlight,63.5,600,2,25,4,44,Mainchannel,N 39° 29.103'  W 121* 34.740'
+76,2001-05-21,NA,57.5,Direct Sunlight,61.5,600,3,25,4,35,Mainchannel,NA
+77,2001-05-21,NA,60,Direct Sunlight,61,600,2,25,4,8,Sidechannel,N 39° 27.754'  W 121° 36.194'
+78,2001-05-22,NA,61,Direct Sunlight,60,600,3,25,4,53,Mainchannel,N 39° 29.012'  W 121° 34.740'
+79,2001-05-22,NA,62,Direct Sunlight,60,600,3,25,4,23,Sidechannel,N 39° 29.012'  W 121° 34.740'
+90,2001-05-24,NA,0,Direct Sunlight,49,2000,2,25,4,67,NA,N 39° 20.8 W 121° 37.6
+96,2001-04-09,NA,52.5,Direct Sunlight,66.5,600,2,25,4,32,Mainchannel Branch,NA
+97,2001-04-09,NA,53,Direct Sunlight,66.5,600,2,25,4,51,Mainchannel Branch,NA
+99,2001-08-22,NA,68.5,Direct Sunlight,54.5,2000,2,25,4,73,Mainchannel,N 39° 24.27'  W 121° 37.02'
+102,2001-08-21,NA,68,Direct Sunlight,57,2000,2,25,4,0,Sidechannel,N 39° 26.24'  W 121° 38.28
+103,2001-08-21,NA,65,Direct Sunlight,57.5,2000,2,25,4,0,Mainchannel Branch,N 39° 26.24'  W 121° 38.28'
+107,2001-08-21,aleck riffle,58,Direct Sunlight,63.5,700,2,25,4,42,Mainchannel,N 39° 29.052'  W 121° 34.755'
+111,2001-04-09,NA,50,Direct Sunlight,66,0,2,25,4,5,Sidechannel,NA
+112,2001-04-09,NA,52,Direct Sunlight,64.5,600,2,25,4,0,Mainchannel,70
+113,2001-04-09,NA,54,Direct Sunlight,64,600,2,25,4,40,NA,NA
+114,2001-04-09,aleck riffle,54,Direct Sunlight,63.5,600,2,25,4,75,Mainchannel,NA
+115,2001-04-10,NA,56,Direct Sunlight,62.5,600,2,25,4,76,Mainchannel,NA
+116,2001-04-10,NA,58,Direct Sunlight,61,600,3,25,4,25,Mainchannel,NA
+117,2001-04-10,NA,55,Direct Sunlight,61,600,3,25,4,35,Sidechannel,NA
+118,2001-04-10,NA,53,Direct Sunlight,61,600,2,25,4,37,Mainchannel,NA
+119,2001-04-10,NA,NA,Direct Sunlight,60,600,2,25,4,19,Sidechannel,NA
+121,2001-04-11,NA,56,Overcast,58.5,1000,2,25,4,0,Mainchannel Branch,NA
+122,2001-04-11,NA,57,Overcast,58,1000,2,25,4,NA,Mainchannel Branch,NA
+124,2001-04-11,NA,55.5,Overcast,57.4,1000,3,25,4,35,Sidechannel,NA
+129,2001-04-12,NA,58,Direct Sunlight,52.5,1000,2,25,4,60,Mainchannel,NA
+130,2001-04-12,NA,56.5,Direct Sunlight,49.5,100,2,25,4,0,Sidechannel,NA
+131,2001-04-12,NA,59,Direct Sunlight,48.5,1000,2,25,4,64,Mainchannel Branch,NA
+132,2001-03-19,NA,56.5,Direct Sunlight,49.5,1750,2,25,4,37,Mainchannel Branch,NA
+133,2001-03-19,NA,62.5,Direct Sunlight,47,1750,2,25,4,31,Sidechannel,NA
+134,2001-03-19,NA,58,Direct Sunlight,46,1750,2,25,4,124,Mainchannel,NA
+135,2001-03-13,NA,56,Direct Sunlight,57.3,1750,3,25,4,20,Sidechannel,NA
+136,2001-03-13,NA,0,Direct Sunlight,61,600,2,25,4,16,Mainchannel Branch,NA
+137,2001-03-14,NA,52,Direct Sunlight,66.6,600,2,25,4,32,Mainchannel Branch,NA
+138,2001-03-14,NA,49,Direct Sunlight,66.5,600,2,25,4,50,Mainchannel,NA
+139,2001-03-14,NA,50,Direct Sunlight,65.9,600,3,25,4,65,Mainchannel,NA
+140,2001-03-14,NA,52,Direct Sunlight,64.4,600,3,25,4,70,Mainchannel,NA
+141,2001-03-14,NA,52,Direct Sunlight,64,600,3,25,4,30,Mainchannel,NA
+142,2001-03-15,NA,49,Overcast,61.5,600,3,25,4,35,Mainchannel Branch,NA
+143,2001-03-15,NA,49,Overcast,61,600,3,25,4,7,Sidechannel,NA
+144,2001-03-15,NA,50,Overcast,60.2,600,2,25,4,16,Mainchannel Branch,NA
+145,2001-03-15,NA,54,Overcast,58.5,1700,3,25,4,50,Mainchannel Branch,NA
+146,2001-03-15,NA,56,Overcast,53.4,1750,3,25,4,34,Mainchannel Branch,NA
