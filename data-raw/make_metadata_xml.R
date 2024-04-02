@@ -11,7 +11,7 @@ datatable_metadata <-
                 datatable_url = paste0("https://github.com/FlowWest/edi-feather-snorkel/tree/create-metadata/data",
                                        c("combined_feather_snorkel_data.csv")))
 # save cleaned data to `data/`
-excel_path <- "data-raw/metadata/feather_metadata.xlsx" #TODO check this excel path/name
+excel_path <- "data-raw/metadata/feather_metadata.xlsx" 
 sheets <- readxl::excel_sheets(excel_path)
 metadata <- lapply(sheets, function(x) readxl::read_excel(excel_path, sheet = x))
 names(metadata) <- sheets
