@@ -12,21 +12,29 @@ library(googleCloudStorageR)
 #                saveToDisk =  here::here("data-raw", ""),
                # overwrite = TRUE)
 
-fish_observations <- read_csv(here::here("data", "microhabitat_with_fish_observations.csv"))
+microhabitat_fish_observations <- read_csv(here::here("data", "microhabitat_with_fish_observations.csv")) |> 
+  glimpse()
 
-survey_locations <- read_csv(here::here("data", "survey_locations.csv"))
+survey_locations <- read_csv(here::here("data", "survey_locations.csv")) |> 
+  glimpse()
 
 # clean data --------------------------------------------------------------
 # here is where we clean up the data and make sure it all looks as expected
 # check unique values for each column
 # check that all fields are being read in the right way
 
+table(microhabitat_fish_observations$transect_code) #TODO confirm field meaning
+range(microhabitat_fish_observations$fish_data_id) #TODO confirm field meaning
 
-
-
-
+range(survey_locations$water_temp, na.rm = TRUE) #TODO check if makes sense to turn 0 into NA since temp rance is 47-69, and there are two 0s
+table(survey_locations$water_temp)
+table(survey_locations$reach_length)#TODO confirm is this field is in meters of feet
+table(survey_locations$reach_width)#TODO confirm is this field is in meters of feet
+table(survey_locations$channel_width) #TODO confirm is this field is in meters of feet
 # write files -------------------------------------------------------------
 
 # save cleaned data to `data/`
-write.csv(data_name, here::here("data", ""), row.names = FALSE)
+write.csv(microhabitat_fish_observations, here::here("data", "microhabitat_with_fish_observations.csv"), row.names = FALSE)
+
+write.csv(survey_locations, here::here("data", "survey_locations.csv"), row.names = FALSE)
 

@@ -5,11 +5,15 @@ library(readxl)
 library(EML)
 
 datatable_metadata <-
-  dplyr::tibble(filepath = c("data-raw/.csv"),
-                attribute_info = c("data-raw/metadata/feather_mini_snorkel_metadata.xlsx"),
-                datatable_description = c("Feather river mini snorkel survey data"),
-                datatable_url = paste0("https://github.com/FlowWest/edi-feather-snorkel/tree/create-metadata/data",
-                                       c("combined_feather_snorkel_data.csv")))
+  dplyr::tibble(filepath = c("data/survey_locations.csv",
+                             "data/microhabitat_with_fish_observations.csv"),
+                attribute_info = c("data-raw/metadata/feather_survey_locations_metadata.xlsx",
+                                   "data-raw/metadata/feather_microhabitat_metadata.xlsx"),
+                datatable_description = c("Feather river mini snorkel survey locations data",
+                                          "Feather river mini snorkel survey microhabitat data"),
+                datatable_url = paste0("https://github.com/FlowWest/feather-mini-snorkel/tree/make-metadata/data",
+                                       c("feather_survey_locations_metadata.csv",
+                                         "microhabitat_with_fish_observations.csv")))
 # save cleaned data to `data/`
 excel_path <- "data-raw/metadata/feather_metadata.xlsx" 
 sheets <- readxl::excel_sheets(excel_path)
