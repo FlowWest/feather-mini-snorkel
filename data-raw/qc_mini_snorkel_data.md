@@ -17,14 +17,19 @@ Erin Cain
 
 ## Questions
 
-- what is distance
-- what is t_code
+- what is t_code (transect code, code for specific sq meter transect)
 
 ## Source Database pull
 
 ``` r
 source("data-raw/query_4mac.R")
 ```
+
+    ## Loading required package: lattice
+
+    ## Loading required package: survival
+
+    ## Loading required package: Formula
 
     ## 
     ## Attaching package: 'Hmisc'
@@ -119,9 +124,9 @@ source("data-raw/query_4mac.R")
     ## Rows: 136 Columns: 16
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr   (3): Location, Crew, GPS.Coordinate
+    ## chr   (5): Location, StartTime, EndTime, Crew, GPS.Coordinate
     ## dbl  (10): PhysDataTblID, WaterTemp, Weather, RiverMile, Flow, NumberOfDiver...
-    ## date  (3): Date, StartTime, EndTime
+    ## date  (1): Date
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -131,8 +136,8 @@ source("data-raw/query_4mac.R")
     ## $ PhysDataTblID  <dbl> 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104…
     ## $ Location       <chr> "Herringer Riffle", "Herringer Riffle", "Shallow Riffle…
     ## $ Date           <date> 2001-05-24, 2001-08-23, 2001-08-22, 2001-08-23, 2001-0…
-    ## $ StartTime      <date> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 1999-1…
-    ## $ EndTime        <date> 1999-12-30, NA, 1999-12-30, 1999-12-30, 1999-12-30, 19…
+    ## $ StartTime      <chr> "(12/30/99 13:35:00)", "(12/30/99 13:10:00)", "(12/30/9…
+    ## $ EndTime        <chr> "(12/30/99 13:50:00)", "(NA NA)", "(12/30/99 12:15:00)"…
     ## $ Crew           <chr> "do,ph, at", "BR, CR, TV", "TV, BR, CR", "TV, BR, CR", …
     ## $ WaterTemp      <dbl> 0.0, 70.0, 68.0, 68.0, 52.5, 53.0, 69.0, 68.5, 68.5, 67…
     ## $ Weather        <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
@@ -1516,24 +1521,24 @@ table(joined_fish_obs$gps_coordinate)
     ##                             36                             36 
     ##      N 39°22.503 W 121° 37.942   N 39º 19.139'  W 121º 37.216 
     ##                             36                             36 
-    ##   N 39º 24.319'  W 121º 36.976    N 39º 27.814  W 121º 36.234 
+    ##    N 39º 27.814  W 121º 36.234   N 39º 27.962'  W121º 35.980' 
     ##                             36                             36 
-    ##   N 39º 27.962'  W121º 35.980'   N 39º 27.982'  W 121º 35.920 
+    ##   N 39º 27.982'  W 121º 35.920    N 39º 27.983  W 121º 35.919 
     ##                             36                             36 
-    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
-    ##                             36                             39 
-    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
+    ##   N 39º 29.066'  W121º 34.739' N 39º 29.575'   W 121º 34.795' 
+    ##                             39                             36 
+    ##     N 39º 29.642, W121º 34.801   N 39º 30.519'  W 121º 30.288 
     ##                             36                             36 
-    ##   N 39º 30.519'  W 121º 30.288   N 39º 30.961'  W 121º 33.529 
-    ##                             36                             37 
-    ##       N39*19.765', W121*37.72'      N39*21.247', W121*37.835' 
+    ##   N 39º 30.961'  W 121º 33.529       N39*19.765', W121*37.72' 
+    ##                             37                             36 
+    ##      N39*21.247', W121*37.835'        N39*23.155  W121*37.722 
     ##                             36                             36 
-    ##        N39*23.155  W121*37.722         N39*24.340 W121*37.029 
+    ##         N39*24.340 W121*37.029    N39º 20.738', W121º 37.576' 
     ##                             36                             36 
-    ##    N39º 20.738', W121º 37.576'     N39º 24.321', W121º 36.982 
-    ##                             36                             36 
-    ##                           None                      not taken 
-    ##                            108                             36
+    ##     N39º 24.321', W121º 36.982                           None 
+    ##                             72                            108 
+    ##                      not taken 
+    ##                             36
 
 **NA and Unknown Values**
 
@@ -1576,7 +1581,7 @@ There are 109 NA values
 
 ``` r
 microhabitat_with_fish_detections <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish") |> 
+  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
@@ -1586,7 +1591,7 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
         channel_type, gps_coordinate))
 
 survey_locations <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish") |> 
+  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
   select(location_table_id, date, location, water_temp, 

@@ -850,7 +850,7 @@ There are `r is.na(joined_fish_obs$channel_type) |> sum()` NA values
 
 ```{r}
 microhabitat_with_fish_detections <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish") |> 
+  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
@@ -860,7 +860,7 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
         channel_type, gps_coordinate))
 
 survey_locations <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish") |> 
+  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
   select(location_table_id, date, location, water_temp, 
