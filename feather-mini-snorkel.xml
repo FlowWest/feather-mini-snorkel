@@ -27,16 +27,16 @@
     Abstract
   </para>
       <para>
-    The goal of data collected is to identify relationships between
-    habitat conditions (depth, substrate, velocity, and cover) and where
-    juvenile Chinook salmon and steelhead occur. 
-  </para>
-      <para>
-    This data was collected monthly from the years 2001 to 2002, during
-    the months of March to August. Sampling occurred across 24 different
-    reaches at random, 12 in Low Flow Channel, and 12 in High Flow
-    Channel; each section covered 25 meter long by 4 meter wide, running
-    parallel to one river bank.
+    DWR conducted this one-year study of microhabitat and mesohabitat in
+    Feather River. Snorkel survey monitoring occurred during the years
+    2001 and 202 on the Feather River. Sampling was conducted monthly
+    during the months of March to August across 24 different sites,
+    which were selected at random, 12 in Low Flow Channel, and 12 in
+    High Flow Channel. Each sampling section covered 25 meter long by 4
+    meter wide, running parallel to riverbank. The goal of data
+    collected is to identify relationships between habitat conditions
+    (depth, substrate, velocity, and cover) and where juvenile Chinook
+    salmon and steelhead occur. 
   </para>
     </abstract>
     <keywordSet>
@@ -203,16 +203,24 @@
       <methodStep>
         <description>
           <para>
-    Survey Locations
+    Overview
   </para>
           <para>
-    Monitoring Schedule
+    Snorkel surveys were conducted between March and August at 24
+    sampling locations selected at random (12 in LFC, 12 in HFC). Each
+    section covered an area 25 meters long and four meters wide and ran
+    parallel to one riverbank. Two divers surveyed the reach by swimming
+    upstream and marking the location of fish observations and the
+    number, species and size of the fish observed. The divers would then
+    measure water depth, average velocity, substrate, cover, and habitat
+    types at 36 points, each representing one square meter within the
+    reach. The divers also returned to the locations where fish were
+    observed and measured depth and focal velocity associated with each
+    fish observation. Water temperature was continuously monitored
+    through a network of StowAway electronic thermistors. 
   </para>
           <para>
-    Fish Measurements
-  </para>
-          <para>
-    Fish Counts
+    Attributes collected
   </para>
         </description>
       </methodStep>
@@ -234,8 +242,8 @@
       <entityDescription>Feather river mini snorkel survey locations data</entityDescription>
       <physical>
         <objectName>survey_locations.csv</objectName>
-        <size unit="bytes">244944</size>
-        <authentication method="MD5">f425bc316f04b25998b51efdd80dfe60</authentication>
+        <size unit="bytes">9</size>
+        <authentication method="MD5">9d1ead73e678fa2f51a70a933b0bf017</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -248,7 +256,7 @@
         </dataFormat>
         <distribution>
           <online>
-            <url function="download">https://github.com/FlowWest/feather-mini-snorkel/tree/make-metadata/datafeather_survey_locations_metadata.csv</url>
+            <url function="download">https://github.com/FlowWest/feather-mini-snorkel/make-metadata/datafeather_survey_locations_metadata.csv</url>
           </online>
         </distribution>
       </physical>
@@ -258,16 +266,16 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Identification number of survey location table</attributeDefinition>
           <measurementScale>
-            <ordinal>
+            <nominal>
               <nonNumericDomain>
                 <enumeratedDomain>
                   <codeDefinition>
-                    <code>1</code>
-                    <definition>Feather River ini-Snorkel Survey</definition>
+                    <code>11 - 146</code>
+                    <definition>Identification number of survey location table</definition>
                   </codeDefinition>
                 </enumeratedDomain>
               </nonNumericDomain>
-            </ordinal>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -483,8 +491,8 @@
       <entityDescription>Feather river mini snorkel survey microhabitat data</entityDescription>
       <physical>
         <objectName>microhabitat_with_fish_observations.csv</objectName>
-        <size unit="bytes">245004</size>
-        <authentication method="MD5">56fc0d9fd397c32cf9f45a4a5d37df47</authentication>
+        <size unit="bytes">9</size>
+        <authentication method="MD5">9d1ead73e678fa2f51a70a933b0bf017</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -497,7 +505,7 @@
         </dataFormat>
         <distribution>
           <online>
-            <url function="download">https://github.com/FlowWest/feather-mini-snorkel/tree/make-metadata/datamicrohabitat_with_fish_observations.csv</url>
+            <url function="download">https://github.com/FlowWest/feather-mini-snorkel/make-metadata/datamicrohabitat_with_fish_observations.csv</url>
           </online>
         </distribution>
       </physical>
@@ -511,8 +519,8 @@
               <nonNumericDomain>
                 <enumeratedDomain>
                   <codeDefinition>
-                    <code>1</code>
-                    <definition>Feather River ini-Snorkel Survey</definition>
+                    <code>18 - 4894</code>
+                    <definition>Identification number of micro habitat data table</definition>
                   </codeDefinition>
                 </enumeratedDomain>
               </nonNumericDomain>
@@ -528,8 +536,8 @@
               <nonNumericDomain>
                 <enumeratedDomain>
                   <codeDefinition>
-                    <code>2</code>
-                    <definition>Feather River ini-Snorkel Survey</definition>
+                    <code>11-146</code>
+                    <definition>Identification number of survey location table</definition>
                   </codeDefinition>
                 </enumeratedDomain>
               </nonNumericDomain>
@@ -545,8 +553,8 @@
               <nonNumericDomain>
                 <enumeratedDomain>
                   <codeDefinition>
-                    <code>3</code>
-                    <definition>Feather River ini-Snorkel Survey</definition>
+                    <code>0.100 - 24.400</code>
+                    <definition>Code to identify specific one-meter transect surveyed</definition>
                   </codeDefinition>
                 </enumeratedDomain>
               </nonNumericDomain>
@@ -885,8 +893,8 @@
               <nonNumericDomain>
                 <enumeratedDomain>
                   <codeDefinition>
-                    <code>4</code>
-                    <definition>Feather River ini-Snorkel Survey</definition>
+                    <code>11 - 424</code>
+                    <definition>Unique identifier number for fish observations</definition>
                   </codeDefinition>
                 </enumeratedDomain>
               </nonNumericDomain>
