@@ -1,5 +1,6 @@
 library(tidyverse)
 library(googleCloudStorageR)
+library(dplyr)
 
 
 # google cloud set up
@@ -33,9 +34,12 @@ table(survey_locations$weather)
 table(survey_locations$channel_type)
 table(survey_locations$gps_coordinate) #TODO only a few fields have coordinates, check if it is worth keeping
 
-range(survey_locations$water_temp, na.rm = TRUE) #TODO check if makes sense to turn 0 into NA since temp rance is 47-69, and there are two 0s
+range(survey_locations$water_temp, na.rm = TRUE) #temp ranges 47-69, and there are two 0s, turning them into NA
 table(survey_locations$water_temp)
 
+survey_locations <- survey_locations |> 
+  mutate(water_temp = replace(water_temp, water_temp == 0, NA)) |> 
+  glimpse()
 
 # write files -------------------------------------------------------------
 
