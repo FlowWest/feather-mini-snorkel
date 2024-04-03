@@ -11,7 +11,7 @@ datatable_metadata <-
                                    "data-raw/metadata/feather_microhabitat_metadata.xlsx"),
                 datatable_description = c("Feather river mini snorkel survey locations data",
                                           "Feather river mini snorkel survey microhabitat data"),
-                datatable_url = paste0("https://github.com/FlowWest/feather-mini-snorkel/tree/make-metadata/data",
+                datatable_url = paste0("https://github.com/FlowWest/feather-mini-snorkel/make-metadata/data",
                                        c("feather_survey_locations_metadata.csv",
                                          "microhabitat_with_fish_observations.csv")))
 # save cleaned data to `data/`
