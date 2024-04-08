@@ -1,7 +1,7 @@
 library(tidyverse)
 library(googleCloudStorageR)
 library(dplyr)
-
+library(magrittr)
 
 # google cloud set up
 # gcs_auth(json_file = Sys.getenv("GCS_AUTH_FILE"))
@@ -23,6 +23,11 @@ survey_locations <- read_csv(here::here("data", "survey_locations.csv")) |>
 # here is where we clean up the data and make sure it all looks as expected
 # check unique values for each column
 # check that all fields are being read in the right way
+
+survey_locations <- survey_locations |> 
+  mutate(weather = tolower(weather), #changing categorical variables to lowercase
+         channel_type = tolower(channel_type)) |> 
+  glimpse()
 
 summary(microhabitat_fish_observations)
 table(microhabitat_fish_observations$species)
