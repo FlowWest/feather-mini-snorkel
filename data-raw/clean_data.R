@@ -37,7 +37,7 @@ microhabitat_fish_observations <- microhabitat_fish_observations |>
          channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
   glimpse()
 
-summary(microhabitat_fish_ocountsummary)
+summary(microhabitat_fish_observations)
 table(microhabitat_fish_observations$species)
 table(microhabitat_fish_observations$channel_geomorphic_unit)
 
@@ -64,7 +64,7 @@ survey_locations <- survey_locations |>
 # write files -------------------------------------------------------------
 
 # save cleaned data to `data/`
-write.csv(microhabitat_fish_observations, here::here("data", "microhabitat_with_fish_observations.csv"), row.names = FALSE)
+write_csv(microhabitat_fish_observations, here::here("data", "microhabitat_with_fish_observations.csv"))
 
-write.csv(survey_locations, here::here("data", "survey_locations.csv"), row.names = FALSE)
+write_csv(survey_locations, here::here("data", "survey_locations.csv"))
 
