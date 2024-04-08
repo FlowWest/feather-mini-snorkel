@@ -24,14 +24,29 @@ survey_locations <- read_csv(here::here("data", "survey_locations.csv")) |>
 # check unique values for each column
 # check that all fields are being read in the right way
 
+microhabitat_fish_observations <- microhabitat_fish_observations |> 
+  relocate(fish_data_id, .after = location_table_id) |> #re-arranging column order
+  relocate(date, .after = transect_code) |> 
+  relocate(species, .after = date) |> 
+  relocate(count, .after = species) |> 
+  relocate(fl_mm, .after = count) |> 
+  relocate(depth, .after = surface_turbidity) |> 
+  relocate(velocity, .after = depth) |> 
+  relocate(dist_to_bottom, .after = percent_cover_more_than_half_meter_overhead) |> 
+  mutate(species = tolower(species), #changing categorical variables to lowercase
+         channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
+  glimpse()
+
+summary(microhabitat_fish_ocountsummary)
+table(microhabitat_fish_observations$species)
+table(microhabitat_fish_observations$channel_geomorphic_unit)
+
+
+
 survey_locations <- survey_locations |> 
   mutate(weather = tolower(weather), #changing categorical variables to lowercase
          channel_type = tolower(channel_type)) |> 
   glimpse()
-
-summary(microhabitat_fish_observations)
-table(microhabitat_fish_observations$species)
-table(microhabitat_fish_observations$channel_geomorphic_unit)
 
 summary(survey_locations)
 table(survey_locations$location)
