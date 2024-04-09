@@ -12,7 +12,7 @@
   </access>
   <dataset>
     <shortName>Feather Mini Snorkel Survey</shortName>
-    <title>Mini Snorkel Data Feather River</title>
+    <title>Distribution and habitat use of juvenile steelhead and other fishes of the lower Feather River</title>
     <creator>
       <individualName>
         <givenName>Ryon</givenName>
@@ -21,43 +21,36 @@
       <organizationName>California Department of Water Resources</organizationName>
       <electronicMailAddress>Ryon.Kurth@water.ca.gov </electronicMailAddress>
     </creator>
-    <pubDate>2024-04-03</pubDate>
+    <pubDate>2024-04-09</pubDate>
     <abstract>
       <para>
-    Abstract
-  </para>
-      <para>
-    DWR conducted this one-year study of microhabitat and mesohabitat in
-    Feather River. Snorkel survey monitoring occurred during the years
-    2001 and 202 on the Feather River. Sampling was conducted monthly
-    during the months of March to August across 24 different sites,
-    which were selected at random, 12 in Low Flow Channel, and 12 in
-    High Flow Channel. Each sampling section covered 25 meter long by 4
-    meter wide, running parallel to riverbank. The goal of data
-    collected is to identify relationships between habitat conditions
-    (depth, substrate, velocity, and cover) and where juvenile Chinook
-    salmon and steelhead occur. 
+    The California Department of Water Resources (DWR), conducted a
+    one-year study of microhabitat and mesohabitat in Feather River. The
+    goal of this study was to identify relationships between habitat
+    conditions (depth, substrate, velocity, and cover) and where
+    juvenile Chinook salmon and steelhead occur. Snorkel surveys were
+    conducted monthly March through August in 2001-2002 across 24
+    different sites, which were selected at random (12 in Low Flow
+    Channel, and 12 in High Flow Channel). Each sampling section covered
+    25 meter long by 4 meter wide, running parallel to riverbank.
   </para>
     </abstract>
     <keywordSet>
       <keyword>spring run</keyword>
       <keyword>fall run</keyword>
-      <keyword>juvenile production estimate</keyword>
       <keyword>Oncorhynchus tshawytscha</keyword>
       <keyword>California</keyword>
       <keyword>Central Valley</keyword>
       <keyword>chinook</keyword>
-      <keyword>Speckled dace</keyword>
       <keyword>Steelhead trout</keyword>
-      <keyword>Tule perch</keyword>
     </keywordSet>
     <intellectualRights>
-      <para>This data package is released to the "public domain" under Creative Commons CC0 1.0 "No Rights Reserved" (see: https://creativecommons.org/publicdomain/zero/1.0/). It is considered professional etiquette to provide attribution of the original work if this data package is shared in whole or by individual components. A generic citation is provided for this data package on the website https://portal.edirepository.org (herein "website") in the summary metadata page. Communication (and collaboration) with the creators of this data package is recommended to prevent duplicate research or publication. This data package (and its components) is made available "as is" and with no warranty of accuracy or fitness for use. The creators of this data package and the website shall not be liable for any damages resulting from misinterpretation or misuse of the data package or its components. Periodic updates of this data package may be available from the website. Thank you.</para>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</para>
     </intellectualRights>
     <licensed>
-      <licenseName>Creative Commons Zero v1.0 Universal</licenseName>
-      <url>https://spdx.org/licenses/CC0-1.0.html</url>
-      <identifier>CC0-1.0</identifier>
+      <licenseName>Creative Commons Attribution 4.0 International</licenseName>
+      <url>https://spdx.org/licenses/CC-BY-4.0.html</url>
+      <identifier>CC-BY-4.0</identifier>
     </licensed>
     <coverage>
       <geographicCoverage>
@@ -207,17 +200,18 @@
   </para>
           <para>
     Snorkel surveys were conducted between March and August at 24
-    sampling locations selected at random (12 in LFC, 12 in HFC). Each
-    section covered an area 25 meters long and four meters wide and ran
-    parallel to one riverbank. Two divers surveyed the reach by swimming
-    upstream and marking the location of fish observations and the
-    number, species and size of the fish observed. The divers would then
-    measure water depth, average velocity, substrate, cover, and habitat
-    types at 36 points, each representing one square meter within the
-    reach. The divers also returned to the locations where fish were
-    observed and measured depth and focal velocity associated with each
-    fish observation. Water temperature was continuously monitored
-    through a network of StowAway electronic thermistors. 
+    sampling locations selected at random (12 in Low Flow Channel, 12 in
+    High Flow Channel). Each section covered an area of 25 meters long
+    and four meters wide and ran parallel to one riverbank. Two divers
+    surveyed the reach by swimming upstream and marking the location of
+    fish observations and the number, species and size of the fish
+    observed. The divers would then measure water depth, average
+    velocity, substrate, cover, and habitat types at 36 points, each
+    representing one square meter within the reach. The divers also
+    returned to the locations where fish were observed and measured
+    depth and focal velocity associated with each fish observation.
+    Water temperature was continuously monitored through a network of
+    StowAway electronic thermistors. 
   </para>
           <para>
     Attributes collected
@@ -226,7 +220,7 @@
       </methodStep>
     </methods>
     <project>
-      <title>Mini Snorkel Data Feather River</title>
+      <title>Distribution and habitat use of juvenile steelhead and other fishes of the lower Feather River</title>
       <personnel>
         <individualName>
           <givenName>Ryon</givenName>
@@ -266,16 +260,18 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Identification number of survey location table</attributeDefinition>
           <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>11 - 146</code>
-                    <definition>Identification number of survey location table</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </nominal>
+            <ratio>
+              <unit>
+                <customUnit>id</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">11</minimum>
+                  <maximum exclusive="false">146</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
           </measurementScale>
         </attribute>
         <attribute>
@@ -297,12 +293,12 @@
         <attribute>
           <attributeName>location</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Location were mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</attributeDefinition>
+          <attributeDefinition>Location where mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Location were mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</definition>
+                  <definition>Location where mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -320,7 +316,7 @@
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">0</minimum>
+                  <minimum exclusive="false">47</minimum>
                   <maximum exclusive="false">69</maximum>
                 </bounds>
               </numericDomain>
@@ -330,12 +326,12 @@
         <attribute>
           <attributeName>weather</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Weather conditions during survey. Conditions = c("Direct Sunlight", "Overcast")</attributeDefinition>
+          <attributeDefinition>Weather conditions during survey. Conditions = c("direct Sunlight", "overcast")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Weather conditions during survey. Conditions = c("Direct Sunlight", "Overcast")</definition>
+                  <definition>Weather conditions during survey. Conditions = c("direct Sunlight", "overcast")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -458,12 +454,12 @@
         <attribute>
           <attributeName>channel_type</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Feather channel where survey was conducted. Levels = c("Mainchannel", "Mainchannel Branch", "Sidechannel")</attributeDefinition>
+          <attributeDefinition>Feather channel where survey was conducted. Levels = c("mainchannel", "mainchannel branch", "sidechannel")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Feather channel where survey was conducted. Levels = c("Mainchannel", "Mainchannel Branch", "Sidechannel")</definition>
+                  <definition>Feather channel where survey was conducted. Levels = c("mainchannel", "mainchannel branch", "sidechannel")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -484,7 +480,7 @@
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>60</numberOfRecords>
+      <numberOfRecords>136</numberOfRecords>
     </dataTable>
     <dataTable>
       <entityName>microhabitat_with_fish_observations.csv</entityName>
@@ -545,6 +541,23 @@
           </measurementScale>
         </attribute>
         <attribute>
+          <attributeName>fish_data_id</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Unique identifier number for fish observations</attributeDefinition>
+          <measurementScale>
+            <ordinal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>11 - 424</code>
+                    <definition>Unique identifier number for fish observations</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </ordinal>
+          </measurementScale>
+        </attribute>
+        <attribute>
           <attributeName>transect_code</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Code to identify specific one-meter transect surveyed</attributeDefinition>
@@ -562,9 +575,381 @@
           </measurementScale>
         </attribute>
         <attribute>
+          <attributeName>date</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Date mini snorkel data was collected</attributeDefinition>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+              <dateTimeDomain>
+                <bounds>
+                  <minimum exclusive="false">36963</minimum>
+                  <maximum exclusive="false">37125</maximum>
+                </bounds>
+              </dateTimeDomain>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>species</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>count</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Number of fish observed</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>count of fish</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>integer</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">1500</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>fl_mm</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Fork length of fish</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>millimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">25</minimum>
+                  <maximum exclusive="false">500</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_fine_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of  fine substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_sand_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of  sand substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_small_gravel_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of small gravel substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_large_gravel_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of large gravel substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_cobble_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of cobble substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_boulder_substrate</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of boulder substrate at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_no_cover_inchannel</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of where there is no cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_small_woody_cover_inchannel</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of small woody cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_large_woody_cover_inchannel</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of large woody cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">40</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_submerged_aquatic_veg_inchannel</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of submerged aquatic vegetation cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_undercut_bank</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentageof undercut bank cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">20</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_no_cover_overhead</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage where there is no overhead cover at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_cover_half_meter_overhead</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of overhead cover half a meter at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">75</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>percent_cover_more_than_half_meter_overhead</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Percentage of overhead cover more than half a meter above survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>percent</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">100</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>dist_to_bottom</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Measurement of distance to bottom where fish observation was observed</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">110</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>surface_turbidity</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Turbidity measured at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>NTU</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">50</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
           <attributeName>depth</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Depth on water in meters</attributeDefinition>
+          <attributeDefinition>Depth of water in meters</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -600,365 +985,6 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>percent_fine_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of  fine substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_sand_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of  sand substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_small_gravel_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of small gravel substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_large_gravel_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of large gravel substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_cobble_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of cobble substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_boulder_substrate</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of boulder substrate at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_no_cover_inchannel</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of cover shown at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_small_woody_cover_inchannel</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of small woody cover at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_large_woody_cover_inchannel</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of large woody cover at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">40</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_submerged_aquatic_veg_inchannel</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of submerged aquatic vegetation cover at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_undercut_bank</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of undercut bank cover at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">20</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_no_cover_overhead</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of no overhead cover at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_cover_half_meter_overhead</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of overhead cover above half a meter at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">75</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>percent_cover_more_than_half_meter_overhead</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percetage of half a meter overhead cover survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>percent</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>surface_turbidity</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Turbidity measured at survey</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <customUnit>NTU</customUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">50</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>fish_data_id</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Unique identifier number for fish observations</attributeDefinition>
-          <measurementScale>
-            <ordinal>
-              <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>11 - 424</code>
-                    <definition>Unique identifier number for fish observations</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
-              </nonNumericDomain>
-            </ordinal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>count</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Number of fish observed</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <customUnit>count of fish</customUnit>
-              </unit>
-              <numericDomain>
-                <numberType>integer</numberType>
-                <bounds>
-                  <minimum exclusive="false">1</minimum>
-                  <maximum exclusive="false">1500</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>fl_mm</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Fork length of juvenile</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>millimeter</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>whole</numberType>
-                <bounds>
-                  <minimum exclusive="false">25</minimum>
-                  <maximum exclusive="false">500</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>dist_to_bottom</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Where the focal velocity is taken from, where the fish was observed </attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>meter</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">110</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
           <attributeName>focal_velocity</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Velocity specific to where fish was observed</attributeDefinition>
@@ -978,56 +1004,29 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>species</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Fish species. Species = c("Chinook salmon", "Speckled dace", "Steelhead trout (wild)", " Steelhead trout, (clipped)", "Tule perch")</attributeDefinition>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <textDomain>
-                  <definition>Fish species. Species = c("Chinook salmon", "Speckled dace", "Steelhead trout (wild)", " Steelhead trout, (clipped)", "Tule perch")</definition>
-                </textDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>date</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Date mini snorkel data was collected</attributeDefinition>
-          <measurementScale>
-            <dateTime>
-              <formatString>YYYY-MM-DD</formatString>
-              <dateTimeDomain>
-                <bounds>
-                  <minimum exclusive="false">36963</minimum>
-                  <maximum exclusive="false">37125</maximum>
-                </bounds>
-              </dateTimeDomain>
-            </dateTime>
-          </measurementScale>
-        </attribute>
-        <attribute>
           <attributeName>channel_geomorphic_unit</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Geomorphic features of stream. Features include = c("Glide", "Glide Edgewater", "Pool", "Riffle Riffle Edgewater")</attributeDefinition>
+          <attributeDefinition>Geomorphic features of stream. Features include = c("glide", "glide edgewater", "pool", "riffle riffle edgewater")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Geomorphic features of stream. Features include = c("Glide", "Glide Edgewater", "Pool", "Riffle Riffle Edgewater")</definition>
+                  <definition>Geomorphic features of stream. Features include = c("glide", "glide edgewater", "pool", "riffle riffle edgewater")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>382</numberOfRecords>
+      <numberOfRecords>5018</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
     <metadata>
       <unitList>
+        <unit id="id" name="id" unitType="dimensionless">
+          <description>Identification number of survey location table</description>
+        </unit>
         <unit id="river mile" name="river mile" unitType="dimensionless">
           <description>river mile</description>
         </unit>
