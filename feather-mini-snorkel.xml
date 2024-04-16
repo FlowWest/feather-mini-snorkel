@@ -21,7 +21,7 @@
       <organizationName>California Department of Water Resources</organizationName>
       <electronicMailAddress>Ryon.Kurth@water.ca.gov </electronicMailAddress>
     </creator>
-    <pubDate>2024-04-09</pubDate>
+    <pubDate>2024-04-16</pubDate>
     <abstract>
       <para>
     The California Department of Water Resources (DWR), conducted a
@@ -260,18 +260,13 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Identification number of survey location table</attributeDefinition>
           <measurementScale>
-            <ratio>
-              <unit>
-                <customUnit>id</customUnit>
-              </unit>
-              <numericDomain>
-                <numberType>whole</numberType>
-                <bounds>
-                  <minimum exclusive="false">11</minimum>
-                  <maximum exclusive="false">146</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Identification number of survey location table</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -511,16 +506,13 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Identification number of micro habitat data table</attributeDefinition>
           <measurementScale>
-            <ordinal>
+            <nominal>
               <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>18 - 4894</code>
-                    <definition>Identification number of micro habitat data table</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
+                <textDomain>
+                  <definition>Identification number of micro habitat data table</definition>
+                </textDomain>
               </nonNumericDomain>
-            </ordinal>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -528,16 +520,13 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Identification number of survey location table</attributeDefinition>
           <measurementScale>
-            <ordinal>
+            <nominal>
               <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>11-146</code>
-                    <definition>Identification number of survey location table</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
+                <textDomain>
+                  <definition>Identification number of survey location table</definition>
+                </textDomain>
               </nonNumericDomain>
-            </ordinal>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -545,16 +534,13 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Unique identifier number for fish observations</attributeDefinition>
           <measurementScale>
-            <ordinal>
+            <nominal>
               <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>11 - 424</code>
-                    <definition>Unique identifier number for fish observations</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
+                <textDomain>
+                  <definition>Unique identifier number for fish observations</definition>
+                </textDomain>
               </nonNumericDomain>
-            </ordinal>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -562,16 +548,13 @@
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Code to identify specific one-meter transect surveyed</attributeDefinition>
           <measurementScale>
-            <ordinal>
+            <nominal>
               <nonNumericDomain>
-                <enumeratedDomain>
-                  <codeDefinition>
-                    <code>0.100 - 24.400</code>
-                    <definition>Code to identify specific one-meter transect surveyed</definition>
-                  </codeDefinition>
-                </enumeratedDomain>
+                <textDomain>
+                  <definition>Code to identify specific one-meter transect surveyed</definition>
+                </textDomain>
               </nonNumericDomain>
-            </ordinal>
+            </nominal>
           </measurementScale>
         </attribute>
         <attribute>
@@ -1024,9 +1007,6 @@
   <additionalMetadata>
     <metadata>
       <unitList>
-        <unit id="id" name="id" unitType="dimensionless">
-          <description>Identification number of survey location table</description>
-        </unit>
         <unit id="river mile" name="river mile" unitType="dimensionless">
           <description>river mile</description>
         </unit>
