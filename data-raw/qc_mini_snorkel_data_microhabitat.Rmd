@@ -1,0 +1,629 @@
+---
+title: "Feather River Mini Snorkel Data QC"
+author: "Erin Cain"
+date: "03/24"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.width=15, fig.height=10)
+library(tidyverse)
+library(lubridate)
+library(googleCloudStorageR)
+library(ggplot2)
+library(scales)
+
+colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal 2
+                   "#899DA4", "#C93312", "#DC863B" # royal 1 (- 3)
+)
+```
+
+# Feather River Mini Snorkel Data
+
+## Description of Monitoring Data
+
+**Timeframe:** March 2001 - August 2001
+
+**Completeness of Record throughout timeframe:** fairly complete 
+
+**Sampling Location:** Feather River 
+
+**Data Contact:** Ryon Kurth 
+
+## Questions 
+
+- what is distance 
+- what is t_code
+
+## Source Database pull
+
+```{r, echo=TRUE}
+source("data-raw/query_4mac.R")
+```
+
+Read in data from google cloud, glimpse raw data and domain description sheet: 
+```{r}
+# read in data to clean 
+all_fish_obs |> glimpse()
+```
+
+## Data transformations
+
+### first table reviewd is the All Fish Observation Table 
+All of the substrate and cover lookups are not true look ups. Substrate and cover column indicate a percentage of cover or substrate of each type. I updated the column names to reflect this and utilized the lookup tables to understand which substrate or cover type each column was referring to. 
+
+Columns removed: 
+- SpecAge removed - just a combination of species and age
+
+```{r}
+# For different excel sheets for each year read in and combine years here
+joined_fish_obs <- all_fish_obs |> 
+  left_join(species_code_lookup) |> 
+  select(-c(SpeciesCodeID, SpeciesCode)) |>
+  rename(percent_fine_substrate = Sub1, 
+         percent_sand_substrate = Sub2, 
+         percent_small_gravel_substrate = Sub3, 
+         percent_large_gravel_substrate = Sub4, 
+         percent_cobble_substrate = Sub5, 
+         percent_boulder_substrate = Sub6,
+         percent_no_cover_inchannel = IcovA, 
+         percent_small_woody_cover_inchannel = IcovB, 
+         percent_large_woody_cover_inchannel = IcovC, 
+         percent_submerged_aquatic_veg_inchannel = IcovE, 
+         percent_undercut_bank = IcovF,
+         percent_no_cover_overhead = Ocov0,
+         percent_cover_half_meter_overhead = Ocov1, 
+         percent_cover_more_than_half_meter_overhead = Ocov2)|> 
+  # Clean in separate file
+  # left_join(location_table |> mutate(PhysDataTblID = as.numeric(PhysDataTblID),
+  #                                    Location = as.character(Location))) |> 
+  janitor::clean_names() |> 
+  select(-spec_age) |> #same as species + age
+  left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
+  select(-cgu, -CGUCodeID) |> 
+  rename(channel_geomorphic_unit = CGU) |> 
+  glimpse()
+  
+```
+
+## Explore Numeric Variables: {.tabset}
+
+```{r}
+# Filter clean data to show only numeric variables 
+joined_fish_obs %>% select_if(is.numeric) %>% colnames()
+
+```
+### Variable: `count`
+
+**Plotting Count over Period of Record**
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs %>% 
+  ggplot(aes(x = date, y = count, group = 1))+
+  # geom_line()+
+  geom_point(aes(x=date, y = count))+
+  theme_minimal()+
+  labs(title = "Count over Time",
+       y = "Number of Fish Observations")
+```
+
+**Numeric Summary of Count over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$count)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$count) |> sum()` NA values
+
+
+### Variable: `date`
+
+**Plotting Date over Period of Record**
+
+All observations are from 2001 
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs %>% 
+  ggplot(aes(x = date, y = TRUE, group = 1))+
+  # geom_line()+
+  geom_point(aes(x=date, y = TRUE))+
+  theme_minimal()+
+  labs(title = "Dates Surveyed",
+       y = "")
+```
+
+**Numeric Summary of Count over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$date)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$date) |> sum()` NA values
+
+
+### Variable: `river_mile``
+
+**Plotting river_mile over Period of Record**
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs %>% 
+  ggplot(aes(x = river_mile, y = date, group = 1))+
+  # geom_line()+
+  geom_point(aes(x=river_mile, y = date))+
+  theme_minimal()+
+  labs(title = "Dates that River miles Surveyed",
+       y = "")
+```
+
+**Numeric Summary of river_mile over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$river_mile)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
+
+### Variable: `fl_mm`
+
+**Plotting fl_mm over Period of Record**
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = fl_mm)) + 
+  geom_histogram(breaks=seq(0, 200, by=2)) + 
+  scale_x_continuous(breaks=seq(0, 200, by=25)) +
+  theme_minimal() +
+  labs(title = "Fork length distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+```{r}
+joined_fish_obs %>% 
+  mutate(year = as.factor(year(date))) %>%
+  ggplot(aes(x = fl_mm, y = species)) + 
+  geom_boxplot() + 
+  theme_minimal() +
+  labs(title = "Fork length summarized by species") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+
+```
+
+
+**Numeric Summary of fl_mm over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$fl_mm)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$fl_mm) |> sum()` NA values
+
+
+### Variable: `dist_to_bottom`
+
+**Plotting dist_to_bottom distribution**
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = dist_to_bottom)) + 
+  geom_histogram(breaks=seq(0, 200, by=2)) + 
+  scale_x_continuous(breaks=seq(0, 200, by=25)) +
+  theme_minimal() +
+  labs(title = "Distance to Bottom") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+```{r}
+
+joined_fish_obs %>% 
+  mutate(year = as.factor(year(date))) %>%
+  ggplot(aes(x = dist_to_bottom, y = as.factor(river_mile))) + 
+  geom_boxplot() + 
+  theme_minimal() +
+  labs(title = "Distance to bottom summarized by river_mile") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of dist_to_bottom over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$river_mile)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
+
+
+### Variable: `focal_velocity` & `velocity`
+
+**Plotting velocities over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = focal_velocity)) + 
+  geom_histogram(breaks=seq(0, 10, by=1), group = "Focal velocity", fill = "blue", alpha = .2 ) + 
+  geom_histogram(aes(x = velocity), breaks=seq(0, 10, by=1), group = "Focal velocity", fill = "red", alpha = .2 ) + 
+  scale_x_continuous(breaks=seq(0, 10, by=1)) +
+  theme_minimal() +
+  labs(title = "Focal Velocity vs ") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+Looks like velocity and focal velocity have similar distributions
+
+**Numeric Summary of focal_velocity over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$focal_velocity)
+summary(joined_fish_obs$velocity)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$focal_velocity) |> sum()` NA values
+There are `r is.na(joined_fish_obs$velocity) |> sum()` NA values
+
+### Variable: `t_code`
+
+**Plotting t_code over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = t_code)) + 
+  geom_histogram(breaks=seq(0, 30, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 30, by=1)) +
+  theme_minimal() +
+  labs(title = "T code distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of t_code over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$t_code)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$t_code) |> sum()` NA values
+
+### Variable: `depth`
+
+**Plotting depth over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = depth)) + 
+  geom_histogram(breaks=seq(0, 250, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 200, by=50)) +
+  theme_minimal() +
+  labs(title = "T code distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of depth over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$depth)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$t_code) |> sum()` NA values
+
+### Variable: `substrate `
+
+**Plotting substrate over Period of Record**
+
+```{r}
+# Make whatever plot is appropriate 
+# maybe 2+ plots are appropriate
+joined_fish_obs |> 
+  arrange(river_mile) |> 
+  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  select(obs_id, 
+         percent_fine_substrate,
+         percent_sand_substrate,
+         percent_small_gravel_substrate,
+         percent_large_gravel_substrate,
+         percent_cobble_substrate,
+         percent_boulder_substrate) |> 
+  pivot_longer(cols = percent_fine_substrate:percent_boulder_substrate, 
+               names_to = "substrate_type", values_to = "percent") |> 
+  ggplot(aes(x = obs_id, y = percent, fill = substrate_type)) +
+  geom_col() +
+  scale_fill_manual(values = colors_small) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+
+```
+
+**Numeric Summary of substrate over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$percent_fine_substrate)
+summary(joined_fish_obs$percent_sand_substrate)
+summary(joined_fish_obs$percent_small_gravel_substrate)
+summary(joined_fish_obs$percent_large_gravel_substrate)
+summary(joined_fish_obs$percent_boulder_substrate)
+summary(joined_fish_obs$percent_cobble_substrate)
+
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$percent_fine_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_sand_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_boulder_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_cobble_substrate) |> sum()` NA values
+
+### Variable: `inchannel cover`
+
+**Plotting inchannel cover over Period of Record**
+
+Notes: 
+- some cover totals less than 100%
+
+```{r}
+joined_fish_obs |> 
+  arrange(river_mile) |> 
+  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  select(obs_id, 
+         percent_no_cover_inchannel,
+         percent_small_woody_cover_inchannel,
+         percent_large_woody_cover_inchannel,
+         percent_submerged_aquatic_veg_inchannel) |> 
+  pivot_longer(cols = percent_no_cover_inchannel:percent_submerged_aquatic_veg_inchannel, 
+               names_to = "inchannel_cover_type", values_to = "percent") |> 
+  ggplot(aes(x = obs_id, y = percent, fill = inchannel_cover_type)) +
+  geom_col() +
+  scale_fill_manual(values = colors_small[4:7]) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+**Numeric Summary of inchannel cover over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$percent_no_cover_inchannel)
+summary(joined_fish_obs$percent_small_woody_cover_inchannel)
+summary(joined_fish_obs$percent_large_woody_cover_inchannel)
+summary(joined_fish_obs$percent_submerged_aquatic_veg_inchannel)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$percent_no_cover_inchannel) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_small_woody_cover_inchannel) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_large_woody_cover_inchannel) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_submerged_aquatic_veg_inchannel) |> sum()` NA values
+
+### Variable: `overhead cover`
+
+**Plotting overhead cover over Period of Record**
+
+Notes: 
+- some cover totals more than 100%
+
+```{r}
+joined_fish_obs |> 
+  arrange(river_mile) |> 
+  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  select(obs_id, 
+         percent_undercut_bank,
+         percent_no_cover_overhead,
+         percent_cover_half_meter_overhead,
+         percent_cover_more_than_half_meter_overhead) |> 
+  pivot_longer(cols = percent_undercut_bank:percent_cover_more_than_half_meter_overhead, 
+               names_to = "overhead_cover_type", values_to = "percent") |> 
+  ggplot(aes(x = obs_id, y = percent, fill = overhead_cover_type)) +
+  geom_col() +
+  scale_fill_manual(values = colors_small[4:7]) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+**Numeric Summary of overhead cover over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$percent_undercut_bank)
+summary(joined_fish_obs$percent_no_cover_overhead)
+summary(joined_fish_obs$percent_cover_half_meter_overhead)
+summary(joined_fish_obs$percent_cover_more_than_half_meter_overhead)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$percent_undercut_bank) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_no_cover_overhead) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_cover_half_meter_overhead) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_cover_more_than_half_meter_overhead) |> sum()` NA values
+
+### Variable: `sur_turb`
+
+**Plotting sur_turb over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = sur_turb)) + 
+  geom_histogram(breaks=seq(0, 75, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 75, by=5)) +
+  theme_minimal() +
+  labs(title = "Surface turbidity distribution") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of sur_turb over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$sur_turb)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$sur_turb) |> sum()` NA values
+
+### Variable: `distance`
+
+**Plotting distance over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = distance)) + 
+  geom_histogram(breaks=seq(0, 5, by=1)) + 
+  scale_x_continuous(breaks=seq(0, 5, by=1)) +
+  theme_minimal() +
+  labs(title = "Distance") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of distance over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$distance)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$distance) |> sum()` NA values
+
+### Variable: `fish_age`
+
+**Plotting fish_age over Period of Record**
+
+```{r}
+joined_fish_obs |> 
+  # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
+  ggplot(aes(x = fish_age)) + 
+  geom_histogram(breaks=seq(0, 5, by=.25)) + 
+  scale_x_continuous(breaks=seq(0, 5, by=1)) +
+  theme_minimal() +
+  labs(title = "Distance") + 
+  theme(text = element_text(size = 18),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
+```
+
+**Numeric Summary of fish_age over Period of Record**
+
+```{r}
+# Table with summary statistics
+summary(joined_fish_obs$fish_age)
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$fish_age) |> sum()` NA values
+
+## Explore Categorical variables: {.tabset}
+
+
+
+```{r}
+# Filter clean data to show only categorical variables 
+joined_fish_obs %>% select_if(is.character) %>% colnames()
+```
+
+
+
+### Variable: `location`
+```{r}
+table(joined_fish_obs$location) 
+```
+
+Fix inconsistencies with spelling, capitalization, and abbreviations. 
+
+```{r}
+# Fix any inconsistencies with categorical variables
+joined_fish_obs$location <- tolower(joined_fish_obs$location)
+table(joined_fish_obs$location) 
+
+# FIX aleck riffle and alec riffle
+# FIX hatchery  ditch and hatchery ditch
+```
+
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$location) |> sum()` NA values
+
+### Variable: `species`
+```{r}
+table(joined_fish_obs$species) 
+```
+
+Fix inconsistencies with spelling, capitalization, and abbreviations. 
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$species) |> sum()` NA values
+
+### Variable: `channel_geomorphic_unit`
+```{r}
+table(joined_fish_obs$channel_geomorphic_unit) 
+```
+
+**NA and Unknown Values**
+
+There are `r is.na(joined_fish_obs$channel_geomorphic_unit) |> sum()` NA values
+
+## Summary of identified issues
+
+* percent cover that is > or < 100% 
+* location variables that I need to change 
+
+
+## Save cleaned data to data/
+
+```{r}
+# Save to data folder
+# Name file [watershed]_[data type].csv
+```
