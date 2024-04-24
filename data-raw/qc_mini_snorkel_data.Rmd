@@ -781,8 +781,9 @@ table(joined_fish_obs$location)
 joined_fish_obs <- joined_fish_obs |> 
   mutate(location = case_when(location %in% c("aleck riffle", "alec riffle") ~ "aleck riffle",
                               location == "hatchery  ditch" ~ "hatchery ditch",
-                              location %in% c("hour bars", "hour bar") ~ "hour bars"))
-
+                              location %in% c("hour bars", "hour bar") ~ "hour bars",
+         T ~ location))
+unique(joined_fish_obs$location)
 # FIX aleck riffle and alec riffle
 # FIX hatchery  ditch and hatchery ditch
 ```
@@ -854,15 +855,17 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
-  select(-c(location, water_temp, 
-        weather, river_mile, flow, number_of_divers, 
-        reach_length, reach_width, channel_width, 
-        channel_type, gps_coordinate))
+  mutate(species = tolower(species),
+         channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
+  select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
+  
 
 survey_locations <- joined_fish_obs |> 
   filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
+  mutate(weather = tolower(weather),
+         channel_type = tolower(channel_type)) |> 
   select(location_table_id, date, location, water_temp, 
         weather, river_mile, flow, number_of_divers, 
         reach_length, reach_width, channel_width, 
