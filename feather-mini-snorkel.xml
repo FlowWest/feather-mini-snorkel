@@ -21,7 +21,7 @@
       <organizationName>California Department of Water Resources</organizationName>
       <electronicMailAddress>Ryon.Kurth@water.ca.gov </electronicMailAddress>
     </creator>
-    <pubDate>2024-04-16</pubDate>
+    <pubDate>2024-05-02</pubDate>
     <abstract>
       <para>
     The California Department of Water Resources (DWR), conducted a
@@ -196,13 +196,14 @@
       <methodStep>
         <description>
           <para>
-    Overview
-  </para>
-          <para>
-    Snorkel surveys were conducted between March and August at 24
-    sampling locations selected at random (12 in Low Flow Channel, 12 in
-    High Flow Channel). Each section covered an area of 25 meters long
-    and four meters wide and ran parallel to one riverbank. Two divers
+    The objectives of this study included determining the seasonal
+    distribution of rearing juvenile salmonids and other fishes, and
+    direct and indirect effects of water temperatures, habitat, flow,
+    and interspecific interactions on juvenile salmonids. Snorkel
+    surveys were conducted between March and August at 24 sampling
+    locations selected at random (12 in Low Flow Channel, 12 in High
+    Flow Channel). Each section covered an area of 25 meters long and
+    four meters wide and ran parallel to one riverbank. Two divers
     surveyed the reach by swimming upstream and marking the location of
     fish observations and the number, species and size of the fish
     observed. The divers would then measure water depth, average
@@ -212,9 +213,6 @@
     depth and focal velocity associated with each fish observation.
     Water temperature was continuously monitored through a network of
     StowAway electronic thermistors. 
-  </para>
-          <para>
-    Attributes collected
   </para>
         </description>
       </methodStep>
@@ -288,12 +286,48 @@
         <attribute>
           <attributeName>location</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Location where mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</attributeDefinition>
+          <attributeDefinition>Location where mini snorkel data was collected. Locations include = c("hatchery ditch", "hour bars", "hatchery riffle", "trailer park riffle", &#13;
+"bedrock park", "steep riffle", "robinson side channel", "steep side channel", &#13;
+"robinson riffle", "upper big hole", "lower big hole", "g95", &#13;
+"g95 east", "lower hole", "gridley riffle", "big bar", "goose riffle", &#13;
+"macfarland riffle", "shallow", "herringer", "junkyard", "auditorium riffle", &#13;
+"bedrock riffle", "eye side channel", "mathews riffle", "eye riffle", &#13;
+"lower hour", "lower hour side channel", "junkyard riffle", "shallow riffle", &#13;
+"trailer park", "aleck riffle", "robinson main channel", "steep side riffle", &#13;
+"weir riffle", "vance avenue bl - river left", "big hole island", &#13;
+"across from big hole boat ramp", "g95 (area)", "bedrock", "lower robinson", &#13;
+"eye riffle main channel", "eye riffle side", "big hole", "g95 west side channel", &#13;
+"hour riffle", "shallow riffle side", "herringer riffle", "g 95", &#13;
+"east g 95", "vance avenue", "auditorium", "weir", "eye riffle side channel", &#13;
+"vance (300 yards below-rr-right channel", "across big hole island ( river right)", &#13;
+"across from big hole", "g-95 side channel", "mcfarland riffle`", &#13;
+"gridley side channel", "herringer main river left", "g95 rr downstream head", &#13;
+"bedrock park, unit #50", "trailer park, unit #98", "matthews riffle", &#13;
+"eye riffle, unit #208", "river right below vance ave bridge", &#13;
+"big bar - middle island river right")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Location where mini snorkel data was collected. Locations include = c("aleck riffle", "hatchery ditch", hour bars")</definition>
+                  <definition>Location where mini snorkel data was collected. Locations include = c("hatchery ditch", "hour bars", "hatchery riffle", "trailer park riffle", &#13;
+"bedrock park", "steep riffle", "robinson side channel", "steep side channel", &#13;
+"robinson riffle", "upper big hole", "lower big hole", "g95", &#13;
+"g95 east", "lower hole", "gridley riffle", "big bar", "goose riffle", &#13;
+"macfarland riffle", "shallow", "herringer", "junkyard", "auditorium riffle", &#13;
+"bedrock riffle", "eye side channel", "mathews riffle", "eye riffle", &#13;
+"lower hour", "lower hour side channel", "junkyard riffle", "shallow riffle", &#13;
+"trailer park", "aleck riffle", "robinson main channel", "steep side riffle", &#13;
+"weir riffle", "vance avenue bl - river left", "big hole island", &#13;
+"across from big hole boat ramp", "g95 (area)", "bedrock", "lower robinson", &#13;
+"eye riffle main channel", "eye riffle side", "big hole", "g95 west side channel", &#13;
+"hour riffle", "shallow riffle side", "herringer riffle", "g 95", &#13;
+"east g 95", "vance avenue", "auditorium", "weir", "eye riffle side channel", &#13;
+"vance (300 yards below-rr-right channel", "across big hole island ( river right)", &#13;
+"across from big hole", "g-95 side channel", "mcfarland riffle`", &#13;
+"gridley side channel", "herringer main river left", "g95 rr downstream head", &#13;
+"bedrock park, unit #50", "trailer park, unit #98", "matthews riffle", &#13;
+"eye riffle, unit #208", "river right below vance ave bridge", &#13;
+"big bar - middle island river right")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -504,12 +538,12 @@
         <attribute>
           <attributeName>micro_hab_data_tbl_id</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Identification number of micro habitat data table</attributeDefinition>
+          <attributeDefinition>Identification number of microhabitat data table</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Identification number of micro habitat data table</definition>
+                  <definition>Identification number of microhabitat data table</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -530,20 +564,6 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>fish_data_id</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Unique identifier number for fish observations</attributeDefinition>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <textDomain>
-                  <definition>Unique identifier number for fish observations</definition>
-                </textDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
           <attributeName>transect_code</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Code to identify specific one-meter transect surveyed</attributeDefinition>
@@ -552,6 +572,20 @@
               <nonNumericDomain>
                 <textDomain>
                   <definition>Code to identify specific one-meter transect surveyed</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>fish_data_id</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Unique identifier number for fish observations</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Unique identifier number for fish observations</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -574,20 +608,6 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>species</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</attributeDefinition>
-          <measurementScale>
-            <nominal>
-              <nonNumericDomain>
-                <textDomain>
-                  <definition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</definition>
-                </textDomain>
-              </nonNumericDomain>
-            </nominal>
-          </measurementScale>
-        </attribute>
-        <attribute>
           <attributeName>count</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Number of fish observed</attributeDefinition>
@@ -607,9 +627,23 @@
           </measurementScale>
         </attribute>
         <attribute>
+          <attributeName>species</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Fish species. Species = c("chinook salmon", "speckled dace", "steelhead trout (wild)", " steelhead trout, (clipped)", "tule perch")</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
           <attributeName>fl_mm</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Fork length of fish</attributeDefinition>
+          <attributeDefinition>Fork length of fish (mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -620,6 +654,101 @@
                 <bounds>
                   <minimum exclusive="false">25</minimum>
                   <maximum exclusive="false">500</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>dist_to_bottom</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Measurement of distance to bottom where fish observation was observed</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">110</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>depth</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Depth of water in meters</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">3</minimum>
+                  <maximum exclusive="false">200</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>focal_velocity</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Velocity specific to where fish was observed</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>feetPerSecond</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">3.44</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>velocity</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Measured stream velocity (ft/s)</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>feetPerSecond</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>integer</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">3.38</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>surface_turbidity</attributeName>
+          <attributeLabel>mini-snorkel-survey</attributeLabel>
+          <attributeDefinition>Turbidity measured at survey location</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>NTU</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">50</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -886,101 +1015,6 @@
                 <bounds>
                   <minimum exclusive="false">0</minimum>
                   <maximum exclusive="false">100</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>dist_to_bottom</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Measurement of distance to bottom where fish observation was observed</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>meter</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">110</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>surface_turbidity</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Turbidity measured at survey location</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <customUnit>NTU</customUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">50</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>depth</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Depth of water in meters</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>meter</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">3</minimum>
-                  <maximum exclusive="false">200</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>velocity</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Measured stream velocity (ft/s)</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>feetPerSecond</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>integer</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">3.38</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-        </attribute>
-        <attribute>
-          <attributeName>focal_velocity</attributeName>
-          <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Velocity specific to where fish was observed</attributeDefinition>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>feetPerSecond</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">3.44</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
