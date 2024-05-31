@@ -292,7 +292,7 @@ need to be present on public EDI dataset
 # For different excel sheets for each year read in and combine years here
 joined_fish_obs <- microhabitat |> 
   left_join(fish_data, by = c("TCode" = "TCode", "PDatID" = "PDatID")) |> 
-  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> 
+  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> # all codes are in the lookup
   select(-c(SpeciesCode, Species)) |>
   rename(species = Species.y, 
          percent_fine_substrate = Sub1, 
@@ -311,13 +311,20 @@ joined_fish_obs <- microhabitat |>
          percent_cover_more_than_half_meter_overhead = Ocov2)|> 
   # Clean in separate file
   left_join(location_table, by = c("PDatID" = "PhysDataTblID")) |> 
-  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |>
+  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |> # all codes are in the lookup
   select(-WeatherCode, -Weather) |> 
   rename(weather = Weather.y) |> 
+  # note that there are 0 channel types which do not map to the lookup
   left_join(channel_lookup, by = c("ChannelType" = "ChannelTypeCode")) |> 
   select(-ChannelType, -ChannelTypeCodeID) |> 
   rename(channel_type = ChannelType.y) |> 
   janitor::clean_names() |> 
+  # fixes issues with the codes so the CGU lookup will work
+  mutate(cgu = tolower(cgu),
+         cgu = case_when(cgu == "rm`" ~ "rm",
+                         cgu == "gm." ~ "gm",
+                         cgu == "" ~ NA,
+                         T ~ cgu)) |> 
   left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
   select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum, -start_time, -end_time, -crew) |> 
   rename(channel_geomorphic_unit = CGU) |> glimpse()
@@ -1412,15 +1419,88 @@ table(joined_fish_obs$location)
 joined_fish_obs <- joined_fish_obs |> 
   mutate(location = case_when(location %in% c("aleck riffle", "alec riffle") ~ "aleck riffle",
                               location == "hatchery  ditch" ~ "hatchery ditch",
-                              location %in% c("hour bars", "hour bar") ~ "hour bars"))
+                              location %in% c("hour bars", "hour bar") ~ "hour bars",
+         T ~ location))
+unique(joined_fish_obs$location)
+```
 
+    ##  [1] "hatchery ditch"                         
+    ##  [2] "hour bars"                              
+    ##  [3] "hatchery riffle"                        
+    ##  [4] "trailer park riffle"                    
+    ##  [5] "bedrock park"                           
+    ##  [6] "steep riffle"                           
+    ##  [7] "robinson side channel"                  
+    ##  [8] "steep side channel"                     
+    ##  [9] "robinson riffle"                        
+    ## [10] "upper big hole"                         
+    ## [11] "lower big hole"                         
+    ## [12] "g95"                                    
+    ## [13] "g95 east"                               
+    ## [14] "lower hole"                             
+    ## [15] "gridley riffle"                         
+    ## [16] "big bar"                                
+    ## [17] "goose riffle"                           
+    ## [18] "macfarland riffle"                      
+    ## [19] "shallow"                                
+    ## [20] "herringer"                              
+    ## [21] "junkyard"                               
+    ## [22] "auditorium riffle"                      
+    ## [23] "bedrock riffle"                         
+    ## [24] "eye side channel"                       
+    ## [25] "mathews riffle"                         
+    ## [26] "eye riffle"                             
+    ## [27] "lower hour"                             
+    ## [28] "lower hour side channel"                
+    ## [29] "junkyard riffle"                        
+    ## [30] "shallow riffle"                         
+    ## [31] "trailer park"                           
+    ## [32] "aleck riffle"                           
+    ## [33] "robinson main channel"                  
+    ## [34] "steep side riffle"                      
+    ## [35] "weir riffle"                            
+    ## [36] "vance avenue bl - river left"           
+    ## [37] "big hole island"                        
+    ## [38] "across from big hole boat ramp"         
+    ## [39] "g95 (area)"                             
+    ## [40] "bedrock"                                
+    ## [41] "lower robinson"                         
+    ## [42] "eye riffle main channel"                
+    ## [43] "eye riffle side"                        
+    ## [44] "big hole"                               
+    ## [45] "g95 west side channel"                  
+    ## [46] "hour riffle"                            
+    ## [47] "shallow riffle side"                    
+    ## [48] "herringer riffle"                       
+    ## [49] "g 95"                                   
+    ## [50] "east g 95"                              
+    ## [51] "vance avenue"                           
+    ## [52] "auditorium"                             
+    ## [53] "weir"                                   
+    ## [54] "eye riffle side channel"                
+    ## [55] "vance (300 yards below-rr-right channel"
+    ## [56] "across big hole island ( river right)"  
+    ## [57] "across from big hole"                   
+    ## [58] "g-95 side channel"                      
+    ## [59] "mcfarland riffle`"                      
+    ## [60] "gridley side channel"                   
+    ## [61] "herringer main river left"              
+    ## [62] "g95 rr downstream head"                 
+    ## [63] "bedrock park, unit #50"                 
+    ## [64] "trailer park, unit #98"                 
+    ## [65] "matthews riffle"                        
+    ## [66] "eye riffle, unit #208"                  
+    ## [67] "river right below vance ave bridge"     
+    ## [68] "big bar - middle island river right"
+
+``` r
 # FIX aleck riffle and alec riffle
 # FIX hatchery  ditch and hatchery ditch
 ```
 
 **NA and Unknown Values**
 
-There are 4695 NA values
+There are 0 NA values
 
 ### Variable: `species`
 
@@ -1450,13 +1530,13 @@ table(joined_fish_obs$channel_geomorphic_unit)
 
     ## 
     ##        Backwater            Glide  Glide Edgewater             Pool 
-    ##               30              879             1357             1022 
+    ##               36             1130             1593             1085 
     ##           Riffle Riffle Edgewater 
-    ##              176              283
+    ##              338              389
 
 **NA and Unknown Values**
 
-There are 1282 NA values
+There are 458 NA values
 
 ### Variable: `gps_coordinate`
 
@@ -1521,24 +1601,24 @@ table(joined_fish_obs$gps_coordinate)
     ##                             36                             36 
     ##      N 39°22.503 W 121° 37.942   N 39º 19.139'  W 121º 37.216 
     ##                             36                             36 
-    ##    N 39º 27.814  W 121º 36.234   N 39º 27.962'  W121º 35.980' 
+    ##   N 39º 24.319'  W 121º 36.976    N 39º 27.814  W 121º 36.234 
     ##                             36                             36 
-    ##   N 39º 27.982'  W 121º 35.920    N 39º 27.983  W 121º 35.919 
+    ##   N 39º 27.962'  W121º 35.980'   N 39º 27.982'  W 121º 35.920 
     ##                             36                             36 
-    ##   N 39º 29.066'  W121º 34.739' N 39º 29.575'   W 121º 34.795' 
-    ##                             39                             36 
-    ##     N 39º 29.642, W121º 34.801   N 39º 30.519'  W 121º 30.288 
+    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
+    ##                             36                             39 
+    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
     ##                             36                             36 
-    ##   N 39º 30.961'  W 121º 33.529       N39*19.765', W121*37.72' 
-    ##                             37                             36 
-    ##      N39*21.247', W121*37.835'        N39*23.155  W121*37.722 
+    ##   N 39º 30.519'  W 121º 30.288   N 39º 30.961'  W 121º 33.529 
+    ##                             36                             37 
+    ##       N39*19.765', W121*37.72'      N39*21.247', W121*37.835' 
     ##                             36                             36 
-    ##         N39*24.340 W121*37.029    N39º 20.738', W121º 37.576' 
+    ##        N39*23.155  W121*37.722         N39*24.340 W121*37.029 
     ##                             36                             36 
-    ##     N39º 24.321', W121º 36.982                           None 
-    ##                             72                            108 
-    ##                      not taken 
-    ##                             36
+    ##    N39º 20.738', W121º 37.576'     N39º 24.321', W121º 36.982 
+    ##                             36                             36 
+    ##                           None                      not taken 
+    ##                            108                             36
 
 **NA and Unknown Values**
 
@@ -1581,25 +1661,118 @@ There are 109 NA values
 
 ``` r
 microhabitat_with_fish_detections <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
-  select(-c(location, water_temp, 
-        weather, river_mile, flow, number_of_divers, 
-        reach_length, reach_width, channel_width, 
-        channel_type, gps_coordinate))
+  mutate(species = tolower(species),
+         species = ifelse(species == "sacramento squawfish","sacramento pikeminnow", species),
+         count = ifelse(is.na(count), 0, count),
+         channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
+  select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
+  
 
 survey_locations <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
-  select(location_table_id, date, location, water_temp, 
+  mutate(weather = tolower(weather),
+         channel_type = tolower(channel_type),
+         location_revised = case_when(location %in% c("across big hole island ( river right)", "across from big hole", "across from big hole boat ramp", "big hole island") ~ "big hole",
+                              location == "auditorium" ~ "auditorium riffle",
+                              location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
+                              location == "big bar - middle island river right" ~ "big bar",
+                              grepl("eye riffle", location) ~ "eye riffle",
+                              location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
+                              location == "gridley side channel" ~ "gridley riffle",
+                              grepl("herringer", location) ~ "herringer riffle",
+                              location == "junkyard" ~ "junkyard riffle",
+                              location == "lower hole" ~ "lower big hole",
+                              location == "lower hour side channel" ~ "lower hour",
+                              location == "mathews riffle" ~ "matthews riffle",
+                              location == "mcfarland riffle`" ~ "mcfarland riffle",
+                              grepl("trailer park", location) ~ "trailer park riffle",
+                              grepl("robinson", location) ~ "robinson riffle",
+                              grepl("shallow", location) ~ "shallow riffle",
+                              grepl("steep", location) ~ "steep riffle",
+                              grepl("vance", location) ~ "vance riffle",
+                              grepl("weir", location) ~ "weir riffle",
+                              T ~ location)) |> 
+  select(location_table_id, date, location, location_revised, water_temp, 
         weather, river_mile, flow, number_of_divers, 
         reach_length, reach_width, channel_width, 
         channel_type, gps_coordinate) |> 
   distinct()
+  
+sort(unique(survey_locations$location))
 ```
+
+    ##  [1] "across big hole island ( river right)"  
+    ##  [2] "across from big hole"                   
+    ##  [3] "across from big hole boat ramp"         
+    ##  [4] "aleck riffle"                           
+    ##  [5] "auditorium"                             
+    ##  [6] "auditorium riffle"                      
+    ##  [7] "bedrock"                                
+    ##  [8] "bedrock park"                           
+    ##  [9] "bedrock park, unit #50"                 
+    ## [10] "bedrock riffle"                         
+    ## [11] "big bar"                                
+    ## [12] "big bar - middle island river right"    
+    ## [13] "big hole"                               
+    ## [14] "big hole island"                        
+    ## [15] "east g 95"                              
+    ## [16] "eye riffle"                             
+    ## [17] "eye riffle main channel"                
+    ## [18] "eye riffle side"                        
+    ## [19] "eye riffle side channel"                
+    ## [20] "eye riffle, unit #208"                  
+    ## [21] "eye side channel"                       
+    ## [22] "g 95"                                   
+    ## [23] "g-95 side channel"                      
+    ## [24] "g95"                                    
+    ## [25] "g95 (area)"                             
+    ## [26] "g95 east"                               
+    ## [27] "g95 rr downstream head"                 
+    ## [28] "g95 west side channel"                  
+    ## [29] "goose riffle"                           
+    ## [30] "gridley riffle"                         
+    ## [31] "gridley side channel"                   
+    ## [32] "hatchery ditch"                         
+    ## [33] "hatchery riffle"                        
+    ## [34] "herringer"                              
+    ## [35] "herringer main river left"              
+    ## [36] "herringer riffle"                       
+    ## [37] "hour bars"                              
+    ## [38] "hour riffle"                            
+    ## [39] "junkyard"                               
+    ## [40] "junkyard riffle"                        
+    ## [41] "lower big hole"                         
+    ## [42] "lower hole"                             
+    ## [43] "lower hour"                             
+    ## [44] "lower hour side channel"                
+    ## [45] "lower robinson"                         
+    ## [46] "macfarland riffle"                      
+    ## [47] "mathews riffle"                         
+    ## [48] "matthews riffle"                        
+    ## [49] "mcfarland riffle`"                      
+    ## [50] "river right below vance ave bridge"     
+    ## [51] "robinson main channel"                  
+    ## [52] "robinson riffle"                        
+    ## [53] "robinson side channel"                  
+    ## [54] "shallow"                                
+    ## [55] "shallow riffle"                         
+    ## [56] "shallow riffle side"                    
+    ## [57] "steep riffle"                           
+    ## [58] "steep side channel"                     
+    ## [59] "steep side riffle"                      
+    ## [60] "trailer park"                           
+    ## [61] "trailer park riffle"                    
+    ## [62] "trailer park, unit #98"                 
+    ## [63] "upper big hole"                         
+    ## [64] "vance (300 yards below-rr-right channel"
+    ## [65] "vance avenue"                           
+    ## [66] "vance avenue bl - river left"           
+    ## [67] "weir"                                   
+    ## [68] "weir riffle"
 
 ## Save cleaned data to data/
 
@@ -1609,5 +1782,13 @@ survey_locations <- joined_fish_obs |>
 write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
 write_csv(survey_locations, "data/survey_locations.csv")
 
-# TODO descide if we want to seperate out substrate and cover
+# create list of existing locations and revised locations for casey and ryon to check
+check_locations <- survey_locations |> 
+  select(location, location_revised) |> 
+  rename(existing_location_name = location,
+         revised_location_name = location_revised)
+write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
+# TODO add coordinates for survey locations
+# From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
+# Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
 ```

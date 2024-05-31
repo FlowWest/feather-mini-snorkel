@@ -32,7 +32,6 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 
 ## Questions 
 
-- what is t_code (transect code, code for specific sq meter transect)
 
 ## Source Database pull
 
@@ -64,7 +63,7 @@ Columns removed:
 # For different excel sheets for each year read in and combine years here
 joined_fish_obs <- microhabitat |> 
   left_join(fish_data, by = c("TCode" = "TCode", "PDatID" = "PDatID")) |> 
-  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> 
+  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> # all codes are in the lookup
   select(-c(SpeciesCode, Species)) |>
   rename(species = Species.y, 
          percent_fine_substrate = Sub1, 
@@ -83,13 +82,20 @@ joined_fish_obs <- microhabitat |>
          percent_cover_more_than_half_meter_overhead = Ocov2)|> 
   # Clean in separate file
   left_join(location_table, by = c("PDatID" = "PhysDataTblID")) |> 
-  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |>
+  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |> # all codes are in the lookup
   select(-WeatherCode, -Weather) |> 
   rename(weather = Weather.y) |> 
+  # note that there are 0 channel types which do not map to the lookup
   left_join(channel_lookup, by = c("ChannelType" = "ChannelTypeCode")) |> 
   select(-ChannelType, -ChannelTypeCodeID) |> 
   rename(channel_type = ChannelType.y) |> 
   janitor::clean_names() |> 
+  # fixes issues with the codes so the CGU lookup will work
+  mutate(cgu = tolower(cgu),
+         cgu = case_when(cgu == "rm`" ~ "rm",
+                         cgu == "gm." ~ "gm",
+                         cgu == "" ~ NA,
+                         T ~ cgu)) |> 
   left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
   select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum, -start_time, -end_time, -crew) |> 
   rename(channel_geomorphic_unit = CGU) |> glimpse()
@@ -851,28 +857,48 @@ There are `r is.na(joined_fish_obs$channel_type) |> sum()` NA values
 
 ```{r}
 microhabitat_with_fish_detections <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
   mutate(species = tolower(species),
+         species = ifelse(species == "sacramento squawfish","sacramento pikeminnow", species),
+         count = ifelse(is.na(count), 0, count),
          channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
   
-
+# TODO make sure the location names that we end with are lowercase
 survey_locations <- joined_fish_obs |> 
-  filter(species != "Sacramento squawfish" | is.na(species)) |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
   mutate(weather = tolower(weather),
-         channel_type = tolower(channel_type)) |> 
-  select(location_table_id, date, location, water_temp, 
+         channel_type = tolower(channel_type),
+         location_revised = case_when(location %in% c("across big hole island ( river right)", "across from big hole", "across from big hole boat ramp", "big hole island") ~ "big hole",
+                              location == "auditorium" ~ "auditorium riffle",
+                              location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
+                              location == "big bar - middle island river right" ~ "big bar",
+                              grepl("eye riffle", location) ~ "eye riffle",
+                              location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
+                              location == "gridley side channel" ~ "gridley riffle",
+                              grepl("herringer", location) ~ "herringer riffle",
+                              location == "junkyard" ~ "junkyard riffle",
+                              location == "lower hole" ~ "lower big hole",
+                              location == "lower hour side channel" ~ "lower hour",
+                              location == "mathews riffle" ~ "matthews riffle",
+                              location == "mcfarland riffle`" ~ "mcfarland riffle",
+                              grepl("trailer park", location) ~ "trailer park riffle",
+                              grepl("robinson", location) ~ "robinson riffle",
+                              grepl("shallow", location) ~ "shallow riffle",
+                              grepl("steep", location) ~ "steep riffle",
+                              grepl("vance", location) ~ "vance riffle",
+                              grepl("weir", location) ~ "weir riffle",
+                              T ~ location)) |> 
+  select(location_table_id, date, location, location_revised, water_temp, 
         weather, river_mile, flow, number_of_divers, 
         reach_length, reach_width, channel_width, 
         channel_type, gps_coordinate) |> 
   distinct()
   
-
+sort(unique(survey_locations$location))
 ```
 
 ## Save cleaned data to data/
@@ -883,6 +909,14 @@ survey_locations <- joined_fish_obs |>
 write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
 write_csv(survey_locations, "data/survey_locations.csv")
 
-# TODO descide if we want to seperate out substrate and cover
+# create list of existing locations and revised locations for casey and ryon to check
+check_locations <- survey_locations |> 
+  select(location, location_revised) |> 
+  rename(existing_location_name = location,
+         revised_location_name = location_revised)
+write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
+# TODO add coordinates for survey locations
+# From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
+# Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
 
 ```

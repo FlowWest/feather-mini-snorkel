@@ -36,6 +36,7 @@ microhabitat <- mdb.get(mini_snork_db, tables = "MicroHabDataTbl") |> glimpse()
 # rbt_reach <- mdb.get(mini_snork_db, tables = "RBT Reach Data Flat 2001") |> glimpse()
 reach_summary <- mdb.get(mini_snork_db, tables = "Reach Habitat Summary") |> glimpse()
 canopy_cover <- mdb.get(mini_snork_db, tables = "CanopyCover") |> glimpse() # ASK about this one 
+write_csv(canopy_cover, here::here("data-raw/database-tables/canopy_cover_db_table.csv"))
 comments <- mdb.get(mini_snork_db, tables = "Comments") |> glimpse()
 
 # lookups
