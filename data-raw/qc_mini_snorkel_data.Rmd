@@ -907,7 +907,7 @@ sort(unique(survey_locations$location))
 # Save to data folder
 # Name file [watershed]_[data type].csv
 write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
-write_csv(survey_locations, "data/survey_locations.csv")
+#write_csv(survey_locations, "data/survey_locations.csv")
 
 # create list of existing locations and revised locations for casey and ryon to check
 check_locations <- survey_locations |> 
@@ -919,4 +919,85 @@ write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
 # From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
 # Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
 
+```
+
+```{r}
+# Ryon reviewed the list of revised locations and provided some changes
+rk_revised <- read_csv("data-raw/check_locations_4ryon_rk.csv") |> 
+  rename(location = existing_location_name) |> 
+  distinct() |> 
+  filter(revised_location_name != "trailer park")
+
+survey_locations_revised <- survey_locations |> 
+  left_join(rk_revised) |> 
+  mutate(location = revised_location_name) |> 
+  select(-c(location_revised, revised_location_name)) 
+write_csv(survey_locations_revised, "data-raw/survey_locations_revised.csv")
+
+# Ashley used google to QC the coordinates- looked up coordinates by entering 39 (deg symbol) XX.XXN 121 (deg symbol) XX.XXW
+survey_locations_google <- read_csv("data-raw/survey_locations_revised_av.csv")
+```
+
+
+```{r}
+# badhia pulled coordinates from kmz Casey provided, use this to try and associate coordinates with the locations (https://netorg629193.sharepoint.com/:u:/s/VA-FeatherRiver/EeHO1UrPtzVMiO1lFkFTBQwBhTzsveQ6d62gZv7fbxVldg?e=hSjJDR)
+# There are multiple coordinates for each location so take the average
+detach("package:Hmisc", unload = TRUE)
+coordinates_from_kmz_raw <- read_csv("data-raw/Coordinates_Snorkel_Survey_Locations.csv")
+
+coordinates_from_kmz <- coordinates_from_kmz_raw |> 
+  rename(location = Name) |> 
+  mutate(location = tolower(location)) |> 
+  group_by(location) |> 
+  summarize(longitude = mean(Longitude),
+            latitude = mean(Latitude)) |> 
+  # adjusting some names to match with the survey locations
+  mutate(location = case_when(location == "alec riffle" ~ "aleck riffle",
+                              location == "bedrock riffle" ~ "bedrock park riffle",
+                              location == "g95 side channel" ~ "g95",
+                              location == "gridley side channel" ~ "gridley riffle",
+                              location == "upper mcfarland" ~ "macfarland riffle",
+                              location == "vance west" ~ "vance avenue",
+                              T ~ location))
+# find an average lat/long by location name
+coordinate_from_google <- survey_locations_google |> 
+    mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
+         longitude_google = as.numeric(longitude_google)) |> 
+  group_by(location) |> 
+  summarize(longitude_google = mean(longitude_google, na.rm = T),
+            latitude_google = mean(latitude_google, na.rm = T))
+
+# summary of assigning coordinates
+# 1. use the coordinates reported in the db (if when QCd the coordinate makes sense), convert to lat/long
+# 2. for missing coordinates use the average location level as provided by Casey in kmz file or the average location level as reported
+
+# following these steps we have 2 missing coordinates for sites - hour riffle and upper big hole
+location_coordinates <- survey_locations_google |> 
+  select(location_table_id, location, river_mile, longitude_google, latitude_google) |> 
+  mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
+         longitude_google = as.numeric(longitude_google)) |> 
+  left_join(coordinates_from_kmz) |> 
+  mutate(coordinate_method = case_when(!is.na(longitude_google) ~ "reported in database",
+                                       is.na(longitude_google) & !is.na(longitude) ~ "kmz from casey"),
+         longitude_google = case_when(is.na(longitude_google) & !is.na(longitude) ~ longitude,
+                                      T ~ longitude_google),
+         latitude_google = case_when(is.na(latitude_google) & !is.na(latitude) ~ latitude,
+                                     T ~ latitude_google)) |> 
+  select(location_table_id, location, river_mile, longitude_google, latitude_google, coordinate_method) |> 
+  rename(longitude = longitude_google,
+         latitude = latitude_google) |> 
+  left_join(coordinate_from_google) |> 
+  mutate(coordinate_method = case_when(is.na(longitude) & !is.na(longitude_google) ~ "location average",
+                                       T ~ coordinate_method),
+         longitude = case_when(is.na(longitude) & !is.na(longitude_google) ~ longitude_google,
+                                      T ~ longitude),
+         latitude = case_when(is.na(latitude) & !is.na(latitude_google) ~ latitude_google,
+                                     T ~ latitude)) |> 
+  select(-c(longitude_google, latitude_google))
+
+survey_locations_with_latlong <- survey_locations_revised |> 
+  select(-gps_coordinate, -river_mile) |>  # this field is messy and was converted to lat/long so removing
+  left_join(location_coordinates)
+
+write_csv(survey_locations_with_latlong, "data/survey_locations.csv")
 ```

@@ -17,8 +17,6 @@ Erin Cain
 
 ## Questions
 
-- what is t_code (transect code, code for specific sq meter transect)
-
 ## Source Database pull
 
 ``` r
@@ -1670,7 +1668,7 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
          channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
   
-
+# TODO make sure the location names that we end with are lowercase
 survey_locations <- joined_fish_obs |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
