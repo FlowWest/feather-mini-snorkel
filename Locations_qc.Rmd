@@ -1,0 +1,32 @@
+
+```{r}
+# Load required libraries
+library(leaflet)
+library(RColorBrewer)
+library(viridis)
+```
+
+
+```{r}
+# Read the CSV file
+data <- read.csv("data-raw/survey_locations.csv")
+```
+
+
+```{r}
+# Define a color palette mapping each location to a color
+palette <- viridis(n = nlevels(factor(data$location)))  # Specify the number of colors based on the number of unique locations
+```
+
+```{r}
+# Create a leaflet map
+leaflet(data) |> 
+  addTiles() |> 
+  addCircleMarkers(
+    ~longitude, ~latitude,
+    popup = ~as.character(location),
+    color = ~palette[as.numeric(factor(location))],
+    label = ~as.character(location),
+    labelOptions = labelOptions(noHide = TRUE, textOnly = TRUE)
+  )
+```
