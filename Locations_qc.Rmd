@@ -1,0 +1,65 @@
+
+# Map to QC mini snorkel location names and coordinates
+
+The mini snorkel database contained a location table that included the following:
+
+```{r}
+# Load required libraries
+library(leaflet)
+library(RColorBrewer)
+library(viridis)
+library(tidyverse)
+```
+
+
+```{r}
+# Read the CSV file
+data <- read.csv("data-raw/survey_locations.csv")
+
+data_jitter <- data |> 
+  mutate(latitude = jitter(latitude, factor = 10),
+         longitude = jitter(longitude, factor = 10))
+```
+
+
+```{r}
+# Define a color palette mapping each location to a color
+palette <- viridis(n = nlevels(factor(data$location)))  # Specify the number of colors based on the number of unique locations
+```
+
+```{r}
+# Create a leaflet map
+leaflet(data_jitter) |> 
+  addTiles() |> 
+  addCircleMarkers(
+    ~longitude, ~latitude,
+    popup =  ~paste0("ID: ", location_table_id, "<br>Location: ", location),
+    radius = 2,
+    color = ~palette[as.numeric(factor(location))],
+    label = ~as.character(location),
+    labelOptions = labelOptions(noHide = TRUE, textOnly = TRUE)
+  )
+```
+
+List of locations that need to be qc'd
+
+location_table_id:
+
+   * 105 - Location name = vance avenue. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to hatchery riffle
+   * 79 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle
+   *18 - Location name = robinson riffle (originally named robinson side channel). Coordinates were reported in the database, but when mapped it shows next to steep riffle
+   * 65 - Location name = vance avenue. Coordinates were reported in the database, but when mapped it shows next to steep riffle
+   * 102 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole
+   * 68- Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole
+   * 49 - Location name = big bar. Coordinates were reported in the database, but when mapped it shows next to goose riffle
+   * 27 - Location name = gridley riffle. Coordinates were reported in the database, but when mapped it shows next to macfarland riffle
+   * 46 - Location name = lower hour. Coordinates were reported in the database, but when mapped it shows next to herringe riffle
+   * 15 - Location name = trailer park riffle. Coordinates were reported in the database, but when mapped it shows next to herringe riffle
+   
+   
+   
+General notes:
+
+  * Hatchery Ditch and Hatchery Riffle; location difference is unclear. Maybe we should name them the same way
+  * Big bar and mcfarland riffle are near each other but blend in in the middle. We should check if they should be name differently, or if coordinates are off
+   
