@@ -1,4 +1,8 @@
 
+# Map to QC mini snorkel location names and coordinates
+
+The mini snorkel database contained a location table that included the following:
+
 ```{r}
 # Load required libraries
 library(leaflet)
@@ -30,6 +34,7 @@ leaflet(data_jitter) |>
   addCircleMarkers(
     ~longitude, ~latitude,
     popup =  ~paste0("ID: ", location_table_id, "<br>Location: ", location),
+    radius = 2,
     color = ~palette[as.numeric(factor(location))],
     label = ~as.character(location),
     labelOptions = labelOptions(noHide = TRUE, textOnly = TRUE)
