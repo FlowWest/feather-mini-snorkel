@@ -49,3 +49,12 @@ weather_code_lookup <- mdb.get(mini_snork_db, tables = "WeatherCodeLookUp")
 substrate_code_lookup <- mdb.get(mini_snork_db, tables = "SubstrateCodeLookUp")
 # transect_canopy <- mdb.get(mini_snork_db, tables = "TransectCanopy") # empty
 
+library(Hmisc)
+seine_db <- here::here("data-raw", "FR_S_and_S_Oroville.mdb")
+mdb.get(seine_db, tables = T)
+
+# has no dates
+juv_hab <- mdb.get(seine_db, tables = "Juv Steelhead Hab Table") |> glimpse()
+snork_survey <- mdb.get(seine_db, tables = "SnorkSurveyTBL") |> glimpse()
+snork_obs <- mdb.get(seine_db, tables = "SnorkObservationsTBL") |> glimpse()
+
