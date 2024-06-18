@@ -81,7 +81,7 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 90,2001-05-24,junkyard riffle,0,direct sunlight,49,2000,2,25,4,67,NA,N 39° 20.8 W 121° 37.6
 91,2001-05-24,shallow riffle,NA,direct sunlight,47,2000,2,25,4,30,sidechannel,N 39° 19.743 W 121° 37.741
 92,2001-05-24,herringer riffle,0,direct sunlight,46,2000,3,25,4,96,mainchannel,N 39° 19.14 W 121° 37.22'
-93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,N 39° 19.14 W 121° 37.22'
+93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,"N 39°19.068"" W 121°37.256"
 94,2001-08-22,shallow riffle,68,direct sunlight,0,0,2,25,4,33,sidechannel,N 39°19.734' W 121°37.791'
 95,2001-08-23,gridley riffle,68,direct sunlight,0,0,2,25,4,48,mainchannel branch,N 39°21.261 W 121°37.779
 96,2001-04-09,hatchery riffle,52.5,direct sunlight,66.5,600,2,25,4,32,mainchannel branch,NA

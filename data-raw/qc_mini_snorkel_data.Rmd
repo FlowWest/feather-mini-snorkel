@@ -901,25 +901,7 @@ survey_locations <- joined_fish_obs |>
 sort(unique(survey_locations$location))
 ```
 
-## Save cleaned data to data/
-
-```{r}
-# Save to data folder
-# Name file [watershed]_[data type].csv
-write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
-#write_csv(survey_locations, "data/survey_locations.csv")
-
-# create list of existing locations and revised locations for casey and ryon to check
-check_locations <- survey_locations |> 
-  select(location, location_revised) |> 
-  rename(existing_location_name = location,
-         revised_location_name = location_revised)
-write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
-# TODO add coordinates for survey locations
-# From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
-# Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
-
-```
+### Fixing location names and adding coordinates
 
 ```{r}
 # Ryon reviewed the list of revised locations and provided some changes
@@ -1001,3 +983,52 @@ survey_locations_with_latlong <- survey_locations_revised |>
 
 write_csv(survey_locations_with_latlong, "data/survey_locations.csv")
 ```
+
+```{r}
+ryon_coordinates <- readxl::read_xlsx("data-raw/survey_locations_name_cleanup_rk.xlsx") 
+
+locations_ck <- survey_locations_with_latlong |> 
+  left_join(ryon_coordinates |> 
+  rename(rk_latitude = latitude,
+         rk_longitude = longitude,
+         rk_location = location,
+         rk_location_revised = location_revised) |> 
+    select(location_table_id, rk_location, rk_location_revised, rk_latitude, rk_longitude))
+
+# there are some locations where ryon updated name
+locations_ck |> 
+  filter(location != rk_location_revised)
+
+survey_locations_post_ryon_revisions <- locations_ck |> 
+  mutate(location = rk_location_revised,
+         rk_latitude = ifelse(is.na(rk_latitude), latitude, rk_latitude),
+         rk_longitude = ifelse(is.na(rk_longitude), longitude, rk_longitude),
+         coordinate_method = case_when(coordinate_method %in% c("location average","kmz from casey") | is.na(coordinate_method) ~ "assigned based on similar location",
+                                       T ~ coordinate_method)) |> # assume all from ryon are assigned from similar location (these are the same ones that I tried to fill in)
+  select(-c(latitude, longitude, rk_location, rk_location_revised)) |> 
+  rename(latitude = rk_latitude,
+         longitude = rk_longitude)
+write_csv(survey_locations_post_ryon_revisions, "data/survey_locations.csv")
+```
+
+
+## Save cleaned data to data/
+
+```{r}
+# Save to data folder
+# Name file [watershed]_[data type].csv
+write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
+#write_csv(survey_locations, "data/survey_locations.csv")
+
+# create list of existing locations and revised locations for casey and ryon to check
+check_locations <- survey_locations |> 
+  select(location, location_revised) |> 
+  rename(existing_location_name = location,
+         revised_location_name = location_revised)
+write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
+# TODO add coordinates for survey locations
+# From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
+# Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
+
+```
+
