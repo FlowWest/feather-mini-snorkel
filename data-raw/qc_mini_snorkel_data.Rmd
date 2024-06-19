@@ -992,8 +992,9 @@ locations_ck <- survey_locations_with_latlong |>
   rename(rk_latitude = latitude,
          rk_longitude = longitude,
          rk_location = location,
-         rk_location_revised = location_revised) |> 
-    select(location_table_id, rk_location, rk_location_revised, rk_latitude, rk_longitude))
+         rk_location_revised = location_revised,
+         channel_location = channel) |> 
+    select(location_table_id, rk_location, rk_location_revised, rk_latitude, rk_longitude, channel_location))
 
 # there are some locations where ryon updated name
 locations_ck |> 
@@ -1008,7 +1009,33 @@ survey_locations_post_ryon_revisions <- locations_ck |>
   select(-c(latitude, longitude, rk_location, rk_location_revised)) |> 
   rename(latitude = rk_latitude,
          longitude = rk_longitude)
-write_csv(survey_locations_post_ryon_revisions, "data/survey_locations.csv")
+
+# i plotted these locations on the map and noticed some disconnect between the name and coordinate
+# suggested to ryon that we update these coordinates based on his method of selecting another with same name, he agreed
+#      * 79 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
+     # * 78 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
+     # * 68 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+     # * 102 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+     # * 146 - Location name = big bar. Shows up near Goose Riffle. This is one of the coordinates you changed.
+     # * 30 - Location name = macfarland riffle. Shows up near Big Bar. Adjust coordinates?
+     # * 27 - Location name = gridley riffle. Shows up near macfarland riffle. Adjust coordinates?
+
+coordinate_by_name <- survey_locations_post_ryon_revisions |> 
+  filter(!location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27)) |> 
+  select(location, latitude, longitude) |> 
+  group_by(location) |> 
+  slice_head() |> 
+  rename(loc_lat = latitude,
+         loc_long = longitude)
+
+survey_locations_post_ryon_revisions_qc <- survey_locations_post_ryon_revisions |> 
+  left_join(coordinate_by_name) |> 
+  mutate(latitude = ifelse(location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27), loc_lat, latitude),
+         longitude = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), loc_long, longitude),
+         coordinate_method = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), "assigned based on similar location", coordinate_method)) |> 
+  select(location_table_id, date, location, channel_location, water_temp, weather, flow, number_of_divers, reach_length, reach_width, channel_width, channel_type, river_mile, coordinate_method, latitude, longitude)
+
+# these edits were mapped and there are no longer any disconnect between the location name and coordinates
 ```
 
 
@@ -1017,15 +1044,16 @@ write_csv(survey_locations_post_ryon_revisions, "data/survey_locations.csv")
 ```{r}
 # Save to data folder
 # Name file [watershed]_[data type].csv
-write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
+write_csv(microhabitat_with_fish_detections, "data/microhabitat_observations.csv")
 #write_csv(survey_locations, "data/survey_locations.csv")
+write_csv(survey_locations_post_ryon_revisions_qc, "data/survey_locations.csv")
 
 # create list of existing locations and revised locations for casey and ryon to check
-check_locations <- survey_locations |> 
-  select(location, location_revised) |> 
-  rename(existing_location_name = location,
-         revised_location_name = location_revised)
-write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
+# check_locations <- survey_locations |> 
+#   select(location, location_revised) |> 
+#   rename(existing_location_name = location,
+#          revised_location_name = location_revised)
+# write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
 # TODO add coordinates for survey locations
 # From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
 # Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle

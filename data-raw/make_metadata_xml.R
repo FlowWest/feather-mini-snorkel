@@ -6,16 +6,16 @@ library(EML)
 
 datatable_metadata <-
   dplyr::tibble(filepath = c("data/survey_locations.csv",
-                             "data/microhabitat_with_fish_observations.csv"),
-                attribute_info = c("data-raw/metadata/feather_survey_locations_metadata.xlsx",
-                                   "data-raw/metadata/feather_microhabitat_metadata.xlsx"),
+                             "data/microhabitat_observations.csv"),
+                attribute_info = c("data-raw/metadata/survey_locations_metadata.xlsx",
+                                   "data-raw/metadata/microhabitat_metadata.xlsx"),
                 datatable_description = c("Feather river mini snorkel survey locations data",
                                           "Feather river mini snorkel survey microhabitat data"),
                 datatable_url = paste0("https://github.com/FlowWest/feather-mini-snorkel/make-metadata/data",
-                                       c("feather_survey_locations_metadata.csv",
-                                         "microhabitat_with_fish_observations.csv")))
+                                       c("survey_locations.csv",
+                                         "microhabitat_observations.csv")))
 # save cleaned data to `data/`
-excel_path <- "data-raw/metadata/feather_metadata.xlsx" 
+excel_path <- "data-raw/metadata/feather_mini_snorkel_metadata.xlsx" 
 sheets <- readxl::excel_sheets(excel_path)
 metadata <- lapply(sheets, function(x) readxl::read_excel(excel_path, sheet = x))
 names(metadata) <- sheets
@@ -40,11 +40,11 @@ dataset <- list() %>%
   add_datatable(datatable_metadata)
 
 # GO through and check on all units
-custom_units <- data.frame(id = c("river mile", "number of divers", "NTU", "count of fish"),
-                           unitType = c("dimensionless", "dimensionless", "dimensionless", "dimensionless"),
-                           parentSI = c(NA, NA, NA, NA),
-                           multiplierToSI = c(NA, NA, NA, NA),
-                           description = c("river mile", "number of divers", "NTU", "count of fish"))
+custom_units <- data.frame(id = c("number of divers", "river mile", "decimal degrees", "decimal degrees", "count of fish", "NTU"),
+                           unitType = c("dimensionless", "dimensionless", "dimensionless", "dimensionless","dimensionless","dimensionless"),
+                           parentSI = c(NA, NA, NA, NA,NA,NA),
+                           multiplierToSI = c(NA, NA, NA, NA,NA,NA),
+                           description = c("number of divers", "river mile", "decimal degrees","decimal degrees","count of fish", "NTU"))
 
 
 unitList <- EML::set_unitList(custom_units)
