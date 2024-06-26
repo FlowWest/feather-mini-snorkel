@@ -8,6 +8,12 @@ library(lubridate)
 mini_snork_db <- here::here("data-raw", "MiniSnorkelDTB.mdb")
 mdb.get(mini_snork_db, tables = T)
 
+ck_db <- here::here("data-raw", "FR_S_and_S_Tables.mdb")
+mdb.get(ck_db, tables = T)
+
+snork_micro <- mdb.get(ck_db, tables = "SnorkMicrohabitat")
+write_csv(snork_micro, "data-raw/SnorkMicrohabitat.csv")
+snork <- mdb.get(ck_db, tables = "SnorkObservationsTBL")
 # tables
 all_fish_obs <- mdb.get(mini_snork_db, tables = "All fish observations") |> glimpse()
 write_csv(all_fish_obs, here::here("data-raw/database-tables/all_fish_obs.csv"))
