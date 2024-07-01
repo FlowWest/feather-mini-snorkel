@@ -30,7 +30,7 @@
       <electronicMailAddress>bcavallo@fishsciences.net</electronicMailAddress>
       <role>associate</role>
     </associatedParty>
-    <pubDate>2024-06-18</pubDate>
+    <pubDate>2024-07-01</pubDate>
     <abstract>
       <para>
     Fish habitat data is useful in restoration planning and monitoring
@@ -58,7 +58,10 @@
       <keyword>Steelhead trout</keyword>
       <keyword>microhabitat</keyword>
       <keyword>cover</keyword>
-      <keyword>HR&amp;L</keyword>
+      <keyword>Healthy Rivers and Landscapes</keyword>
+      <keyword>tule perch</keyword>
+      <keyword>speckled dace</keyword>
+      <keyword>sacramento pikeminnow</keyword>
     </keywordSet>
     <intellectualRights>
       <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</para>
@@ -265,9 +268,10 @@
     hierarchy, the survey location. Survey location names were not
     standardized and were cleaned to group all locations with common
     names. For survey sections that were missing coordinates or had
-    incorrect coordinates, a random coordinate from the appropriate
-    survey location was selected. Coordinates that were filled in using
-    this method are labelled in the dataset.
+    assumed incorrect coordinates (located outside of the river or
+    inconsistent coordinate and location name), a random coordinate from
+    the appropriate survey location was selected. Coordinates that were
+    filled in using this method are labelled in the dataset.
   </para>
           <para>&lt;emphasis role="strong"&gt;Attachments&lt;/emphasis&gt;</para>
         </description>
@@ -284,6 +288,12 @@
         <electronicMailAddress>Ryon.Kurth@water.ca.gov </electronicMailAddress>
         <role>Project Lead</role>
       </personnel>
+      <award>
+        <funderName>California Department of Water Resources</funderName>
+        <funderIdentifier>NA</funderIdentifier>
+        <awardNumber>NA</awardNumber>
+        <title>NA</title>
+      </award>
     </project>
     <dataTable>
       <entityName>survey_locations.csv</entityName>
@@ -491,7 +501,7 @@
         <attribute>
           <attributeName>channel_width</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Width of channel</attributeDefinition>
+          <attributeDefinition>Width of channel at water line which may vary and is dependent on discharge.</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -714,15 +724,13 @@
           <attributeName>species</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
           <attributeDefinition>Fish species. Species = c("chinook salmon", "sacramento pikeminnow", "speckled dace", &#13;
-"steelhead trout (wild)", "steelhead trout, (clipped)", "tule perch"&#13;
-)</attributeDefinition>
+"steelhead trout (wild)", "steelhead trout, (clipped)", "tule perch")</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
                   <definition>Fish species. Species = c("chinook salmon", "sacramento pikeminnow", "speckled dace", &#13;
-"steelhead trout (wild)", "steelhead trout, (clipped)", "tule perch"&#13;
-)</definition>
+"steelhead trout (wild)", "steelhead trout, (clipped)", "tule perch")</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -845,7 +853,7 @@
         <attribute>
           <attributeName>percent_fine_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of  fine substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of  fine substrate within microhabitat plot (less than 0.05mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -864,7 +872,7 @@
         <attribute>
           <attributeName>percent_sand_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of  sand substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of  sand substrate within microhabitat plot (0.05-2mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -883,7 +891,7 @@
         <attribute>
           <attributeName>percent_small_gravel_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of small gravel substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of small gravel substrate within microhabitat plot (2-50mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -902,7 +910,7 @@
         <attribute>
           <attributeName>percent_large_gravel_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of large gravel substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of large gravel substrate within microhabitat plot (50-150mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -921,7 +929,7 @@
         <attribute>
           <attributeName>percent_cobble_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of cobble substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of cobble substrate within microhabitat plot (150-300mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -940,7 +948,7 @@
         <attribute>
           <attributeName>percent_boulder_substrate</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of boulder substrate within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of boulder substrate within microhabitat plot (greater than 300mm)</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -978,7 +986,7 @@
         <attribute>
           <attributeName>percent_small_woody_cover_inchannel</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of small woody cover within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of small woody cover within microhabitat plot. Small wood is generally considered to be less than 10 cm diameter at breast height.</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -997,7 +1005,7 @@
         <attribute>
           <attributeName>percent_large_woody_cover_inchannel</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Percentage of large woody cover within microhabitat plot</attributeDefinition>
+          <attributeDefinition>Percentage of large woody cover within microhabitat plot. Large wood is generally considered to be more than 10 cm at breat height and consists of tree trunks or a large branch.</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -1111,12 +1119,12 @@
         <attribute>
           <attributeName>channel_geomorphic_unit</attributeName>
           <attributeLabel>mini-snorkel-survey</attributeLabel>
-          <attributeDefinition>Geomorphic features of stream. Features include = c("glide", "glide edgewater", "pool", "riffle riffle edgewater")</attributeDefinition>
+          <attributeDefinition>Geomorphic features of stream designated through visual observation. Features include = c("glide", "glide margin", "pool", "riffle", "riffle margin", "backwater"). A glide is characterized by its smooth, uniform flow and relatively shallow depth. A riffle is a shallow section where the flow of water is faster and more turbulent. A pool is characterized by deeper depth, slower flow, and relatively calm water. A backwater area is characterized by stagnant or slow-moving water often found in area where the main flow is obstructed. Riffle or glide margins are transitions between these geomorphic units.</attributeDefinition>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Geomorphic features of stream. Features include = c("glide", "glide edgewater", "pool", "riffle riffle edgewater")</definition>
+                  <definition>Geomorphic features of stream designated through visual observation. Features include = c("glide", "glide margin", "pool", "riffle", "riffle margin", "backwater"). A glide is characterized by its smooth, uniform flow and relatively shallow depth. A riffle is a shallow section where the flow of water is faster and more turbulent. A pool is characterized by deeper depth, slower flow, and relatively calm water. A backwater area is characterized by stagnant or slow-moving water often found in area where the main flow is obstructed. Riffle or glide margins are transitions between these geomorphic units.</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
