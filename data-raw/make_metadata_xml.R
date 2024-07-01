@@ -15,13 +15,13 @@ datatable_metadata <-
                                        c("survey_locations.csv",
                                          "microhabitat_observations.csv")))
 
-other_entity_metadata <- list("file_name" = c("DWR_2004_SP_F10_3A_Final_Report.pdf"),
-                              "file_description" = c("Distribution and Habitat Use of Juvenile Steelhead and Other Fishes of the Lower Feather River"),
-                              "file_type" = c("PDF"),
-                              "physical" = create_physical("data-raw/metadata/DWR_2004_SP_F10_3A_Final_Report.pdf",
-                                                           data_url = "https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data-raw/metadata/DWR_2004_SP_F10_3A_Final_Report.pdf")
-)
-other_entity_metadata$physical$dataFormat <- list("externallyDefinedFormat" = list("formatName" = "PDF"))
+# other_entity_metadata <- list("file_name" = c("DWR_2004_SP_F10_3A_Final_Report.pdf"),
+#                               "file_description" = c("Distribution and Habitat Use of Juvenile Steelhead and Other Fishes of the Lower Feather River"),
+#                               "file_type" = c("PDF"),
+#                               "physical" = create_physical("data-raw/metadata/DWR_2004_SP_F10_3A_Final_Report.pdf",
+#                                                            data_url = "https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data-raw/metadata/DWR_2004_SP_F10_3A_Final_Report.pdf")
+# )
+# other_entity_metadata$physical$dataFormat <- list("externallyDefinedFormat" = list("formatName" = "PDF"))
 # save cleaned data to `data/`
 excel_path <- "data-raw/metadata/feather_mini_snorkel_metadata.xlsx" 
 sheets <- readxl::excel_sheets(excel_path)
@@ -45,8 +45,8 @@ dataset <- list() %>%
   add_maintenance(metadata$maintenance) %>%
   add_project(metadata$funding) %>%
   add_coverage(metadata$coverage, metadata$taxonomic_coverage) %>%
-  add_datatable(datatable_metadata) |>
-  add_other_entity(other_entity_metadata)
+  add_datatable(datatable_metadata)
+  #add_other_entity(other_entity_metadata)
 
 # GO through and check on all units
 custom_units <- data.frame(id = c("number of divers", "river mile", "decimal degrees", "decimal degrees", "count of fish", "NTU"),
