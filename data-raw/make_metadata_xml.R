@@ -11,7 +11,7 @@ datatable_metadata <-
                                    "data-raw/metadata/microhabitat_metadata.xlsx"),
                 datatable_description = c("Feather river mini snorkel survey locations data",
                                           "Feather river mini snorkel survey microhabitat data"),
-                datatable_url = paste0("https://github.com/FlowWest/feather-mini-snorkel/make-metadata/data",
+                datatable_url = paste0("https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data/", # make sure to use this type of link rather than "https://github.com/FlowWest/feather-mini-snorkel/blob/main/data/microhabitat_observations.csv"
                                        c("survey_locations.csv",
                                          "microhabitat_observations.csv")))
 
@@ -32,8 +32,7 @@ abstract_docx <- "data-raw/metadata/abstract.docx"
 methods_docx <- "data-raw/metadata/methods.md"
 
 #edi_number <- reserve_edi_id(user_id = Sys.getenv("EDI_USER_ID"), password = Sys.getenv("EDI_PASSWORD"))
-edi_number <- "feather-mini-snorkel"
-
+edi_number <- "edi.1705.1"
 dataset <- list() %>%
   add_pub_date() %>%
   add_title(metadata$title) %>%
@@ -67,6 +66,3 @@ eml <- list(packageId = edi_number,
 edi_number
 EML::write_eml(eml, paste0(edi_number, ".xml"))
 EML::eml_validate(paste0(edi_number, ".xml"))
-
-
-# save cleaned data to `data/`
