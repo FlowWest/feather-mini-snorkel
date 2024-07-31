@@ -12,7 +12,7 @@ ck_db <- here::here("data-raw", "FR_S_and_S_Tables.mdb")
 mdb.get(ck_db, tables = T)
 
 snork_micro <- mdb.get(ck_db, tables = "SnorkMicrohabitat")
-write_csv(snork_micro, "data-raw/SnorkMicrohabitat.csv")
+write_csv(snork_micro, here::here("data-raw", "SnorkMicrohabitat.csv"))
 snork <- mdb.get(ck_db, tables = "SnorkObservationsTBL")
 # tables
 all_fish_obs <- mdb.get(mini_snork_db, tables = "All fish observations") |> glimpse()
@@ -63,4 +63,51 @@ mdb.get(seine_db, tables = T)
 juv_hab <- mdb.get(seine_db, tables = "Juv Steelhead Hab Table") |> glimpse()
 snork_survey <- mdb.get(seine_db, tables = "SnorkSurveyTBL") |> glimpse()
 snork_obs <- mdb.get(seine_db, tables = "SnorkObservationsTBL") |> glimpse()
+
+
+# add in 2002 database table ----------------------------------------------
+mini_snork_db_2002 <- here::here("data-raw", "minisnorkdb3.mdb")
+mdb.get(mini_snork_db_2002, tables = T)
+
+## tables
+all_fish_obs_2002 <- mdb.get(mini_snork_db_2002, tables = "FishDataTBL") |>  labelled::remove_labels()  |> glimpse()
+#write_csv(all_fish_obs_2002, "data-raw/database-tables/all_fish_obs_2002.csv")
+
+location_table_2002 <- mdb.get(mini_snork_db_2002, tables = "PhysDataTbl") |> 
+  labelled::remove_labels() |> 
+  glimpse()
+#write_csv(location_table_2002, "data-raw/database-tables/location_table_2002.csv")
+
+fish_data_2002 <- mdb.get(mini_snork_db_2002, tables = "FishDataTBL") |> 
+  labelled::remove_labels() |> 
+  glimpse()
+#write_csv(fish_data_2002, "data-raw/database-tables/fish_data_2002.csv")
+
+microhabitat_2002 <- mdb.get(mini_snork_db_2002, tables = "MicroHabDataTbl") |> 
+  labelled::remove_labels() |> 
+  glimpse()
+
+species_code_lookup_2002 <- mdb.get(mini_snork_db_2002, tables = "SpeciesCodeLookUp") |> 
+  labelled::remove_labels() |> 
+  glimpse()
+
+location_table_2002 <- mdb.get(mini_snork_db_2002, tables = "PhysDataTbl") |> 
+  labelled::remove_labels() |> 
+  glimpse()
+
+weather_code_lookup_2002 <- mdb.get(mini_snork_db_2002, tables = "WeatherCodeLookUp") |> 
+  labelled::remove_labels() |> glimpse()
+
+channel_lookup_2002 <- mdb.get(mini_snork_db_2002, tables = "ChannelTypeLookUp") |> 
+  labelled::remove_labels() |> glimpse()
+
+cgu_code_lookup_2002 <- mdb.get(mini_snork_db_2002, tables = "CGUCodeLookUp") |> 
+  labelled::remove_labels() |> glimpse()
+
+
+
+
+
+
+
 
