@@ -3,7 +3,7 @@ Feather River Mini Snorkel Data QC
 Erin Cain; Maddee Rubenson
 03/24; updated: July 23, 2024
 
-# Feather River Mini Snorkel Data - 2001
+# Feather River Mini Snorkel Data - 2001 & 2002
 
 ## Description of Monitoring Data
 
@@ -21,403 +21,9 @@ dataset.
 
 ## Source Database pull
 
-``` r
-source(here::here('data-raw', 'query_4mac.R'))
-```
+- Database 1: `MiniSnorkelDTB.mdb`
 
-    ## 
-    ## Attaching package: 'Hmisc'
-
-    ## The following objects are masked from 'package:dplyr':
-    ## 
-    ##     src, summarize
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     format.pval, units
-
-    ## Rows: 378
-    ## Columns: 31
-    ## $ PhysDataTblID  <labelled> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11…
-    ## $ Location       <labelled> "hatchery ditch", "hatchery ditch", "hatchery ditc…
-    ## $ Date           <labelled> 2001-03-14, 2001-03-14, 2001-03-14, 2001-03-14, 20…
-    ## $ RiverMile      <labelled> 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66…
-    ## $ SpeciesCode    <labelled> "CHN", "RBTS", "CHN", "CHN", "RBTS", "CHN", "CHN",…
-    ## $ Count          <labelled> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10…
-    ## $ FL..mm.        <labelled> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25…
-    ## $ DistToBottom   <labelled> 5.0, 1.0, 5.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 5.0, …
-    ## $ Focal.Velocity <labelled> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.…
-    ## $ TCode          <labelled> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 2…
-    ## $ Depth          <labelled> 9, 37, 37, 37, 15, 19, 19, 19, 23, 13, 17, 17, 17,…
-    ## $ Velocity       <labelled> 1.97, 0.91, 0.91, 0.91, 2.17, 1.01, 1.01, 1.01, 0.…
-    ## $ Sub1           <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ Sub2           <labelled> 0, 65, 65, 65, 10, 40, 40, 40, 15, 0, 40, 40, 40, …
-    ## $ Sub3           <labelled> 70, 25, 25, 25, 90, 60, 60, 60, 70, 85, 20, 20, 20…
-    ## $ Sub4           <labelled> 30, 10, 10, 10, 0, 0, 0, 0, 15, 15, 30, 30, 30, 20…
-    ## $ Sub5           <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 0, 0, 0,…
-    ## $ Sub6           <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ IcovA          <labelled> 100, 100, 100, 100, 100, 100, 100, 100, 100, 90, 7…
-    ## $ IcovB          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 0, 20, 0…
-    ## $ IcovC          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0…
-    ## $ IcovE          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 30, …
-    ## $ IcovF          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ Ocov0          <labelled> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
-    ## $ Ocov1          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ Ocov2          <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ SurTurb        <labelled> 10, 30, 30, 30, 20, 30, 30, 30, 10, 10, 20, 20, 20…
-    ## $ CGU            <labelled> "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", …
-    ## $ Distance       <labelled> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 3, 1, 4, 4,…
-    ## $ FishAge        <labelled> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-    ## $ SpecAge        <labelled> "chn0", "rbt0", "chn0", "chn0", "rbt0", "chn0", "c…
-
-    ## Rows: 378 Columns: 31
-
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr   (4): Location, SpeciesCode, CGU, SpecAge
-    ## dbl  (26): PhysDataTblID, RiverMile, Count, FL..mm., DistToBottom, Focal.Vel...
-    ## date  (1): Date
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Rows: 378
-    ## Columns: 31
-    ## $ PhysDataTblID  <dbl> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
-    ## $ Location       <chr> "hatchery ditch", "hatchery ditch", "hatchery ditch", "…
-    ## $ Date           <date> 2001-03-14, 2001-03-14, 2001-03-14, 2001-03-14, 2001-0…
-    ## $ RiverMile      <dbl> 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 66.6, 6…
-    ## $ SpeciesCode    <chr> "CHN", "RBTS", "CHN", "CHN", "RBTS", "CHN", "CHN", "RBT…
-    ## $ Count          <dbl> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
-    ## $ FL..mm.        <dbl> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
-    ## $ DistToBottom   <dbl> 5.0, 1.0, 5.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 5.0, 1.0, …
-    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
-    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
-    ## $ Depth          <dbl> 9, 37, 37, 37, 15, 19, 19, 19, 23, 13, 17, 17, 17, 19, …
-    ## $ Velocity       <dbl> 1.97, 0.91, 0.91, 0.91, 2.17, 1.01, 1.01, 1.01, 0.78, 1…
-    ## $ Sub1           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, …
-    ## $ Sub2           <dbl> 0, 65, 65, 65, 10, 40, 40, 40, 15, 0, 40, 40, 40, 30, 7…
-    ## $ Sub3           <dbl> 70, 25, 25, 25, 90, 60, 60, 60, 70, 85, 20, 20, 20, 50,…
-    ## $ Sub4           <dbl> 30, 10, 10, 10, 0, 0, 0, 0, 15, 15, 30, 30, 30, 20, 0, …
-    ## $ Sub5           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 0, 0, 0, 0, 0…
-    ## $ Sub6           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ IcovA          <dbl> 100, 100, 100, 100, 100, 100, 100, 100, 100, 90, 75, 75…
-    ## $ IcovB          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 0, 20, 0, 0, …
-    ## $ IcovC          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, …
-    ## $ IcovE          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, 30, 0, 0,…
-    ## $ IcovF          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ Ocov0          <dbl> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, …
-    ## $ Ocov1          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, …
-    ## $ Ocov2          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ SurTurb        <dbl> 10, 30, 30, 30, 20, 30, 30, 30, 10, 10, 20, 20, 20, 20,…
-    ## $ CGU            <chr> "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", …
-    ## $ Distance       <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 3, 1, 4, 4, 1, 2…
-    ## $ FishAge        <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ SpecAge        <chr> "chn0", "rbt0", "chn0", "chn0", "rbt0", "chn0", "chn0",…
-
-    ## Rows: 136 Columns: 16
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr   (3): Location, Crew, GPS.Coordinate
-    ## dbl  (10): PhysDataTblID, WaterTemp, Weather, RiverMile, Flow, NumberOfDiver...
-    ## date  (3): Date, StartTime, EndTime
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Rows: 136
-    ## Columns: 16
-    ## $ PhysDataTblID  <dbl> 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104…
-    ## $ Location       <chr> "Herringer Riffle", "Herringer Riffle", "Shallow Riffle…
-    ## $ Date           <date> 2001-05-24, 2001-08-23, 2001-08-22, 2001-08-23, 2001-0…
-    ## $ StartTime      <date> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 1999-1…
-    ## $ EndTime        <date> 1999-12-30, NA, 1999-12-30, 1999-12-30, 1999-12-30, 19…
-    ## $ Crew           <chr> "do,ph, at", "BR, CR, TV", "TV, BR, CR", "TV, BR, CR", …
-    ## $ WaterTemp      <dbl> 0.0, 70.0, 68.0, 68.0, 52.5, 53.0, 69.0, 68.5, 68.5, 67…
-    ## $ Weather        <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-    ## $ RiverMile      <dbl> 46.0, 0.0, 0.0, 0.0, 66.5, 66.5, 52.5, 54.5, 56.0, 56.0…
-    ## $ Flow           <dbl> 2000, 0, 0, 0, 600, 600, 0, 2000, 2000, 2000, 2000, 200…
-    ## $ NumberOfDivers <dbl> 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
-    ## $ ReachLength    <dbl> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
-    ## $ ReachWidth     <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
-    ## $ ChannelType    <dbl> 1, 0, 3, 2, 2, 2, 1, 1, 2, 1, 3, 2, 2, 2, 1, 1, 1, 3, 3…
-    ## $ ChannelWidth   <dbl> 96, 115, 33, 48, 32, 51, 40, 73, 147, 33, 0, 0, 0, 20, …
-    ## $ GPS.Coordinate <chr> "N 39°19.068\" W 121°37.256", "N 39°19.068\" W 121°37.2…
-    ## Rows: 410
-    ## Columns: 8
-    ## $ PDatID         <labelled> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11…
-    ## $ FishDataID     <labelled> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23…
-    ## $ Species        <labelled> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3,…
-    ## $ Count          <labelled> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10…
-    ## $ FL..mm.        <labelled> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25…
-    ## $ DistToBottom   <labelled> 5.0, 1.0, 5.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 5.0, …
-    ## $ Focal.Velocity <labelled> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.…
-    ## $ TCode          <labelled> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 2…
-
-    ## Rows: 410 Columns: 8
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## dbl (8): PDatID, FishDataID, Species, Count, FL..mm., DistToBottom, Focal.Ve...
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Rows: 410
-    ## Columns: 8
-    ## $ PDatID         <dbl> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
-    ## $ FishDataID     <dbl> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
-    ## $ Species        <dbl> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3, 1, 3…
-    ## $ Count          <dbl> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
-    ## $ FL..mm.        <dbl> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
-    ## $ DistToBottom   <dbl> 5.0, 1.0, 5.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 5.0, 1.0, …
-    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
-    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
-    ## Rows: 4,895
-    ## Columns: 24
-    ## $ MicroHabDataTblID <int> 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, …
-    ## $ PDatID            <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, …
-    ## $ TCode             <dbl> 0.1, 0.2, 0.3, 0.4, 3.1, 3.2, 3.3, 3.4, 6.1, 6.2, 6.…
-    ## $ Depth             <int> 17, 19, 11, 12, 11, 10, 8, 9, 10, 19, 19, 37, 16, 14…
-    ## $ Velocity          <dbl> 0.22, 0.35, 1.95, 2.14, 1.19, 1.54, 1.26, 1.97, 0.75…
-    ## $ Sub1              <int> 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 15,…
-    ## $ Sub2              <int> 40, 50, 25, 0, 70, 30, 0, 0, 0, 60, 30, 65, 80, 0, 0…
-    ## $ Sub3              <int> 20, 40, 75, 80, 30, 50, 60, 70, 40, 30, 50, 25, 20, …
-    ## $ Sub4              <int> 30, 10, 0, 20, 0, 20, 40, 30, 20, 10, 20, 10, 0, 15,…
-    ## $ Sub5              <int> 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-    ## $ Sub6              <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ IcovA             <int> 75, 100, 100, 100, 10, 100, 100, 100, 50, 100, 100, …
-    ## $ IcovB             <int> 15, 0, 0, 0, 20, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, …
-    ## $ IcovC             <int> 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-    ## $ IcovE             <int> 10, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ IcovF             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, …
-    ## $ Ocov0             <int> 100, 100, 100, 100, 100, 100, 100, 100, 75, 100, 100…
-    ## $ Ocov1             <int> 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 50, 0, 0, 0, 0,…
-    ## $ Ocov2             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ SurTurb           <int> 20, 30, 30, 30, 10, 10, 10, 10, 0, 10, 20, 30, 0, 0,…
-    ## $ CGU               <chr> "g", "g", "g", "g", "gm", "g", "g", "g", "gm", "gm",…
-    ## $ SubSum            <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## $ ICovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## $ OCovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## Rows: 136
-    ## Columns: 12
-    ## $ PhysDataTblID <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, …
-    ## $ AvgOfDepth    <dbl> 14.72222, 31.19444, 40.05556, 12.50000, 21.02778, 20.277…
-    ## $ AvgOfVelocity <dbl> 1.04222222, 0.14777778, 1.00833333, 0.75583333, 0.748888…
-    ## $ AvgOfIcovA    <dbl> 91.52778, 42.91667, 90.13889, 89.44444, 86.38889, 96.666…
-    ## $ AvgOfIcovB    <dbl> 3.3333333, 7.9166667, 4.4444444, 2.5000000, 0.6944444, 2…
-    ## $ AvgOfIcovC    <dbl> 1.1428571, 1.6666667, 0.0000000, 0.2777778, 0.0000000, 0…
-    ## $ AvgOfIcovE    <dbl> 2.9166667, 47.5000000, 4.0277778, 7.7777778, 12.9166667,…
-    ## $ AvgOfIcovF    <dbl> 1.1111111, 0.0000000, 1.3888889, 0.0000000, 0.0000000, 0…
-    ## $ AvgOfOcov0    <dbl> 90.69444, 93.47222, 91.25000, 95.55556, 100.00000, 97.77…
-    ## $ AvgOfOcov1    <dbl> 4.3055556, 3.3333333, 5.0000000, 4.4444444, 0.0000000, 2…
-    ## $ AvgOfOcov2    <dbl> 5.0000000, 3.1944444, 3.7500000, 0.0000000, 0.0000000, 0…
-    ## $ AvgOfSurTurb  <dbl> 11.5277778, 0.0000000, 1.6666667, 0.0000000, 1.3888889, …
-    ## Rows: 67
-    ## Columns: 11
-    ## $ PDatID        <int> 11, 13, 14, 15, 18, 19, 20, 21, 22, 17, 35, 36, 38, 40, …
-    ## $ CanopyCoverID <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…
-    ## $ Canopy1       <int> 79, 4, 100, 0, 0, 0, 100, 0, 0, 0, 100, 18, 46, 0, 0, 0,…
-    ## $ Canopy2       <int> 66, 25, 100, 0, 0, 0, 25, 84, 0, 0, 100, 22, 80, 3, 0, 4…
-    ## $ Canopy3       <int> 68, 66, 80, 0, 0, 0, 85, 40, 0, 0, 100, 17, 20, 0, 0, 5,…
-    ## $ Canopy4       <int> 48, 100, 75, 0, 0, 0, 100, 4, 0, 0, 100, 24, 0, 0, 0, 10…
-    ## $ Canopy5       <int> 32, 75, 84, 0, 0, 0, 100, 24, 0, 0, 100, 40, 0, 0, 0, 90…
-    ## $ Canopy6       <int> 64, 19, 48, 0, 0, 0, 0, 20, 0, 80, 95, 42, 17, 0, 6, 15,…
-    ## $ Canopy7       <int> 88, 20, 50, 0, 0, 0, 10, 100, 0, 0, 85, 78, 0, 0, 7, 10,…
-    ## $ Canopy8       <int> 48, 29, 70, 0, 0, 50, 40, 24, 0, 0, 100, 46, 16, 0, 10, …
-    ## $ Canopy9       <int> 68, 50, 100, 0, 0, 80, 0, 4, 0, 0, 100, 49, 0, 100, 2, 0…
-    ## Rows: 81
-    ## Columns: 2
-    ## $ PDatID   <int> 94, 95, 96, 97, 111, 112, 112, 112, 114, 114, 114, 115, 116, …
-    ## $ Comments <chr> "No flow or river mile recorded", "Flow and river mile not re…
-    ## Rows: 617
-    ## Columns: 18
-    ## $ Month        <chr> "April/May", "April/May", "April/May", "April/May", "Apri…
-    ## $ UnitNum      <int> 338, 337, 333, 327, 337, 239, 229, 191, 193, 216, 218, 22…
-    ## $ UnitCode     <chr> "338", "337", "333", "327", "337", "239", "229", "191", "…
-    ## $ SideChannel  <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
-    ## $ RiverMile    <dbl> 56.9, 57.0, 57.0, 57.1, 57.0, 59.5, NA, 60.9, 60.9, 60.2,…
-    ## $ Number       <int> 1, 4, 1, 2, 2, 2, 1, 1, 1, 8, 2, 1, 1, 1, 1, 3, 6, 1, 2, …
-    ## $ MinFL        <int> 50, 60, 25, 40, 50, 45, 40, 50, 40, 50, 45, 35, 40, 40, 4…
-    ## $ MaxFL        <int> 50, 75, 25, 40, 65, 45, 50, 50, 50, 75, 55, 45, 50, 50, 5…
-    ## $ Depth        <dbl> 0.50, 0.60, 1.00, 0.30, 0.40, 0.40, 0.30, 0.30, 0.20, 0.5…
-    ## $ DepthCat     <chr> "", "0.5 to 1.0", "", "0 to 0.5", "0 to 0.5", "0 to 0.5",…
-    ## $ FishDepth    <dbl> 0.30, 0.40, 0.80, 0.20, 0.35, 0.30, 0.10, 0.25, 0.20, 0.3…
-    ## $ HUCsubstrate <int> 2, 2, 2, 2, 2, 2, 1, 2, 3, 2, 2, 3, 2, 2, 1, 2, 2, 2, 2, …
-    ## $ HUCunit      <chr> "G", "G", "G", "G", "G", "G", "G", "G", "", "R", "", "P",…
-    ## $ HUCcover     <chr> "A", "A", "A", "A", "A", "A", "BD", "A", "B", "B", "DF", …
-    ## $ Velocity     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## $ VelocityCat  <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
-    ## $ BankDistance <int> NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-    ## $ BankDistCat  <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## Rows: 417
-    ## Columns: 21
-    ## $ SurveyID            <labelled> 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 17, 18…
-    ## $ Date                <labelled> 1999-06-30, 1999-06-30, 1999-07-01, 1999-07-0…
-    ## $ SnorkelCrew         <labelled> "PH DG", "PH DG", "PH JK TS", "PH, TS, JK", "…
-    ## $ ShoreCrew           <labelled> "TV", "TV", "BC", "BC", "BC", "PH", "PH", "JK…
-    ## $ Recorder            <labelled> "TV", "TV", "BC", "BC", "BC", "PH", "PH", "JK…
-    ## $ RiverFlow           <labelled> 7788, 7788, 8050, 8050, 8050, 621, 621, 628, …
-    ## $ Weather             <labelled> "CLR", "CLR", "CLR", "CLR", "CLR", "CLR", "CL…
-    ## $ VisibilityComments  <labelled> "", "", "", "", "", "", "", "EXCELLENT VIS.",…
-    ## $ TempTime            <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
-    ## $ Location            <labelled> "G95", "Big Hole Island", "McFarland Bend", "…
-    ## $ SnorkelTimeStart    <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
-    ## $ SnorkelTimeStop     <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
-    ## $ Comments            <labelled> "Units 323 A+B", "Units 300, 301, 303, 305", …
-    ## $ SurveyType          <labelled> "Unit", "Unit", "Unit", "Unit", "Unit", "Unit…
-    ## $ SectionType         <labelled> "Permanent", "Permanent", "Permanent", "Rando…
-    ## $ Units               <labelled> "", "", "", "", "", "", "", "", "", "", "", "…
-    ## $ X..of.Divers        <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## $ X..of.Center.Passes <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## $ Pass.width          <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## $ Visibility          <labelled> NA, NA, 1.5, 1.5, NA, 3.5, 3.5, 4.1, 4.1, NA,…
-    ## $ Temperature         <labelled> 64.0, 64.0, 65.0, 64.0, 64.5, 61.5, 60.5, 62.…
-    ## Rows: 11,212
-    ## Columns: 18
-    ## $ ObsID        <int> 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, …
-    ## $ SurveyID     <int> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, …
-    ## $ Snorkler     <chr> "DG", "PH", "DG", "DG", "PH", "PH", "PH", "DG", "DG", "DG…
-    ## $ Unit         <chr> "335", "337", "335", "335", "337", "337", "337", "335", "…
-    ## $ Species      <chr> "SPD", "RBTS", "SASQ", "MIN", "RBTS", "SASU", "SASQ", "RB…
-    ## $ Number       <int> 6, 2, 1, 1, 3, 6, 1, 1, 1, 1, 1, 1, 2, 2, 2, 4, 5, 1, 1, …
-    ## $ FL           <int> 35, 85, 90, 45, 95, 50, 150, 110, 90, 95, 115, 110, 65, 1…
-    ## $ MaxFL        <int> 65, 90, 90, 45, 105, 60, 150, 110, 90, 95, 115, 110, 75, …
-    ## $ FishDepth    <dbl> 0.35, 0.45, 0.20, 0.20, 0.45, 0.45, 0.55, 0.58, 0.53, 0.5…
-    ## $ HUCsubstrate <int> 1, 3, 1, 1, 3, 2, 3, 2, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, NA,…
-    ## $ HUCIcover    <chr> "E", "A", "E", "E", "A", "A", "A", "A", "A", "A", "A", "A…
-    ## $ HUCunit      <chr> "RM", "GM", "RM", "RM", "RM", "GM", "GM", "G", "G", "G", …
-    ## $ Velocity     <dbl> NA, 0.50, NA, NA, 2.00, NA, NA, 2.49, 2.48, 3.85, 2.65, 3…
-    ## $ AdjVelocity  <dbl> NA, 3.27, NA, NA, 2.50, NA, NA, 3.44, 3.58, 5.16, NA, NA,…
-    ## $ Comments     <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
-    ## $ BankDistance <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-    ## $ HUCOcover    <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
-    ## $ Depth        <dbl> 0.40, 0.51, 0.40, 0.40, 0.50, 0.50, 0.60, 0.63, 0.58, 0.5…
-    ## Rows: 671
-    ## Columns: 19
-    ## $ PDatID         <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
-    ## $ FishDataID     <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
-    ## $ Species        <int> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3, 1, 3…
-    ## $ Count          <int> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
-    ## $ FL..mm.        <int> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
-    ## $ WaterDepth     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ DistToBottom   <dbl> 0.5, 0.1, 0.5, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.5, 1.0, …
-    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
-    ## $ AvVel          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ Substrate      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ I.CovCode      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ OCoverCodeID   <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ X.SurfTurb     <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
-    ## $ FishInTran     <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ FocalClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AdjFocalVel    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AvVelClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AdjAvVel       <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## Rows: 275
-    ## Columns: 16
-    ## $ PhysDataTblID  <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
-    ## $ Location       <chr> "hatchery ditch", "Hour Bar", "Hatchery riffle", "Hatch…
-    ## $ Date           <labelled> 2001-03-14, 2001-03-15, 2001-08-20, 2001-08-20, 20…
-    ## $ StartTime      <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
-    ## $ EndTime        <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
-    ## $ Crew           <chr> "rk, cd, jr,as", "rk, ph, sm", "tv, cr", "tv, cr", "tv,…
-    ## $ WaterTemp      <dbl> 47.0, 56.0, 57.0, 55.0, 58.0, 58.0, 63.5, 59.5, 62.5, 6…
-    ## $ Weather        <int> 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-    ## $ RiverMile      <dbl> 66.6, 56.0, 66.5, 66.6, 64.0, 65.5, 61.0, 61.5, 61.0, 6…
-    ## $ Flow           <int> 12, 1700, 600, 600, 600, 600, 600, 600, 600, 600, 1900,…
-    ## $ NumberOfDivers <int> 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
-    ## $ ReachLength    <int> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
-    ## $ ReachWidth     <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
-    ## $ ChannelType    <int> 3, 2, 1, 3, 1, 1, 1, 3, 3, 1, 2, 1, 3, 2, 2, 2, 1, 1, 1…
-    ## $ ChannelWidth   <int> 7, 160, 0, 0, 0, 0, 17, 14, 8, 31, 50, 50, 39, 45, 43, …
-    ## $ GPS.Coordinate <chr> "", "", "n 39*30.950, w 21*33.212", "N 39* 30.952,  W 2…
-    ## Rows: 671
-    ## Columns: 19
-    ## $ PDatID         <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
-    ## $ FishDataID     <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
-    ## $ Species        <int> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3, 1, 3…
-    ## $ Count          <int> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
-    ## $ FL..mm.        <int> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
-    ## $ WaterDepth     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ DistToBottom   <dbl> 0.5, 0.1, 0.5, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.5, 1.0, …
-    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
-    ## $ AvVel          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ Substrate      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ I.CovCode      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ OCoverCodeID   <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ X.SurfTurb     <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
-    ## $ FishInTran     <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ FocalClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AdjFocalVel    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AvVelClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## $ AdjAvVel       <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-    ## Rows: 9,645
-    ## Columns: 26
-    ## $ MicroHabDataTblID <int> 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, …
-    ## $ PDatID            <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, …
-    ## $ TCode             <dbl> 0.1, 0.2, 0.3, 0.4, 3.1, 3.2, 3.3, 3.4, 6.1, 6.2, 6.…
-    ## $ Depth             <dbl> 17, 19, 11, 12, 11, 10, 8, 9, 10, 19, 19, 37, 16, 14…
-    ## $ Velocity          <dbl> 0.22, 0.35, 1.95, 2.14, 1.19, 1.54, 1.26, 1.97, 0.75…
-    ## $ Sub1              <int> 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 15,…
-    ## $ Sub2              <int> 40, 50, 25, 0, 70, 30, 0, 0, 0, 60, 30, 65, 80, 0, 0…
-    ## $ Sub3              <int> 20, 40, 75, 80, 30, 50, 60, 70, 40, 30, 50, 25, 20, …
-    ## $ Sub4              <int> 30, 10, 0, 20, 0, 20, 40, 30, 20, 10, 20, 10, 0, 15,…
-    ## $ Sub5              <int> 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-    ## $ Sub6              <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ IcovA             <int> 75, 100, 100, 100, 10, 100, 100, 100, 50, 100, 100, …
-    ## $ IcovB             <int> 15, 0, 0, 0, 20, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, …
-    ## $ IcovC             <int> 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-    ## $ IcovE             <int> 10, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ IcovF             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, …
-    ## $ Ocov0             <int> 100, 100, 100, 100, 100, 100, 100, 100, 75, 100, 100…
-    ## $ Ocov1             <int> 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 50, 0, 0, 0, 0,…
-    ## $ Ocov2             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-    ## $ SurTurb           <int> 20, 30, 30, 30, 10, 10, 10, 10, 0, 10, 20, 30, 0, 0,…
-    ## $ CGU               <chr> "g", "g", "g", "g", "gm", "g", "g", "g", "gm", "gm",…
-    ## $ SubSum            <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## $ ICovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## $ OCovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
-    ## $ VelClicks         <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-    ## $ AdjVel            <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-    ## Rows: 9
-    ## Columns: 3
-    ## $ SpeciesCodeID <int> 1, 2, 3, 4, 5, 6, 7, 8, 9
-    ## $ SpeciesCode   <chr> "RBTS", "RBTC", "CHN", "SASQ", "HH", "TP", "SMB", "LMB",…
-    ## $ Species       <chr> "Steelhead trout (wild)", "Steelhead trout, (clipped)", …
-    ## Rows: 275
-    ## Columns: 16
-    ## $ PhysDataTblID  <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
-    ## $ Location       <chr> "hatchery ditch", "Hour Bar", "Hatchery riffle", "Hatch…
-    ## $ Date           <labelled> 2001-03-14, 2001-03-15, 2001-08-20, 2001-08-20, 20…
-    ## $ StartTime      <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
-    ## $ EndTime        <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
-    ## $ Crew           <chr> "rk, cd, jr,as", "rk, ph, sm", "tv, cr", "tv, cr", "tv,…
-    ## $ WaterTemp      <dbl> 47.0, 56.0, 57.0, 55.0, 58.0, 58.0, 63.5, 59.5, 62.5, 6…
-    ## $ Weather        <int> 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-    ## $ RiverMile      <dbl> 66.6, 56.0, 66.5, 66.6, 64.0, 65.5, 61.0, 61.5, 61.0, 6…
-    ## $ Flow           <int> 12, 1700, 600, 600, 600, 600, 600, 600, 600, 600, 1900,…
-    ## $ NumberOfDivers <int> 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
-    ## $ ReachLength    <int> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
-    ## $ ReachWidth     <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
-    ## $ ChannelType    <int> 3, 2, 1, 3, 1, 1, 1, 3, 3, 1, 2, 1, 3, 2, 2, 2, 1, 1, 1…
-    ## $ ChannelWidth   <int> 7, 160, 0, 0, 0, 0, 17, 14, 8, 31, 50, 50, 39, 45, 43, …
-    ## $ GPS.Coordinate <chr> "", "", "n 39*30.950, w 21*33.212", "N 39* 30.952,  W 2…
-    ## Rows: 5
-    ## Columns: 3
-    ## $ WeatherCodeLookUpID <int> 1, 2, 3, 4, 5
-    ## $ WeatherCode         <chr> "CLR", "CLD", "RAN", "FOG", "NIT"
-    ## $ Weather             <chr> "Direct Sunlight", "Overcast", "Precipitation", "F…
-    ## Rows: 3
-    ## Columns: 3
-    ## $ ChannelTypeCodeID <int> 1, 2, 3
-    ## $ ChannelTypeCode   <int> 1, 2, 3
-    ## $ ChannelType       <chr> "Mainchannel", "Mainchannel Branch", "Sidechannel"
-    ## Rows: 6
-    ## Columns: 3
-    ## $ CGUCodeID <int> 1, 2, 3, 4, 5, 6
-    ## $ CGUCode   <chr> "R", "G", "P", "W", "RM", "GM"
-    ## $ CGU       <chr> "Riffle", "Glide", "Pool", "Backwater", "Riffle Edgewater", …
+- Database 2: `minisnorkdb3.mdb`
 
 Read in data sourced from query script, glimpse raw data and domain
 description sheet:
@@ -456,7 +62,7 @@ microhabitat |> glimpse()
 
 ## Data transformations
 
-### first table reviewd is the All Fish Observation Table
+### first table reviewed is the All Fish Observation Table
 
 All of the substrate and cover lookups are not true look ups. Substrate
 and cover column indicate a percentage of cover or substrate of each
@@ -464,12 +70,22 @@ type. I updated the column names to reflect this and utilized the lookup
 tables to understand which substrate or cover type each column was
 referring to.
 
-Columns removed: - SpecAge removed - just a combination of species and
-age - i_cov_sum - removed because sum of other columns - o_cov_sum -
-removed because sum of other columns - sub_sum - removed because sum of
-other columns - start_time - just a date that seemed wrong - end_time -
-also just a date that seemed wrong - crew - specific crew names do not
-need to be present on public EDI dataset
+Columns removed:
+
+- SpecAge removed - just a combination of species and age
+
+- i_cov_sum - removed because sum of other columns
+
+- o_cov_sum - removed because sum of other columns
+
+- sub_sum - removed because sum of other columns
+
+- start_time - just a date that seemed wrong
+
+- end_time - also just a date that seemed wrong
+
+- crew - specific crew names do not need to be present on public EDI
+  dataset
 
 ``` r
 # For different database tables, combine here
@@ -681,40 +297,64 @@ There are 36 NA values- TODO: do we want to remove these NA date values?
 ### Checking Overlap
 
 ``` r
-# 2001 dataset: 
-min(joined_fish_obs$date)
+only_2001_data <- joined_fish_obs_2002 |> 
+  filter(date <= max(joined_fish_obs$date)) 
+# nrow(only_2001_data)
+# nrow(joined_fish_obs)
+# There are two additional rows for the 2002 dataset that overlap with the 2001 dataset implying that the 2001 dataset had two missing data
+
+anti_join_2001_data <- only_2001_data |> 
+  select(colnames(joined_fish_obs)) |>
+  anti_join(joined_fish_obs)
 ```
 
-    ## [1] "2001-03-13"
+    ## Joining with `by = join_by(micro_hab_data_tbl_id, p_dat_id, t_code, depth,
+    ## velocity, percent_fine_substrate, percent_sand_substrate,
+    ## percent_small_gravel_substrate, percent_large_gravel_substrate,
+    ## percent_cobble_substrate, percent_boulder_substrate,
+    ## percent_no_cover_inchannel, percent_small_woody_cover_inchannel,
+    ## percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel,
+    ## percent_undercut_bank, percent_no_cover_overhead,
+    ## percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead,
+    ## sur_turb, fish_data_id, count, fl_mm, dist_to_bottom, focal_velocity, species,
+    ## location, date, water_temp, river_mile, flow, number_of_divers, reach_length,
+    ## reach_width, channel_width, gps_coordinate, weather, channel_type,
+    ## channel_geomorphic_unit)`
 
 ``` r
-max(joined_fish_obs$date)
+ggplot() +
+  geom_point(data = joined_fish_obs, aes(x=date, y = count, color = "2001 dataset"), size = 4, alpha = .5) +
+  geom_point(data = anti_join_2001_data, aes(x = date, y = count, color = 'Missing Data'), alpha = 0.5, size = 4) + 
+  theme_minimal()+
+  labs(title = "Data that Exists in 2001/2002 dataset and NOT in 2001",
+       y = "Number of Fish Observations") 
 ```
 
-    ## [1] "2001-08-23"
+![](qc_mini_snorkel_data_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-``` r
-# 2001/2002 dataset
-min(joined_fish_obs_2002$date, na.rm = TRUE)
-```
+- 2001 dataset goes from 2001-03-13 to 2001-08-23
 
-    ## [1] "2001-03-13"
+- new 2001/2002 dataset goes from 2001-03-13 to 2002-08-20
 
-``` r
-max(joined_fish_obs_2002$date, na.rm = TRUE)
-```
+- Filtering the new 2001/2002 dataset to the date range of the 2001
+  dataset, there is data that exists in the new 2001/2002 dataset that
+  does not exist in the 2001 dataset (see Figure above)
 
-    ## [1] "2002-08-20"
+- The following columns exist in the new 2001/2002 dataset and not the
+  2001 dataset: vel_clicks, adj_vel, water_depth, av_vel, substrate,
+  i_cov_code, o_cover_code_id, x_surf_turb, fish_in_tran, focal_clicks,
+  adj_focal_vel, av_vel_clicks, adj_av_vel
 
 ### View overlap
 
 ``` r
-ggplot(data = joined_fish_obs_2002) +
-  geom_point(aes(x = date, y = count), color = "2002", size = 4, alpha = .5, shape = 17) + 
-  geom_point(data = joined_fish_obs, aes(x=date, y = count), color = "2001", size = 4, alpha = .5, shape = 11)+
+ggplot(data = joined_fish_obs_2002 |> mutate(dataset = "new 2002 data")) +
+  geom_point(aes(x = date, y = count), color = "2002", size = 4, alpha = .8) + 
+  geom_point(data = joined_fish_obs |> mutate(dataset = "2001 dataset"), aes(x=date, y = count), color = "2001", size = 4, alpha = .8)+
   theme_minimal()+
   labs(title = "Count over Time with Both Datasets",
-       y = "Number of Fish Observations")
+       y = "Number of Fish Observations") + 
+  facet_grid(~ dataset)
 ```
 
 ![](qc_mini_snorkel_data_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -722,10 +362,9 @@ ggplot(data = joined_fish_obs_2002) +
 ### Combine datasets and remove duplicates
 
 ``` r
-# nrow(joined_fish_obs)
-# nrow(joined_fish_obs_2002)
-
-all_fish_data <- bind_rows(joined_fish_obs, joined_fish_obs_2002) |> distinct()
+all_fish_data <- joined_fish_obs_2002 |> 
+  select(colnames(joined_fish_obs)) |> # remove columns that only exist for 2002 data 
+  bind_rows(joined_fish_obs) |> distinct()
 
 ggplot(data = all_fish_data) +
   geom_point(aes(x = date, y = count), size = 4, alpha = .5) + 
@@ -774,20 +413,7 @@ all_fish_data %>% select_if(is.numeric) %>% colnames()
     ## [29] "number_of_divers"                           
     ## [30] "reach_length"                               
     ## [31] "reach_width"                                
-    ## [32] "channel_width"                              
-    ## [33] "vel_clicks"                                 
-    ## [34] "adj_vel"                                    
-    ## [35] "water_depth"                                
-    ## [36] "av_vel"                                     
-    ## [37] "substrate"                                  
-    ## [38] "i_cov_code"                                 
-    ## [39] "o_cover_code_id"                            
-    ## [40] "x_surf_turb"                                
-    ## [41] "fish_in_tran"                               
-    ## [42] "focal_clicks"                               
-    ## [43] "adj_focal_vel"                              
-    ## [44] "av_vel_clicks"                              
-    ## [45] "adj_av_vel"
+    ## [32] "channel_width"
 
 ### Variable: `count`
 
@@ -815,11 +441,11 @@ summary(all_fish_data$count)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    1.00    1.00    3.00   44.64   20.00 1500.00    9316
+    ##    1.00    1.00    3.00   39.17   20.00 1500.00    9312
 
 **NA and Unknown Values**
 
-There are 9316 NA values
+There are 9312 NA values
 
 ### Variable: `date`
 
@@ -849,7 +475,7 @@ summary(all_fish_data$date)
 ```
 
     ##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-    ## "2001-03-13" "2001-05-23" "2001-08-21" "2001-11-17" "2002-05-25" "2002-08-20" 
+    ## "2001-03-13" "2001-06-11" "2001-08-22" "2001-11-24" "2002-05-28" "2002-08-20" 
     ##         NA's 
     ##         "36"
 
@@ -883,7 +509,7 @@ summary(all_fish_data$river_mile)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   54.50   59.80   56.08   63.50   66.90      36
+    ##    0.00   54.50   58.50   55.86   62.00   66.90      36
 
 **NA and Unknown Values**
 
@@ -930,11 +556,11 @@ summary(all_fish_data$fl_mm)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    20.0    30.0    40.0    49.4    50.0  1000.0    9316
+    ##   20.00   30.00   40.00   51.66   50.00 1000.00    9312
 
 **NA and Unknown Values**
 
-There are 9316 NA values
+There are 9312 NA values
 
 ### Variable: `dist_to_bottom`
 
@@ -977,7 +603,7 @@ summary(all_fish_data$river_mile)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   54.50   59.80   56.08   63.50   66.90      36
+    ##    0.00   54.50   58.50   55.86   62.00   66.90      36
 
 **NA and Unknown Values**
 
@@ -1012,18 +638,18 @@ summary(all_fish_data$focal_velocity)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   0.354   0.580   3.440    9337
+    ##   0.000   0.000   0.000   0.375   0.590   3.440    9324
 
 ``` r
 summary(all_fish_data$velocity)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##  0.0000  0.0000  0.0000  0.4821  0.7800  5.7300     448
+    ##  0.0000  0.0000  0.0000  0.4845  0.8000  5.7300     435
 
 **NA and Unknown Values**
 
-There are 9337 NA values There are 448 NA values
+There are 9324 NA values There are 435 NA values
 
 ### Variable: `t_code`
 
@@ -1051,7 +677,7 @@ summary(all_fish_data$t_code)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.10    6.20   12.20   12.29   18.30   24.40
+    ##    0.10    6.20   12.20   12.27   18.40   24.40
 
 **NA and Unknown Values**
 
@@ -1083,7 +709,7 @@ summary(all_fish_data$depth)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00    0.26    8.00   16.61   27.00  316.00       1
+    ##    0.00    0.25    6.00   15.99   26.00  316.00       1
 
 **NA and Unknown Values**
 
@@ -1125,42 +751,42 @@ summary(all_fish_data$percent_fine_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   5.182   0.000 100.000
+    ##   0.000   0.000   0.000   5.098   0.000 100.000
 
 ``` r
 summary(all_fish_data$percent_sand_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00    0.00   16.92   20.00  100.00
+    ##    0.00    0.00    0.00   16.54   20.00  100.00
 
 ``` r
 summary(all_fish_data$percent_small_gravel_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00   20.00   31.15   50.00  100.00
+    ##    0.00    0.00   20.00   31.52   50.00  100.00
 
 ``` r
 summary(all_fish_data$percent_large_gravel_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00   25.00   31.92   50.00  100.00
+    ##    0.00    0.00   25.00   32.15   50.00  100.00
 
 ``` r
 summary(all_fish_data$percent_boulder_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   2.579   0.000 100.000       1
+    ##   0.000   0.000   0.000   2.491   0.000 100.000       1
 
 ``` r
 summary(all_fish_data$percent_cobble_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00    0.00    0.00   12.26   20.00  100.00       1
+    ##    0.00    0.00    0.00   12.21   20.00  100.00       1
 
 **NA and Unknown Values**
 
@@ -1201,32 +827,32 @@ summary(all_fish_data$percent_no_cover_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##     0.0    70.0    90.0    81.2   100.0   100.0
+    ##     0.0    70.0    90.0    81.5   100.0   100.0
 
 ``` r
 summary(all_fish_data$percent_small_woody_cover_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   4.098   0.000 100.000
+    ##   0.000   0.000   0.000   3.846   0.000 100.000
 
 ``` r
 summary(all_fish_data$percent_large_woody_cover_inchannel)
 ```
 
     ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
-    ##   0.0000   0.0000   0.0000   0.3201   0.0000 100.0000        4
+    ##   0.0000   0.0000   0.0000   0.2873   0.0000 100.0000        2
 
 ``` r
 summary(all_fish_data$percent_submerged_aquatic_veg_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00    0.00   14.06   20.00  100.00
+    ##    0.00    0.00    0.00   14.09   20.00  100.00
 
 **NA and Unknown Values**
 
-There are 0 NA values There are 0 NA values There are 4 NA values There
+There are 0 NA values There are 0 NA values There are 2 NA values There
 are 0 NA values
 
 ### Variable: `overhead cover`
@@ -1263,28 +889,28 @@ summary(all_fish_data$percent_undercut_bank)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.0000  0.0000  0.0000  0.3171  0.0000 75.0000
+    ##  0.0000  0.0000  0.0000  0.2782  0.0000 75.0000
 
 ``` r
 summary(all_fish_data$percent_no_cover_overhead)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00   90.00  100.00   88.32  100.00  100.00
+    ##    0.00   90.00  100.00   88.87  100.00  100.00
 
 ``` r
 summary(all_fish_data$percent_cover_half_meter_overhead)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   6.891   0.000 100.000
+    ##   0.000   0.000   0.000   6.725   0.000 100.000
 
 ``` r
 summary(all_fish_data$percent_cover_more_than_half_meter_overhead)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   4.788   0.000 100.000
+    ##    0.00    0.00    0.00    4.41    0.00  100.00
 
 **NA and Unknown Values**
 
@@ -1317,7 +943,7 @@ summary(all_fish_data$sur_turb)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   4.641   0.000 100.000     108
+    ##   0.000   0.000   0.000   4.643   0.000 100.000     108
 
 **NA and Unknown Values**
 
@@ -1349,11 +975,11 @@ summary(all_fish_data$dist_to_bottom)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.150   3.000   8.136  10.000 110.000    9316
+    ##   0.000   0.100   1.000   6.801   5.000 110.000    9312
 
 **NA and Unknown Values**
 
-There are 9316 NA values
+There are 9312 NA values
 
 ### Variable: `fish_data_id`
 
@@ -1374,11 +1000,11 @@ summary(all_fish_data$fish_data_id)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##      11     138     266     291     411     690    9316
+    ##    11.0   152.5   320.0   325.6   497.5   690.0    9312
 
 **NA and Unknown Values**
 
-There are 9316 NA values
+There are 9312 NA values
 
 ### Variable: `micro_hab_data_tbl_id`
 
@@ -1399,7 +1025,7 @@ summary(all_fish_data$micro_hab_data_tbl_id)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##      18    2377    4630    4808    7221    9981
+    ##      18    2410    4767    4868    7310    9981
 
 **NA and Unknown Values**
 
@@ -1431,11 +1057,11 @@ summary(all_fish_data$water_temp)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   53.00   59.00   54.17   65.00   85.00     308
+    ##    0.00   53.00   59.00   54.21   66.00   85.00     295
 
 **NA and Unknown Values**
 
-There are 308 NA values
+There are 295 NA values
 
 ### Variable: `flow`
 
@@ -1463,7 +1089,7 @@ summary(all_fish_data$flow)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##       0     600     600    1193    1750    6100     180
+    ##       0     600     650    1214    1750    6100     180
 
 **NA and Unknown Values**
 
@@ -1494,7 +1120,7 @@ summary(all_fish_data$number_of_divers)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   2.000   2.000   2.085   2.000   4.000
+    ##   0.000   2.000   2.000   2.075   2.000   4.000
 
 **NA and Unknown Values**
 
@@ -1594,7 +1220,7 @@ summary(all_fish_data$channel_width)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   20.00   37.00   39.13   53.00  160.00     259
+    ##    0.00   20.00   37.00   39.43   53.00  160.00     255
 
 **NA and Unknown Values**
 
@@ -1619,29 +1245,29 @@ table(all_fish_data$location)
 
     ## 
     ##   Across Big Hole Island ( River Right)                    Across from Big Hole 
-    ##                                      42                                      36 
+    ##                                      38                                      36 
     ##          Across From Big Hole Boat Ramp                             Alec Riffle 
-    ##                                      38                                      40 
+    ##                                      36                                      36 
     ##                                Aleck #1                            Aleck Riffle 
-    ##                                      72                                     195 
+    ##                                      72                                     187 
     ##                         Aleck Riffle #2                     Aleck Riffle Sect 3 
     ##                                      36                                      36 
     ##                              Auditorium                       Auditorium Riffle 
-    ##                                     170                                     225 
+    ##                                     160                                     194 
     ##                            Auditorium#3                                 Bedrock 
-    ##                                      37                                      78 
+    ##                                      37                                      76 
     ##                            Bedrock Park                         Bedrock Park #3 
     ##                                      36                                      36 
     ##                         Bedrock Park #4                  Bedrock Park, Unit #50 
-    ##                                      37                                      39 
+    ##                                      37                                      37 
     ##                          Bedrock Riffle                                 big bar 
     ##                                      72                                      36 
     ##                                 Big Bar     Big Bar - Middle Island River Right 
-    ##                                     180                                      37 
+    ##                                     181                                      36 
     ##                              Big Bar #1                                Big Hole 
-    ##                                      72                                      73 
+    ##                                      72                                      74 
     ##                         Big Hole Island                       Big Hole Lower #2 
-    ##                                      40                                      72 
+    ##                                      36                                      72 
     ##                              Cox Riffle                           cox riffle #3 
     ##                                      36                                      36 
     ##                           Cox Riffle #4                           Cox Riffle #5 
@@ -1651,59 +1277,59 @@ table(all_fish_data$location)
     ##                                     EYE                                  Eye #2 
     ##                                      36                                      41 
     ##                              Eye Riffle                           Eye Riffle #3 
-    ##                                     180                                      36 
+    ##                                     181                                      36 
     ##                            Eye Riffle 4                 Eye Riffle Main Channel 
-    ##                                      36                                      38 
+    ##                                      36                                      37 
     ##                         Eye Riffle Side                 Eye Riffle Side Channel 
-    ##                                      42                                      53 
+    ##                                      38                                      41 
     ##                   Eye Riffle, Unit #208                             Eye side #2 
-    ##                                      41                                      36 
+    ##                                      36                                      36 
     ##                             Eye Side #2                        Eye Side Channel 
-    ##                                      38                                      72 
+    ##                                      38                                      73 
     ##                     eye side channel #2                                    G 95 
-    ##                                      38                                      37 
+    ##                                      38                                      39 
     ##                                    G-95                        G-95 (section 4) 
     ##                                      72                                      37 
     ##                               G-95 East                            G-95 East #3 
     ##                                      36                                      36 
     ##                       G-95 Side Channel                                     G95 
-    ##                                      36                                     145 
+    ##                                      36                                     146 
     ##                              G95 (Area)                                  G95 #5 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                                G95 East                             G95 East #1 
     ##                                     109                                      36 
     ##                  g95 rr downstream head                             G95 WEST #4 
-    ##                                      52                                      36 
+    ##                                      37                                      36 
     ##                   G95 West Side Channel                                 Gateway 
     ##                                      36                                      36 
     ##                          Gateway Riffle                       gateway riffle #4 
     ##                                      36                                      37 
     ##                            goose riffle                            Goose Riffle 
-    ##                                      36                                     149 
+    ##                                      36                                     145 
     ##                         Goose Riffle #1                         Goose Section 2 
     ##                                      36                                      36 
     ##                          gridley riffle                          Gridley Riffle 
-    ##                                      48                                     145 
+    ##                                      43                                     145 
     ##         Gridley Riffle (sidechannel) #1                       Gridley Riffle #1 
     ##                                      36                                      36 
     ##                       Gridley Riffle #3                    Gridley Side Channel 
-    ##                                      36                                      38 
+    ##                                      36                                      36 
     ##                          Grifley Riffle                         Hatchery  Ditch 
-    ##                                      36                                      55 
+    ##                                      36                                      42 
     ##                          hatchery ditch                          Hatchery ditch 
-    ##                                     141                                      44 
+    ##                                     110                                      44 
     ##                          Hatchery Ditch                       HATCHERY DITCH #3 
-    ##                                     303                                      46 
+    ##                                     233                                      46 
     ##                         hatchery riffle                         Hatchery riffle 
-    ##                                      36                                      95 
+    ##                                      36                                      89 
     ##                         Hatchery Riffle                      Hatchery riffle #3 
-    ##                                     287                                      40 
+    ##                                     265                                      40 
     ##                               Herringer               Herringer Main Channel #1 
     ##                                      36                                      36 
     ##               herringer main river left                        Herringer Riffle 
-    ##                                      37                                     145 
+    ##                                      36                                     146 
     ##                       Herringer Side #2                                Hour Bar 
-    ##                                      36                                     227 
+    ##                                      36                                     219 
     ##                               Hour Bars                            Hour Bars #1 
     ##                                      36                                      36 
     ##                        hour east riffle                             hour riffle 
@@ -1711,93 +1337,93 @@ table(all_fish_data$location)
     ##                             Hour Riffle                     Hour riffle (lower) 
     ##                                      36                                      36 
     ##                          Hour Section 2                                Junkyard 
-    ##                                      36                                      37 
+    ##                                      36                                      36 
     ##                         Junkyard Riffle                      Junkyard Riffle #2 
-    ##                                     113                                      37 
+    ##                                     109                                      37 
     ##                      Junkyard Riffle #4               Junkyard riffle section 2 
     ##                                      36                                      36 
     ##                      Junkyard Section 1                          Lower Big Hole 
-    ##                                      37                                     148 
+    ##                                      37                                     144 
     ##                       Lower Big Hole #1                              Lower Hole 
     ##                                      72                                      36 
     ##                              Lower Hour                       Lower Hour Riffle 
-    ##                                     111                                      36 
+    ##                                     110                                      36 
     ##                 Lower Hour Side Channel                          Lower Robinson 
-    ##                                      38                                      40 
+    ##                                      36                                      37 
     ##                              MacFarland                       macfarland riffle 
     ##                                      36                                      36 
     ##                       Macfarland Riffle                              mathews #2 
     ##                                      72                                      36 
     ##                              Mathews #5                          Mathews Riffle 
-    ##                                      46                                      73 
+    ##                                      46                                      72 
     ##                          MATHEWS RIFFLE                       MATHEWS RIFFLE #1 
-    ##                                      42                                      36 
+    ##                                      38                                      36 
     ##                       Mathews Riffle #3                         Matthews Riffle 
-    ##                                      36                                      43 
+    ##                                      36                                      36 
     ##                               McFarland                            McFarland #1 
     ##                                      36                                      36 
     ##                        McFarland Riffle                       McFarland Riffle` 
-    ##                                      36                                      37 
+    ##                                      36                                      36 
     ##      River Right Below Vance Ave Bridge                   Robinson Main Channel 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                         Robinson riffle                         Robinson Riffle 
-    ##                                      36                                     120 
+    ##                                      36                                     110 
     ##                      Robinson Riffle #2                      robinson riffle #4 
     ##                                      36                                      37 
     ##                      Robinson Riffle #4                        Robinson side #2 
     ##                                      73                                      72 
     ##                        Robinson side #4                   Robinson Side Channel 
-    ##                                      36                                     152 
+    ##                                      36                                     146 
     ##                   ROBINSON SIDE CHANNEL                Robinson Side channel #1 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                Robinson Side Channel #3                       Robinsoon Main #2 
     ##                                      36                                      36 
     ##                                 Shallow                  Shallow Main Section 1 
     ##                                      36                                      37 
     ##                          shallow riffle                          Shallow Riffle 
-    ##                                      57                                      74 
+    ##                                      43                                      72 
     ##                   Shallow Riffle (Main)                       Shallow Riffle #3 
     ##                                      36                                      36 
     ##         Shallow Riffle 3 (side channel)                Shallow Riffle Section 2 
     ##                                      36                                      36 
     ##                     Shallow Riffle Side                  shallow riffle west #3 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                         Shallow Side #1                           Steep Main #1 
     ##                                      36                                      36 
     ##                           Steep Main #2                      Steep main channel 
     ##                                      36                                      36 
     ##                            Steep Riffle                         Steep Riffle #2 
-    ##                                     229                                      36 
+    ##                                     217                                      36 
     ##                         Steep Riffle #3                           steep side #2 
     ##                                      36                                      38 
     ##                           Steep side #3                      Steep side channel 
     ##                                      36                                      44 
     ##                      Steep Side Channel                   steep side channel #3 
-    ##                                     120                                      36 
+    ##                                     111                                      36 
     ##                       Steep Side Riffle                    Steep Side Riffle #2 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                            Trailer Park                            TRAILER PARK 
-    ##                                      72                                      36 
+    ##                                      73                                      35 
     ##                         Trailer Park #1                  Trailer Park riffl e#4 
     ##                                      36                                      36 
     ##                     Trailer Park Riffle                  Trailer Park, Unit #98 
-    ##                                      76                                      46 
+    ##                                      73                                      37 
     ##                         Trialer park #3                          Upper Big hole 
     ##                                      36                                      36 
     ##                          Upper Big Hole Vance (300 yards below-RR-right channel 
-    ##                                      72                                      37 
+    ##                                      72                                      36 
     ##                                Vance #5                               Vance Ave 
     ##                                      36                                      36 
     ##                            Vance Ave #5                           Vance Ave. #1 
     ##                                      36                                      36 
     ##                            Vance Avenue            Vance Avenue BL - River Left 
-    ##                                      36                                      36 
+    ##                                      37                                      37 
     ##                           Vance East #6                                    Weir 
-    ##                                      34                                      36 
+    ##                                      34                                      38 
     ##                                 weir #2                           Weir Rffle #1 
     ##                                      36                                      36 
     ##                             Weir Riffle                          Weir riffle #2 
-    ##                                      74                                      36 
+    ##                                      72                                      36 
     ##                          weir section 1 
     ##                                      36
 
@@ -1811,27 +1437,27 @@ table(all_fish_data$location)
 
     ## 
     ##   across big hole island ( river right)                    across from big hole 
-    ##                                      42                                      36 
+    ##                                      38                                      36 
     ##          across from big hole boat ramp                             alec riffle 
-    ##                                      38                                      40 
+    ##                                      36                                      36 
     ##                                aleck #1                            aleck riffle 
-    ##                                      72                                     195 
+    ##                                      72                                     187 
     ##                         aleck riffle #2                     aleck riffle sect 3 
     ##                                      36                                      36 
     ##                              auditorium                       auditorium riffle 
-    ##                                     170                                     225 
+    ##                                     160                                     194 
     ##                            auditorium#3                                 bedrock 
-    ##                                      37                                      78 
+    ##                                      37                                      76 
     ##                            bedrock park                         bedrock park #3 
     ##                                      36                                      36 
     ##                         bedrock park #4                  bedrock park, unit #50 
-    ##                                      37                                      39 
+    ##                                      37                                      37 
     ##                          bedrock riffle                                 big bar 
-    ##                                      72                                     216 
+    ##                                      72                                     217 
     ##     big bar - middle island river right                              big bar #1 
-    ##                                      37                                      72 
+    ##                                      36                                      72 
     ##                                big hole                         big hole island 
-    ##                                      73                                      40 
+    ##                                      74                                      36 
     ##                       big hole lower #2                              cox riffle 
     ##                                      72                                      36 
     ##                           cox riffle #3                           cox riffle #4 
@@ -1841,53 +1467,53 @@ table(all_fish_data$location)
     ##                               east g 95                                     eye 
     ##                                      36                                      36 
     ##                                  eye #2                              eye riffle 
-    ##                                      41                                     180 
+    ##                                      41                                     181 
     ##                           eye riffle #3                            eye riffle 4 
     ##                                      36                                      36 
     ##                 eye riffle main channel                         eye riffle side 
-    ##                                      38                                      42 
+    ##                                      37                                      38 
     ##                 eye riffle side channel                   eye riffle, unit #208 
-    ##                                      53                                      41 
+    ##                                      41                                      36 
     ##                             eye side #2                        eye side channel 
-    ##                                      74                                      72 
+    ##                                      74                                      73 
     ##                     eye side channel #2                                    g 95 
-    ##                                      38                                      37 
+    ##                                      38                                      39 
     ##                                    g-95                        g-95 (section 4) 
     ##                                      72                                      37 
     ##                               g-95 east                            g-95 east #3 
     ##                                      36                                      36 
     ##                       g-95 side channel                                     g95 
-    ##                                      36                                     145 
+    ##                                      36                                     146 
     ##                              g95 (area)                                  g95 #5 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                                g95 east                             g95 east #1 
     ##                                     109                                      36 
     ##                  g95 rr downstream head                             g95 west #4 
-    ##                                      52                                      36 
+    ##                                      37                                      36 
     ##                   g95 west side channel                                 gateway 
     ##                                      36                                      36 
     ##                          gateway riffle                       gateway riffle #4 
     ##                                      36                                      37 
     ##                            goose riffle                         goose riffle #1 
-    ##                                     185                                      36 
+    ##                                     181                                      36 
     ##                         goose section 2                          gridley riffle 
-    ##                                      36                                     193 
+    ##                                      36                                     188 
     ##         gridley riffle (sidechannel) #1                       gridley riffle #1 
     ##                                      36                                      36 
     ##                       gridley riffle #3                    gridley side channel 
-    ##                                      36                                      38 
+    ##                                      36                                      36 
     ##                          grifley riffle                         hatchery  ditch 
-    ##                                      36                                      55 
+    ##                                      36                                      42 
     ##                          hatchery ditch                       hatchery ditch #3 
-    ##                                     488                                      46 
+    ##                                     387                                      46 
     ##                         hatchery riffle                      hatchery riffle #3 
-    ##                                     418                                      40 
+    ##                                     390                                      40 
     ##                               herringer               herringer main channel #1 
     ##                                      36                                      36 
     ##               herringer main river left                        herringer riffle 
-    ##                                      37                                     145 
+    ##                                      36                                     146 
     ##                       herringer side #2                                hour bar 
-    ##                                      36                                     227 
+    ##                                      36                                     219 
     ##                               hour bars                            hour bars #1 
     ##                                      36                                      36 
     ##                        hour east riffle                             hour riffle 
@@ -1895,83 +1521,83 @@ table(all_fish_data$location)
     ##                     hour riffle (lower)                          hour section 2 
     ##                                      36                                      36 
     ##                                junkyard                         junkyard riffle 
-    ##                                      37                                     113 
+    ##                                      36                                     109 
     ##                      junkyard riffle #2                      junkyard riffle #4 
     ##                                      37                                      36 
     ##               junkyard riffle section 2                      junkyard section 1 
     ##                                      36                                      37 
     ##                          lower big hole                       lower big hole #1 
-    ##                                     148                                      72 
+    ##                                     144                                      72 
     ##                              lower hole                              lower hour 
-    ##                                      36                                     111 
+    ##                                      36                                     110 
     ##                       lower hour riffle                 lower hour side channel 
-    ##                                      36                                      38 
+    ##                                      36                                      36 
     ##                          lower robinson                              macfarland 
-    ##                                      40                                      36 
+    ##                                      37                                      36 
     ##                       macfarland riffle                              mathews #2 
     ##                                     108                                      36 
     ##                              mathews #5                          mathews riffle 
-    ##                                      46                                     115 
+    ##                                      46                                     110 
     ##                       mathews riffle #1                       mathews riffle #3 
     ##                                      36                                      36 
     ##                         matthews riffle                               mcfarland 
-    ##                                      43                                      36 
+    ##                                      36                                      36 
     ##                            mcfarland #1                        mcfarland riffle 
     ##                                      36                                      36 
     ##                       mcfarland riffle`      river right below vance ave bridge 
-    ##                                      37                                      37 
+    ##                                      36                                      36 
     ##                   robinson main channel                         robinson riffle 
-    ##                                      36                                     156 
+    ##                                      36                                     146 
     ##                      robinson riffle #2                      robinson riffle #4 
     ##                                      36                                     110 
     ##                        robinson side #2                        robinson side #4 
     ##                                      72                                      36 
     ##                   robinson side channel                robinson side channel #1 
-    ##                                     189                                      36 
+    ##                                     182                                      36 
     ##                robinson side channel #3                       robinsoon main #2 
     ##                                      36                                      36 
     ##                                 shallow                  shallow main section 1 
     ##                                      36                                      37 
     ##                          shallow riffle                   shallow riffle (main) 
-    ##                                     131                                      36 
+    ##                                     115                                      36 
     ##                       shallow riffle #3         shallow riffle 3 (side channel) 
     ##                                      36                                      36 
     ##                shallow riffle section 2                     shallow riffle side 
-    ##                                      36                                      37 
+    ##                                      36                                      36 
     ##                  shallow riffle west #3                         shallow side #1 
     ##                                      36                                      36 
     ##                           steep main #1                           steep main #2 
     ##                                      36                                      36 
     ##                      steep main channel                            steep riffle 
-    ##                                      36                                     229 
+    ##                                      36                                     217 
     ##                         steep riffle #2                         steep riffle #3 
     ##                                      36                                      36 
     ##                           steep side #2                           steep side #3 
     ##                                      38                                      36 
     ##                      steep side channel                   steep side channel #3 
-    ##                                     164                                      36 
+    ##                                     155                                      36 
     ##                       steep side riffle                    steep side riffle #2 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                            trailer park                         trailer park #1 
     ##                                     108                                      36 
     ##                  trailer park riffl e#4                     trailer park riffle 
-    ##                                      36                                      76 
+    ##                                      36                                      73 
     ##                  trailer park, unit #98                         trialer park #3 
-    ##                                      46                                      36 
+    ##                                      37                                      36 
     ##                          upper big hole vance (300 yards below-rr-right channel 
-    ##                                     108                                      37 
+    ##                                     108                                      36 
     ##                                vance #5                               vance ave 
     ##                                      36                                      36 
     ##                            vance ave #5                           vance ave. #1 
     ##                                      36                                      36 
     ##                            vance avenue            vance avenue bl - river left 
-    ##                                      36                                      36 
+    ##                                      37                                      37 
     ##                           vance east #6                                    weir 
-    ##                                      34                                      36 
+    ##                                      34                                      38 
     ##                                 weir #2                           weir rffle #1 
     ##                                      36                                      36 
     ##                             weir riffle                          weir riffle #2 
-    ##                                      74                                      36 
+    ##                                      72                                      36 
     ##                          weir section 1 
     ##                                      36
 
@@ -2163,17 +1789,17 @@ table(all_fish_data$species)
 
     ## 
     ##             Chinook salmon       Sacramento squawfish 
-    ##                        498                         28 
+    ##                        311                         18 
     ##              Speckled dace     Steelhead trout (wild) 
-    ##                         12                        459 
+    ##                          6                        318 
     ## Steelhead trout, (clipped)                 Tule perch 
-    ##                          8                          8
+    ##                          5                          5
 
 Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 **NA and Unknown Values**
 
-There are 9316 NA values
+There are 9312 NA values
 
 ### Variable: `channel_geomorphic_unit`
 
@@ -2182,14 +1808,14 @@ table(all_fish_data$channel_geomorphic_unit)
 ```
 
     ## 
-    ##        Backwater            Glide  Glide Edgewater Mainchannel,Pool 
-    ##              236             3955             1821                1 
-    ##             Pool           Riffle Riffle Edgewater 
-    ##             2025             1068              422
+    ##        Backwater            Glide  Glide Edgewater             Pool 
+    ##              236             3894             1648             1938 
+    ##           Riffle Riffle Edgewater 
+    ##             1061              395
 
 **NA and Unknown Values**
 
-There are 801 NA values
+There are 803 NA values
 
 ### Variable: `gps_coordinate`
 
@@ -2209,9 +1835,9 @@ table(all_fish_data$gps_coordinate)
     ##           39.29.058 121.34.742        39' 27.68', 121' 36.48' 
     ##                             36                             36 
     ##         39°23.167'N 121°37.722        39°25.304'N 121°37.540W 
-    ##                             37                             35 
-    ##                             70     N 31º 29.68  W 121º 34.765 
     ##                             36                             36 
+    ##                             70     N 31º 29.68  W 121º 34.765 
+    ##                             35                             36 
     ##    N 39  24.340  W 121  37.030      N 39 19.065  W 121 37.381 
     ##                             36                             36 
     ##       N 39 19.212 W 121 37.185        N 39 19.743 W121 37.729 
@@ -2311,7 +1937,7 @@ table(all_fish_data$gps_coordinate)
     ##  N 39* 19.747   W 121*  37.729  N 39* 19.757'  W 121* 37.841' 
     ##                             36                             36 
     ##   N 39* 20.733'  W 121* 37.574    N 39* 21.315  W 121* 38.003 
-    ##                             37                             36 
+    ##                             36                             36 
     ##  N 39* 22.523'  W 121* 37.945'     N 39* 25.82   W 121* 37.84 
     ##                             36                             36 
     ##  N 39* 27.755', W 121* 36.201'  N 39* 27.804', W 121* 36.240' 
@@ -2325,55 +1951,57 @@ table(all_fish_data$gps_coordinate)
     ##       n 39*30.950, w 21*33.212      N 39° 19.14 W 121° 37.22' 
     ##                             36                             37 
     ##     N 39° 19.743 W 121° 37.741         N 39° 20.8 W 121° 37.6 
-    ##                             36                             37 
+    ##                             37                             36 
     ##    N 39° 22.50'  W 121° 37.94'  N 39° 23.188'  W 121° 37.671' 
     ##                             36                             36 
     ##  N 39° 24.197'  W 121° 37.094'    N 39° 24.27'  W 121° 37.02' 
-    ##                             36                             39 
-    ##    N 39° 24.95'  W 121° 37.60'    N 39° 25.24'  W 121° 37.54' 
-    ##                             37                             39 
-    ##    N 39° 25.75'  W 121° 37.57'  N 39° 25.863'  W 121° 37.934' 
-    ##                             40                             36 
-    ##  N 39° 25.882'  W 121° 37.932'     N 39° 26.24'  W 121° 38.28 
-    ##                             36                             38 
-    ##    N 39° 26.24'  W 121° 38.28'  N 39° 26.289'  W 121° 38.260' 
-    ##                             40                             39 
-    ##  N 39° 26.362'  W 121° 38.220'  N 39° 26.592'  W 121° 38.209' 
-    ##                             36                             38 
-    ##  N 39° 26.592'  W 121° 38.212'  N 39° 26.601'  W 121° 38.228' 
-    ##                             37                             36 
-    ##  N 39° 27.435'  W 121° 36.834'  N 39° 27.452'  W 121° 36.788' 
-    ##                             36                             36 
-    ##  N 39° 27.705'  W 121° 36.387'  N 39° 27.754'  W 121° 36.194' 
-    ##                             37                             39 
-    ##  N 39° 27.795'  W 121° 36.241'  N 39° 27.796'  W 121° 36.242' 
-    ##                             38                             36 
-    ##   N 39° 27.895'  W 121° 35.857  N 39° 27.976'  W 121° 35.981' 
-    ##                             37                             36 
-    ##  N 39° 29.012'  W 121° 34.740'  N 39° 29.052'  W 121° 34.755' 
-    ##                             78                             38 
-    ##  N 39° 29.103'  W 121* 34.740'  N 39° 30.750'  W 121° 34.166' 
-    ##                             38                             39 
-    ##   N 39° 30.906'  W 121° 33.600    N 39° 30.92'  W 121° 33.54' 
-    ##                             36                             65 
-    ##    N 39° 30.94'  W 121° 33.28'   N 39° 30.987'  W 121° 33.46' 
-    ##                             44                             36 
-    ##      N 39°19.068" W 121°37.256       N 39°19.734' W 121°37.79 
-    ##                             72                              1 
-    ##     N 39°19.734' W 121°37.791'       N 39°21.261 W 121°37.779 
-    ##                             36                             38 
-    ##      N 39°22.503 W 121° 37.942   N 39º 19.139'  W 121º 37.216 
-    ##                             37                             36 
-    ##   N 39º 24.319'  W 121º 36.976    N 39º 27.814  W 121º 36.234 
     ##                             36                             37 
-    ##   N 39º 27.962'  W121º 35.980'   N 39º 27.982'  W 121º 35.920 
-    ##                             36                             36 
-    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
-    ##                             36                             46 
-    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
+    ##    N 39° 24.95'  W 121° 37.60'    N 39° 25.24'  W 121° 37.54' 
+    ##                             36                             37 
+    ##     N 39° 25.24'  W 121° 38.28    N 39° 25.75'  W 121° 37.57' 
+    ##                              1                             38 
+    ##  N 39° 25.863'  W 121° 37.934'  N 39° 25.882'  W 121° 37.932' 
     ##                             37                             36 
+    ##     N 39° 26.24'  W 121° 38.28    N 39° 26.24'  W 121° 38.28' 
+    ##                             36                             38 
+    ##  N 39° 26.289'  W 121° 38.260'  N 39° 26.362'  W 121° 38.220' 
+    ##                             37                             36 
+    ##  N 39° 26.592'  W 121° 38.209'  N 39° 26.592'  W 121° 38.212' 
+    ##                             38                             38 
+    ##  N 39° 26.601'  W 121° 38.228'  N 39° 27.435'  W 121° 36.834' 
+    ##                             36                             38 
+    ##  N 39° 27.452'  W 121° 36.788'  N 39° 27.705'  W 121° 36.387' 
+    ##                             37                             38 
+    ##  N 39° 27.754'  W 121° 36.194'  N 39° 27.795'  W 121° 36.241' 
+    ##                             37                             36 
+    ##  N 39° 27.796'  W 121° 36.242'   N 39° 27.895'  W 121° 35.857 
+    ##                             37                             37 
+    ##  N 39° 27.976'  W 121° 35.981'  N 39° 29.012'  W 121° 34.740' 
+    ##                             36                             73 
+    ##  N 39° 29.052'  W 121° 34.755'  N 39° 29.103'  W 121* 34.740' 
+    ##                             37                             37 
+    ##  N 39° 30.750'  W 121° 34.166'   N 39° 30.906'  W 121° 33.600 
+    ##                             37                             36 
+    ##    N 39° 30.92'  W 121° 33.54'    N 39° 30.94'  W 121° 33.28' 
+    ##                             44                             38 
+    ##   N 39° 30.987'  W 121° 33.46'      N 39°19.068" W 121°37.256 
+    ##                             36                             72 
+    ##      N 39°19.734' W 121°37.791     N 39°19.734' W 121°37.791' 
+    ##                              1                             37 
+    ##       N 39°21.261 W 121°37.779      N 39°22.503 W 121° 37.942 
+    ##                             36                             36 
+    ##   N 39º 19.139'  W 121º 37.216   N 39º 24.319'  W 121º 36.976 
+    ##                             36                             38 
+    ##    N 39º 27.814  W 121º 36.234   N 39º 27.962'  W121º 35.980' 
+    ##                             36                             36 
+    ##   N 39º 27.982'  W 121º 35.920     N 39º 27.983  W 121º 35.91 
+    ##                             37                              1 
+    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
+    ##                             36                             40 
+    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
+    ##                             36                             36 
     ##   N 39º 30.519'  W 121º 30.288   N 39º 30.961'  W 121º 33.529 
-    ##                             36                             46 
+    ##                             36                             38 
     ##      N: 39.29.084 W:121.34.741      N. 39 20.132 W 121 37.929 
     ##                             37                             36 
     ##     N. 39.26.122 W. 121.38.204     N. 39.27.424  W:121.36.863 
@@ -2394,16 +2022,14 @@ table(all_fish_data$gps_coordinate)
     ##                             36                             36 
     ##        N39*23.155  W121*37.722         N39*24.340 W121*37.029 
     ##                             36                             36 
-    ##    N39º 20.738', W121º 37.576'                   N39º 24.321' 
-    ##                             36                              1 
-    ##     N39º 24.321', W121º 36.982                           None 
-    ##                             36                            108 
-    ##                      not taken 
-    ##                             36
+    ##    N39º 20.738', W121º 37.576'     N39º 24.321', W121º 36.982 
+    ##                             36                             37 
+    ##                           None                      not taken 
+    ##                            108                             36
 
 **NA and Unknown Values**
 
-There are 2814 NA values
+There are 2521 NA values
 
 ### Variable: `weather`
 
@@ -2412,8 +2038,8 @@ table(all_fish_data$weather)
 ```
 
     ## 
-    ## Direct Sunlight        Overcast   Precipitation    W121º 36.982 
-    ##            9096            1119             113               1
+    ## Direct Sunlight        Overcast   Precipitation 
+    ##            8775            1087             113
 
 **NA and Unknown Values**
 
@@ -2426,12 +2052,12 @@ table(all_fish_data$channel_type)
 ```
 
     ## 
-    ##    Direct Sunlight        Mainchannel Mainchannel Branch        Sidechannel 
-    ##                  1               4910               2483               2783
+    ##        Mainchannel Mainchannel Branch        Sidechannel 
+    ##               4812               2408               2606
 
 **NA and Unknown Values**
 
-There are 152 NA values
+There are 149 NA values
 
 ## Summary of identified issues
 
@@ -2797,62 +2423,29 @@ locations_ck |>
   filter(location != rk_location_revised)
 ```
 
-    ##    location_table_id       date            location water_temp         weather
-    ## 1                 15 2001-08-20 trailer park riffle         58 direct sunlight
-    ## 2                 16 2001-08-20 bedrock park riffle         58 direct sunlight
-    ## 3                 37 2001-07-11 trailer park riffle         59 direct sunlight
-    ## 4                 40 2001-07-12 bedrock park riffle         58 direct sunlight
-    ## 5                 41 2001-07-12          eye riffle         63 direct sunlight
-    ## 6                 55 2001-06-11 bedrock park riffle         56        overcast
-    ## 7                 56 2001-06-11 trailer park riffle         57 direct sunlight
-    ## 8                 73 2001-05-22 bedrock park riffle         55 direct sunlight
-    ## 9                110 2001-08-21          eye riffle         62 direct sunlight
-    ## 10               112 2001-04-09 trailer park riffle         52 direct sunlight
-    ## 11               139 2001-03-14 bedrock park riffle         50 direct sunlight
-    ## 12               140 2001-03-14 trailer park riffle         52 direct sunlight
-    ## 13                37 2001-07-11 trailer park riffle         59 direct sunlight
-    ##    flow number_of_divers reach_length reach_width channel_width channel_type
-    ## 1   600                2           25           4             0  mainchannel
-    ## 2   600                2           25           4             0  mainchannel
-    ## 3   600                4           25           4            57  mainchannel
-    ## 4   600                2           25           4            51  mainchannel
-    ## 5   600                2           25           4            21  sidechannel
-    ## 6   600                2           25           4             0  mainchannel
-    ## 7   600                2           25           4            97  mainchannel
-    ## 8   600                3           25           4            56  mainchannel
-    ## 9   700                2           25           4            22  sidechannel
-    ## 10  600                2           25           4             0  mainchannel
-    ## 11  600                3           25           4            65  mainchannel
-    ## 12  600                3           25           4            70  mainchannel
-    ## 13  600                4           25           4            57  mainchannel
-    ##    river_mile longitude latitude    coordinate_method            rk_location
-    ## 1        64.0 -121.6232 39.31758 reported in database    trailer park riffle
-    ## 2        65.5 -121.5682 39.51305 reported in database           bedrock park
-    ## 3        64.0 -121.5794 39.49467 reported in database    trailer park riffle
-    ## 4        66.0 -121.5697 39.51228       kmz from casey         bedrock riffle
-    ## 5        60.1 -121.6138 39.45718       kmz from casey       eye side channel
-    ## 6        66.0 -121.5697 39.51228       kmz from casey         bedrock riffle
-    ## 7        64.5 -121.5800 39.49403 reported in database           trailer park
-    ## 8        65.8 -121.5694 39.51250 reported in database                bedrock
-    ## 9        60.0 -121.6131 39.45753 reported in database       eye side channel
-    ## 10       64.5 -121.5797 39.49584       kmz from casey           trailer park
-    ## 11       65.9 -121.5697 39.51228       kmz from casey bedrock park, unit #50
-    ## 12       64.4 -121.5797 39.49584       kmz from casey trailer park, unit #98
-    ## 13       64.0 -121.5794 39.49467 reported in database    trailer park riffle
-    ##    rk_location_revised rk_latitude rk_longitude channel_location
-    ## 1         trailer park    39.49403    -121.5800              LFC
-    ## 2       bedrock riffle          NA           NA              LFC
-    ## 3         trailer park          NA           NA              LFC
-    ## 4       bedrock riffle    39.51306    -121.5681              LFC
-    ## 5     eye side channel    39.45753    -121.6131              LFC
-    ## 6       bedrock riffle    39.51305    -121.5682              LFC
-    ## 7         trailer park          NA           NA              LFC
-    ## 8       bedrock riffle          NA           NA              LFC
-    ## 9     eye side channel          NA           NA              LFC
-    ## 10        trailer park    39.49403    -121.5800              LFC
-    ## 11      bedrock riffle    39.51250    -121.5694              LFC
-    ## 12        trailer park    39.49403    -121.5800              LFC
-    ## 13        trailer park          NA           NA              LFC
+    ## # A tibble: 15 × 20
+    ##    location_table_id date       location            water_temp weather      flow
+    ##                <dbl> <date>     <chr>                    <dbl> <chr>       <dbl>
+    ##  1                15 2001-08-20 trailer park riffle         58 direct sun…   600
+    ##  2                16 2001-08-20 bedrock park riffle         58 direct sun…   600
+    ##  3                37 2001-07-11 trailer park riffle         59 direct sun…   600
+    ##  4                37 2001-07-11 trailer park riffle         59 direct sun…   600
+    ##  5                40 2001-07-12 bedrock park riffle         58 direct sun…   600
+    ##  6                41 2001-07-12 eye riffle                  63 direct sun…   600
+    ##  7                55 2001-06-11 bedrock park riffle         56 overcast      600
+    ##  8                56 2001-06-11 trailer park riffle         57 direct sun…   600
+    ##  9                56 2001-06-11 trailer park riffle         57 direct sun…   600
+    ## 10                73 2001-05-22 bedrock park riffle         55 direct sun…   600
+    ## 11               110 2001-08-21 eye riffle                  62 direct sun…   700
+    ## 12               110 2001-08-21 eye riffle                  62 direct sun…   700
+    ## 13               112 2001-04-09 trailer park riffle         52 direct sun…   600
+    ## 14               139 2001-03-14 bedrock park riffle         50 direct sun…   600
+    ## 15               140 2001-03-14 trailer park riffle         52 direct sun…   600
+    ## # ℹ 14 more variables: number_of_divers <dbl>, reach_length <dbl>,
+    ## #   reach_width <dbl>, channel_width <dbl>, channel_type <chr>,
+    ## #   river_mile <dbl>, longitude <dbl>, latitude <dbl>, coordinate_method <chr>,
+    ## #   rk_location <chr>, rk_location_revised <chr>, rk_latitude <dbl>,
+    ## #   rk_longitude <dbl>, channel_location <chr>
 
 ``` r
 survey_locations_post_ryon_revisions <- locations_ck |> 
