@@ -441,11 +441,11 @@ summary(all_fish_data$count)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    1.00    1.00    3.00   39.17   20.00 1500.00    9312
+    ##    1.00    1.00    3.00   39.17   20.00 1500.00    9301
 
 **NA and Unknown Values**
 
-There are 9312 NA values
+There are 9301 NA values
 
 ### Variable: `date`
 
@@ -556,11 +556,11 @@ summary(all_fish_data$fl_mm)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   20.00   30.00   40.00   51.66   50.00 1000.00    9312
+    ##   20.00   30.00   40.00   51.79   50.00 1000.00    9301
 
 **NA and Unknown Values**
 
-There are 9312 NA values
+There are 9301 NA values
 
 ### Variable: `dist_to_bottom`
 
@@ -638,18 +638,18 @@ summary(all_fish_data$focal_velocity)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   0.375   0.590   3.440    9324
+    ##   0.000   0.000   0.000   0.378   0.595   3.440    9313
 
 ``` r
 summary(all_fish_data$velocity)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##  0.0000  0.0000  0.0000  0.4845  0.8000  5.7300     435
+    ##  0.0000  0.0000  0.0000  0.4843  0.7900  5.7300     435
 
 **NA and Unknown Values**
 
-There are 9324 NA values There are 435 NA values
+There are 9313 NA values There are 435 NA values
 
 ### Variable: `t_code`
 
@@ -709,7 +709,7 @@ summary(all_fish_data$depth)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00    0.25    6.00   15.99   26.00  316.00       1
+    ##    0.00    0.25    6.00   15.96   26.00  316.00       1
 
 **NA and Unknown Values**
 
@@ -751,42 +751,42 @@ summary(all_fish_data$percent_fine_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   5.098   0.000 100.000
+    ##    0.00    0.00    0.00    5.09    0.00  100.00
 
 ``` r
 summary(all_fish_data$percent_sand_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00    0.00   16.54   20.00  100.00
+    ##    0.00    0.00    0.00   16.55   20.00  100.00
 
 ``` r
 summary(all_fish_data$percent_small_gravel_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00   20.00   31.52   50.00  100.00
+    ##    0.00    0.00   20.00   31.54   50.00  100.00
 
 ``` r
 summary(all_fish_data$percent_large_gravel_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00   25.00   32.15   50.00  100.00
+    ##    0.00    0.00   25.00   32.11   50.00  100.00
 
 ``` r
 summary(all_fish_data$percent_boulder_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   2.491   0.000 100.000       1
+    ##   0.000   0.000   0.000   2.492   0.000 100.000       1
 
 ``` r
 summary(all_fish_data$percent_cobble_substrate)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00    0.00    0.00   12.21   20.00  100.00       1
+    ##    0.00    0.00    0.00   12.23   20.00  100.00       1
 
 **NA and Unknown Values**
 
@@ -827,28 +827,28 @@ summary(all_fish_data$percent_no_cover_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##     0.0    70.0    90.0    81.5   100.0   100.0
+    ##    0.00   70.00   90.00   81.48  100.00  100.00
 
 ``` r
 summary(all_fish_data$percent_small_woody_cover_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   3.846   0.000 100.000
+    ##   0.000   0.000   0.000   3.847   0.000 100.000
 
 ``` r
 summary(all_fish_data$percent_large_woody_cover_inchannel)
 ```
 
     ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
-    ##   0.0000   0.0000   0.0000   0.2873   0.0000 100.0000        2
+    ##   0.0000   0.0000   0.0000   0.2876   0.0000 100.0000        2
 
 ``` r
 summary(all_fish_data$percent_submerged_aquatic_veg_inchannel)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00    0.00   14.09   20.00  100.00
+    ##     0.0     0.0     0.0    14.1    20.0   100.0
 
 **NA and Unknown Values**
 
@@ -889,7 +889,7 @@ summary(all_fish_data$percent_undercut_bank)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.0000  0.0000  0.0000  0.2782  0.0000 75.0000
+    ##  0.0000  0.0000  0.0000  0.2785  0.0000 75.0000
 
 ``` r
 summary(all_fish_data$percent_no_cover_overhead)
@@ -903,14 +903,14 @@ summary(all_fish_data$percent_cover_half_meter_overhead)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   0.000   0.000   6.725   0.000 100.000
+    ##   0.000   0.000   0.000   6.726   0.000 100.000
 
 ``` r
 summary(all_fish_data$percent_cover_more_than_half_meter_overhead)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    0.00    0.00    0.00    4.41    0.00  100.00
+    ##   0.000   0.000   0.000   4.404   0.000 100.000
 
 **NA and Unknown Values**
 
@@ -943,7 +943,7 @@ summary(all_fish_data$sur_turb)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.000   0.000   4.643   0.000 100.000     108
+    ##   0.000   0.000   0.000   4.644   0.000 100.000     108
 
 **NA and Unknown Values**
 
@@ -975,11 +975,11 @@ summary(all_fish_data$dist_to_bottom)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##   0.000   0.100   1.000   6.801   5.000 110.000    9312
+    ##   0.000   0.100   1.000   6.813   5.000 110.000    9301
 
 **NA and Unknown Values**
 
-There are 9312 NA values
+There are 9301 NA values
 
 ### Variable: `fish_data_id`
 
@@ -1000,11 +1000,11 @@ summary(all_fish_data$fish_data_id)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    11.0   152.5   320.0   325.6   497.5   690.0    9312
+    ##    11.0   152.5   320.0   325.7   497.5   690.0    9301
 
 **NA and Unknown Values**
 
-There are 9312 NA values
+There are 9301 NA values
 
 ### Variable: `micro_hab_data_tbl_id`
 
@@ -1025,7 +1025,7 @@ summary(all_fish_data$micro_hab_data_tbl_id)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##      18    2410    4767    4868    7310    9981
+    ##      18    2410    4772    4871    7313    9981
 
 **NA and Unknown Values**
 
@@ -1057,11 +1057,11 @@ summary(all_fish_data$water_temp)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   53.00   59.00   54.21   66.00   85.00     295
+    ##    0.00   53.00   59.00   54.21   66.00   85.00     296
 
 **NA and Unknown Values**
 
-There are 295 NA values
+There are 296 NA values
 
 ### Variable: `flow`
 
@@ -1120,7 +1120,7 @@ summary(all_fish_data$number_of_divers)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   0.000   2.000   2.000   2.075   2.000   4.000
+    ##   0.000   2.000   2.000   2.074   2.000   4.000
 
 **NA and Unknown Values**
 
@@ -1220,7 +1220,7 @@ summary(all_fish_data$channel_width)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    ##    0.00   20.00   37.00   39.43   53.00  160.00     255
+    ##    0.00   20.00   37.00   39.42   53.00  160.00     255
 
 **NA and Unknown Values**
 
@@ -1247,9 +1247,9 @@ table(all_fish_data$location)
     ##   Across Big Hole Island ( River Right)                    Across from Big Hole 
     ##                                      38                                      36 
     ##          Across From Big Hole Boat Ramp                             Alec Riffle 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                                Aleck #1                            Aleck Riffle 
-    ##                                      72                                     187 
+    ##                                      72                                     185 
     ##                         Aleck Riffle #2                     Aleck Riffle Sect 3 
     ##                                      36                                      36 
     ##                              Auditorium                       Auditorium Riffle 
@@ -1265,7 +1265,7 @@ table(all_fish_data$location)
     ##                                 Big Bar     Big Bar - Middle Island River Right 
     ##                                     181                                      36 
     ##                              Big Bar #1                                Big Hole 
-    ##                                      72                                      74 
+    ##                                      72                                      73 
     ##                         Big Hole Island                       Big Hole Lower #2 
     ##                                      36                                      72 
     ##                              Cox Riffle                           cox riffle #3 
@@ -1273,21 +1273,21 @@ table(all_fish_data$location)
     ##                           Cox Riffle #4                           Cox Riffle #5 
     ##                                      36                                      36 
     ##                    Cox Riffle section 3                               East G 95 
-    ##                                      36                                      36 
+    ##                                      36                                      37 
     ##                                     EYE                                  Eye #2 
     ##                                      36                                      41 
     ##                              Eye Riffle                           Eye Riffle #3 
-    ##                                     181                                      36 
+    ##                                     180                                      36 
     ##                            Eye Riffle 4                 Eye Riffle Main Channel 
-    ##                                      36                                      37 
+    ##                                      36                                      36 
     ##                         Eye Riffle Side                 Eye Riffle Side Channel 
-    ##                                      38                                      41 
+    ##                                      37                                      41 
     ##                   Eye Riffle, Unit #208                             Eye side #2 
     ##                                      36                                      36 
     ##                             Eye Side #2                        Eye Side Channel 
-    ##                                      38                                      73 
+    ##                                      38                                      72 
     ##                     eye side channel #2                                    G 95 
-    ##                                      38                                      39 
+    ##                                      38                                      36 
     ##                                    G-95                        G-95 (section 4) 
     ##                                      72                                      37 
     ##                               G-95 East                            G-95 East #3 
@@ -1295,7 +1295,7 @@ table(all_fish_data$location)
     ##                       G-95 Side Channel                                     G95 
     ##                                      36                                     146 
     ##                              G95 (Area)                                  G95 #5 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                                G95 East                             G95 East #1 
     ##                                     109                                      36 
     ##                  g95 rr downstream head                             G95 WEST #4 
@@ -1305,11 +1305,11 @@ table(all_fish_data$location)
     ##                          Gateway Riffle                       gateway riffle #4 
     ##                                      36                                      37 
     ##                            goose riffle                            Goose Riffle 
-    ##                                      36                                     145 
+    ##                                      36                                     146 
     ##                         Goose Riffle #1                         Goose Section 2 
     ##                                      36                                      36 
     ##                          gridley riffle                          Gridley Riffle 
-    ##                                      43                                     145 
+    ##                                      43                                     144 
     ##         Gridley Riffle (sidechannel) #1                       Gridley Riffle #1 
     ##                                      36                                      36 
     ##                       Gridley Riffle #3                    Gridley Side Channel 
@@ -1323,11 +1323,11 @@ table(all_fish_data$location)
     ##                         hatchery riffle                         Hatchery riffle 
     ##                                      36                                      89 
     ##                         Hatchery Riffle                      Hatchery riffle #3 
-    ##                                     265                                      40 
+    ##                                     266                                      40 
     ##                               Herringer               Herringer Main Channel #1 
     ##                                      36                                      36 
     ##               herringer main river left                        Herringer Riffle 
-    ##                                      36                                     146 
+    ##                                      36                                     144 
     ##                       Herringer Side #2                                Hour Bar 
     ##                                      36                                     219 
     ##                               Hour Bars                            Hour Bars #1 
@@ -1343,17 +1343,17 @@ table(all_fish_data$location)
     ##                      Junkyard Riffle #4               Junkyard riffle section 2 
     ##                                      36                                      36 
     ##                      Junkyard Section 1                          Lower Big Hole 
-    ##                                      37                                     144 
+    ##                                      37                                     146 
     ##                       Lower Big Hole #1                              Lower Hole 
     ##                                      72                                      36 
     ##                              Lower Hour                       Lower Hour Riffle 
-    ##                                     110                                      36 
+    ##                                     108                                      36 
     ##                 Lower Hour Side Channel                          Lower Robinson 
     ##                                      36                                      37 
     ##                              MacFarland                       macfarland riffle 
     ##                                      36                                      36 
     ##                       Macfarland Riffle                              mathews #2 
-    ##                                      72                                      36 
+    ##                                      73                                      36 
     ##                              Mathews #5                          Mathews Riffle 
     ##                                      46                                      72 
     ##                          MATHEWS RIFFLE                       MATHEWS RIFFLE #1 
@@ -1365,7 +1365,7 @@ table(all_fish_data$location)
     ##                        McFarland Riffle                       McFarland Riffle` 
     ##                                      36                                      36 
     ##      River Right Below Vance Ave Bridge                   Robinson Main Channel 
-    ##                                      36                                      36 
+    ##                                      36                                      37 
     ##                         Robinson riffle                         Robinson Riffle 
     ##                                      36                                     110 
     ##                      Robinson Riffle #2                      robinson riffle #4 
@@ -1373,7 +1373,7 @@ table(all_fish_data$location)
     ##                      Robinson Riffle #4                        Robinson side #2 
     ##                                      73                                      72 
     ##                        Robinson side #4                   Robinson Side Channel 
-    ##                                      36                                     146 
+    ##                                      36                                     145 
     ##                   ROBINSON SIDE CHANNEL                Robinson Side channel #1 
     ##                                      36                                      36 
     ##                Robinson Side Channel #3                       Robinsoon Main #2 
@@ -1387,27 +1387,27 @@ table(all_fish_data$location)
     ##         Shallow Riffle 3 (side channel)                Shallow Riffle Section 2 
     ##                                      36                                      36 
     ##                     Shallow Riffle Side                  shallow riffle west #3 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                         Shallow Side #1                           Steep Main #1 
     ##                                      36                                      36 
     ##                           Steep Main #2                      Steep main channel 
     ##                                      36                                      36 
     ##                            Steep Riffle                         Steep Riffle #2 
-    ##                                     217                                      36 
+    ##                                     219                                      36 
     ##                         Steep Riffle #3                           steep side #2 
     ##                                      36                                      38 
     ##                           Steep side #3                      Steep side channel 
     ##                                      36                                      44 
     ##                      Steep Side Channel                   steep side channel #3 
-    ##                                     111                                      36 
+    ##                                     112                                      36 
     ##                       Steep Side Riffle                    Steep Side Riffle #2 
     ##                                      36                                      36 
     ##                            Trailer Park                            TRAILER PARK 
-    ##                                      73                                      35 
+    ##                                      72                                      35 
     ##                         Trailer Park #1                  Trailer Park riffl e#4 
     ##                                      36                                      36 
     ##                     Trailer Park Riffle                  Trailer Park, Unit #98 
-    ##                                      73                                      37 
+    ##                                      72                                      37 
     ##                         Trialer park #3                          Upper Big hole 
     ##                                      36                                      36 
     ##                          Upper Big Hole Vance (300 yards below-RR-right channel 
@@ -1417,9 +1417,9 @@ table(all_fish_data$location)
     ##                            Vance Ave #5                           Vance Ave. #1 
     ##                                      36                                      36 
     ##                            Vance Avenue            Vance Avenue BL - River Left 
-    ##                                      37                                      37 
+    ##                                      36                                      36 
     ##                           Vance East #6                                    Weir 
-    ##                                      34                                      38 
+    ##                                      34                                      36 
     ##                                 weir #2                           Weir Rffle #1 
     ##                                      36                                      36 
     ##                             Weir Riffle                          Weir riffle #2 
@@ -1439,9 +1439,9 @@ table(all_fish_data$location)
     ##   across big hole island ( river right)                    across from big hole 
     ##                                      38                                      36 
     ##          across from big hole boat ramp                             alec riffle 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                                aleck #1                            aleck riffle 
-    ##                                      72                                     187 
+    ##                                      72                                     185 
     ##                         aleck riffle #2                     aleck riffle sect 3 
     ##                                      36                                      36 
     ##                              auditorium                       auditorium riffle 
@@ -1457,7 +1457,7 @@ table(all_fish_data$location)
     ##     big bar - middle island river right                              big bar #1 
     ##                                      36                                      72 
     ##                                big hole                         big hole island 
-    ##                                      74                                      36 
+    ##                                      73                                      36 
     ##                       big hole lower #2                              cox riffle 
     ##                                      72                                      36 
     ##                           cox riffle #3                           cox riffle #4 
@@ -1465,19 +1465,19 @@ table(all_fish_data$location)
     ##                           cox riffle #5                    cox riffle section 3 
     ##                                      36                                      36 
     ##                               east g 95                                     eye 
-    ##                                      36                                      36 
+    ##                                      37                                      36 
     ##                                  eye #2                              eye riffle 
-    ##                                      41                                     181 
+    ##                                      41                                     180 
     ##                           eye riffle #3                            eye riffle 4 
     ##                                      36                                      36 
     ##                 eye riffle main channel                         eye riffle side 
-    ##                                      37                                      38 
+    ##                                      36                                      37 
     ##                 eye riffle side channel                   eye riffle, unit #208 
     ##                                      41                                      36 
     ##                             eye side #2                        eye side channel 
-    ##                                      74                                      73 
+    ##                                      74                                      72 
     ##                     eye side channel #2                                    g 95 
-    ##                                      38                                      39 
+    ##                                      38                                      36 
     ##                                    g-95                        g-95 (section 4) 
     ##                                      72                                      37 
     ##                               g-95 east                            g-95 east #3 
@@ -1485,7 +1485,7 @@ table(all_fish_data$location)
     ##                       g-95 side channel                                     g95 
     ##                                      36                                     146 
     ##                              g95 (area)                                  g95 #5 
-    ##                                      37                                      36 
+    ##                                      36                                      36 
     ##                                g95 east                             g95 east #1 
     ##                                     109                                      36 
     ##                  g95 rr downstream head                             g95 west #4 
@@ -1495,9 +1495,9 @@ table(all_fish_data$location)
     ##                          gateway riffle                       gateway riffle #4 
     ##                                      36                                      37 
     ##                            goose riffle                         goose riffle #1 
-    ##                                     181                                      36 
+    ##                                     182                                      36 
     ##                         goose section 2                          gridley riffle 
-    ##                                      36                                     188 
+    ##                                      36                                     187 
     ##         gridley riffle (sidechannel) #1                       gridley riffle #1 
     ##                                      36                                      36 
     ##                       gridley riffle #3                    gridley side channel 
@@ -1507,11 +1507,11 @@ table(all_fish_data$location)
     ##                          hatchery ditch                       hatchery ditch #3 
     ##                                     387                                      46 
     ##                         hatchery riffle                      hatchery riffle #3 
-    ##                                     390                                      40 
+    ##                                     391                                      40 
     ##                               herringer               herringer main channel #1 
     ##                                      36                                      36 
     ##               herringer main river left                        herringer riffle 
-    ##                                      36                                     146 
+    ##                                      36                                     144 
     ##                       herringer side #2                                hour bar 
     ##                                      36                                     219 
     ##                               hour bars                            hour bars #1 
@@ -1527,15 +1527,15 @@ table(all_fish_data$location)
     ##               junkyard riffle section 2                      junkyard section 1 
     ##                                      36                                      37 
     ##                          lower big hole                       lower big hole #1 
-    ##                                     144                                      72 
+    ##                                     146                                      72 
     ##                              lower hole                              lower hour 
-    ##                                      36                                     110 
+    ##                                      36                                     108 
     ##                       lower hour riffle                 lower hour side channel 
     ##                                      36                                      36 
     ##                          lower robinson                              macfarland 
     ##                                      37                                      36 
     ##                       macfarland riffle                              mathews #2 
-    ##                                     108                                      36 
+    ##                                     109                                      36 
     ##                              mathews #5                          mathews riffle 
     ##                                      46                                     110 
     ##                       mathews riffle #1                       mathews riffle #3 
@@ -1547,13 +1547,13 @@ table(all_fish_data$location)
     ##                       mcfarland riffle`      river right below vance ave bridge 
     ##                                      36                                      36 
     ##                   robinson main channel                         robinson riffle 
-    ##                                      36                                     146 
+    ##                                      37                                     146 
     ##                      robinson riffle #2                      robinson riffle #4 
     ##                                      36                                     110 
     ##                        robinson side #2                        robinson side #4 
     ##                                      72                                      36 
     ##                   robinson side channel                robinson side channel #1 
-    ##                                     182                                      36 
+    ##                                     181                                      36 
     ##                robinson side channel #3                       robinsoon main #2 
     ##                                      36                                      36 
     ##                                 shallow                  shallow main section 1 
@@ -1563,25 +1563,25 @@ table(all_fish_data$location)
     ##                       shallow riffle #3         shallow riffle 3 (side channel) 
     ##                                      36                                      36 
     ##                shallow riffle section 2                     shallow riffle side 
-    ##                                      36                                      36 
+    ##                                      36                                      37 
     ##                  shallow riffle west #3                         shallow side #1 
     ##                                      36                                      36 
     ##                           steep main #1                           steep main #2 
     ##                                      36                                      36 
     ##                      steep main channel                            steep riffle 
-    ##                                      36                                     217 
+    ##                                      36                                     219 
     ##                         steep riffle #2                         steep riffle #3 
     ##                                      36                                      36 
     ##                           steep side #2                           steep side #3 
     ##                                      38                                      36 
     ##                      steep side channel                   steep side channel #3 
-    ##                                     155                                      36 
+    ##                                     156                                      36 
     ##                       steep side riffle                    steep side riffle #2 
     ##                                      36                                      36 
     ##                            trailer park                         trailer park #1 
-    ##                                     108                                      36 
+    ##                                     107                                      36 
     ##                  trailer park riffl e#4                     trailer park riffle 
-    ##                                      36                                      73 
+    ##                                      36                                      72 
     ##                  trailer park, unit #98                         trialer park #3 
     ##                                      37                                      36 
     ##                          upper big hole vance (300 yards below-rr-right channel 
@@ -1591,9 +1591,9 @@ table(all_fish_data$location)
     ##                            vance ave #5                           vance ave. #1 
     ##                                      36                                      36 
     ##                            vance avenue            vance avenue bl - river left 
-    ##                                      37                                      37 
+    ##                                      36                                      36 
     ##                           vance east #6                                    weir 
-    ##                                      34                                      38 
+    ##                                      34                                      36 
     ##                                 weir #2                           weir rffle #1 
     ##                                      36                                      36 
     ##                             weir riffle                          weir riffle #2 
@@ -1791,15 +1791,15 @@ table(all_fish_data$species)
     ##             Chinook salmon       Sacramento squawfish 
     ##                        311                         18 
     ##              Speckled dace     Steelhead trout (wild) 
-    ##                          6                        318 
+    ##                          6                        317 
     ## Steelhead trout, (clipped)                 Tule perch 
-    ##                          5                          5
+    ##                          6                          5
 
 Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 **NA and Unknown Values**
 
-There are 9312 NA values
+There are 9301 NA values
 
 ### Variable: `channel_geomorphic_unit`
 
@@ -1809,13 +1809,13 @@ table(all_fish_data$channel_geomorphic_unit)
 
     ## 
     ##        Backwater            Glide  Glide Edgewater             Pool 
-    ##              236             3894             1648             1938 
+    ##              236             3886             1646             1939 
     ##           Riffle Riffle Edgewater 
-    ##             1061              395
+    ##             1060              397
 
 **NA and Unknown Values**
 
-There are 803 NA values
+There are 800 NA values
 
 ### Variable: `gps_coordinate`
 
@@ -1837,7 +1837,7 @@ table(all_fish_data$gps_coordinate)
     ##         39°23.167'N 121°37.722        39°25.304'N 121°37.540W 
     ##                             36                             36 
     ##                             70     N 31º 29.68  W 121º 34.765 
-    ##                             35                             36 
+    ##                             35                             37 
     ##    N 39  24.340  W 121  37.030      N 39 19.065  W 121 37.381 
     ##                             36                             36 
     ##       N 39 19.212 W 121 37.185        N 39 19.743 W121 37.729 
@@ -1949,79 +1949,77 @@ table(all_fish_data$gps_coordinate)
     ##      N 39*23.154' W121*37.723'   N 39*27.758', w 121* 36.263' 
     ##                             36                             36 
     ##       n 39*30.950, w 21*33.212      N 39° 19.14 W 121° 37.22' 
-    ##                             36                             37 
+    ##                             36                             35 
     ##     N 39° 19.743 W 121° 37.741         N 39° 20.8 W 121° 37.6 
-    ##                             37                             36 
+    ##                             36                             38 
     ##    N 39° 22.50'  W 121° 37.94'  N 39° 23.188'  W 121° 37.671' 
     ##                             36                             36 
     ##  N 39° 24.197'  W 121° 37.094'    N 39° 24.27'  W 121° 37.02' 
     ##                             36                             37 
     ##    N 39° 24.95'  W 121° 37.60'    N 39° 25.24'  W 121° 37.54' 
+    ##                             37                             36 
+    ##    N 39° 25.75'  W 121° 37.57'  N 39° 25.863'  W 121° 37.934' 
     ##                             36                             37 
-    ##     N 39° 25.24'  W 121° 38.28    N 39° 25.75'  W 121° 37.57' 
-    ##                              1                             38 
-    ##  N 39° 25.863'  W 121° 37.934'  N 39° 25.882'  W 121° 37.932' 
-    ##                             37                             36 
-    ##     N 39° 26.24'  W 121° 38.28    N 39° 26.24'  W 121° 38.28' 
-    ##                             36                             38 
-    ##  N 39° 26.289'  W 121° 38.260'  N 39° 26.362'  W 121° 38.220' 
-    ##                             37                             36 
-    ##  N 39° 26.592'  W 121° 38.209'  N 39° 26.592'  W 121° 38.212' 
+    ##  N 39° 25.882'  W 121° 37.932'     N 39° 26.24'  W 121° 38.28 
     ##                             38                             38 
-    ##  N 39° 26.601'  W 121° 38.228'  N 39° 27.435'  W 121° 36.834' 
-    ##                             36                             38 
-    ##  N 39° 27.452'  W 121° 36.788'  N 39° 27.705'  W 121° 36.387' 
-    ##                             37                             38 
-    ##  N 39° 27.754'  W 121° 36.194'  N 39° 27.795'  W 121° 36.241' 
+    ##    N 39° 26.24'  W 121° 38.28'  N 39° 26.289'  W 121° 38.260' 
     ##                             37                             36 
-    ##  N 39° 27.796'  W 121° 36.242'   N 39° 27.895'  W 121° 35.857 
-    ##                             37                             37 
-    ##  N 39° 27.976'  W 121° 35.981'  N 39° 29.012'  W 121° 34.740' 
-    ##                             36                             73 
-    ##  N 39° 29.052'  W 121° 34.755'  N 39° 29.103'  W 121* 34.740' 
-    ##                             37                             37 
-    ##  N 39° 30.750'  W 121° 34.166'   N 39° 30.906'  W 121° 33.600 
-    ##                             37                             36 
-    ##    N 39° 30.92'  W 121° 33.54'    N 39° 30.94'  W 121° 33.28' 
-    ##                             44                             38 
-    ##   N 39° 30.987'  W 121° 33.46'      N 39°19.068" W 121°37.256 
-    ##                             36                             72 
-    ##      N 39°19.734' W 121°37.791     N 39°19.734' W 121°37.791' 
-    ##                              1                             37 
-    ##       N 39°21.261 W 121°37.779      N 39°22.503 W 121° 37.942 
+    ##  N 39° 26.362'  W 121° 38.220'  N 39° 26.592'  W 121° 38.209' 
     ##                             36                             36 
-    ##   N 39º 19.139'  W 121º 37.216   N 39º 24.319'  W 121º 36.976 
+    ##  N 39° 26.592'  W 121° 38.212'  N 39° 26.601'  W 121° 38.228' 
+    ##                             36                             37 
+    ##  N 39° 27.435'  W 121° 36.834'  N 39° 27.452'  W 121° 36.788' 
+    ##                             36                             36 
+    ##  N 39° 27.705'  W 121° 36.387'  N 39° 27.754'  W 121° 36.194' 
+    ##                             37                             36 
+    ##  N 39° 27.795'  W 121° 36.241'  N 39° 27.796'  W 121° 36.242' 
+    ##                             36                             37 
+    ##   N 39° 27.895'  W 121° 35.857  N 39° 27.976'  W 121° 35.981' 
     ##                             36                             38 
+    ##  N 39° 29.012'  W 121° 34.740'  N 39° 29.052'  W 121° 34.755' 
+    ##                             74                             36 
+    ##  N 39° 29.103'  W 121* 34.740'  N 39° 30.750'  W 121° 34.166' 
+    ##                             36                             37 
+    ##   N 39° 30.906'  W 121° 33.600    N 39° 30.92'  W 121° 33.54' 
+    ##                             36                             44 
+    ##    N 39° 30.94'  W 121° 33.28'   N 39° 30.987'  W 121° 33.46' 
+    ##                             38                             37 
+    ##      N 39°19.068" W 121°37.256     N 39°19.734' W 121°37.791' 
+    ##                             72                             37 
+    ##       N 39°21.261 W 121°37.779      N 39°22.503 W 121° 37.942 
+    ##                             36                             37 
+    ##   N 39º 19.139'  W 121º 37.216   N 39º 24.319'  W 121º 36.976 
+    ##                             36                             36 
     ##    N 39º 27.814  W 121º 36.234   N 39º 27.962'  W121º 35.980' 
     ##                             36                             36 
-    ##   N 39º 27.982'  W 121º 35.920     N 39º 27.983  W 121º 35.91 
-    ##                             37                              1 
-    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
-    ##                             36                             40 
-    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
+    ##   N 39º 27.982'  W 121º 35.920    N 39º 27.983  W 121º 35.919 
     ##                             36                             36 
-    ##   N 39º 30.519'  W 121º 30.288   N 39º 30.961'  W 121º 33.529 
-    ##                             36                             38 
-    ##      N: 39.29.084 W:121.34.741      N. 39 20.132 W 121 37.929 
+    ##   N 39º 29.066'  W121º 34.739' N 39º 29.575'   W 121º 34.795' 
+    ##                             39                             36 
+    ##     N 39º 29.642, W121º 34.801   N 39º 30.519'  W 121º 30.288 
+    ##                             36                             36 
+    ##   N 39º 30.961'  W 121º 33.529      N: 39.29.084 W:121.34.741 
+    ##                             39                             37 
+    ##      N. 39 20.132 W 121 37.929     N. 39.26.122 W. 121.38.204 
+    ##                             36                             36 
+    ##     N. 39.27.424  W:121.36.863          N39 19758 W121 37.729 
+    ##                             36                             36 
+    ##         N39 25.270 W121 37.550           N39 25.74 W121 37.57 
+    ##                             36                             36 
+    ##         N39 26.250 W121 38.250       N39 26.320  W121  38.227 
+    ##                             36                             36 
+    ##         N39 27.730 W121 36.290           N39 27.87 W121 35.95 
+    ##                             36                             36 
+    ##           N39 27.95 W121 36.03         N39 29.643 W121 34.792 
+    ##                             36                             36 
+    ##        N39 30.770 W 121 34.145        N39 30.947 W 121 33.272 
     ##                             37                             36 
-    ##     N. 39.26.122 W. 121.38.204     N. 39.27.424  W:121.36.863 
+    ##  N39*  25.824    W121*  37.850       N39*19.765', W121*37.72' 
+    ##                             37                             36 
+    ##      N39*21.247', W121*37.835'        N39*23.155  W121*37.722 
     ##                             36                             36 
-    ##          N39 19758 W121 37.729         N39 25.270 W121 37.550 
-    ##                             36                             36 
-    ##           N39 25.74 W121 37.57         N39 26.250 W121 38.250 
-    ##                             36                             36 
-    ##       N39 26.320  W121  38.227         N39 27.730 W121 36.290 
-    ##                             36                             36 
-    ##           N39 27.87 W121 35.95           N39 27.95 W121 36.03 
-    ##                             36                             36 
-    ##         N39 29.643 W121 34.792        N39 30.770 W 121 34.145 
-    ##                             36                             37 
-    ##        N39 30.947 W 121 33.272  N39*  25.824    W121*  37.850 
-    ##                             36                             37 
-    ##       N39*19.765', W121*37.72'      N39*21.247', W121*37.835' 
-    ##                             36                             36 
-    ##        N39*23.155  W121*37.722         N39*24.340 W121*37.029 
-    ##                             36                             36 
+    ##         N39*24.340 W121*37.029     N39º 20.738', W121º 37.576 
+    ##                             36                              1 
     ##    N39º 20.738', W121º 37.576'     N39º 24.321', W121º 36.982 
     ##                             36                             37 
     ##                           None                      not taken 
@@ -2039,7 +2037,7 @@ table(all_fish_data$weather)
 
     ## 
     ## Direct Sunlight        Overcast   Precipitation 
-    ##            8775            1087             113
+    ##            8764            1087             113
 
 **NA and Unknown Values**
 
@@ -2053,7 +2051,7 @@ table(all_fish_data$channel_type)
 
     ## 
     ##        Mainchannel Mainchannel Branch        Sidechannel 
-    ##               4812               2408               2606
+    ##               4806               2409               2600
 
 **NA and Unknown Values**
 
@@ -2423,24 +2421,21 @@ locations_ck |>
   filter(location != rk_location_revised)
 ```
 
-    ## # A tibble: 15 × 20
+    ## # A tibble: 12 × 20
     ##    location_table_id date       location            water_temp weather      flow
     ##                <dbl> <date>     <chr>                    <dbl> <chr>       <dbl>
     ##  1                15 2001-08-20 trailer park riffle         58 direct sun…   600
     ##  2                16 2001-08-20 bedrock park riffle         58 direct sun…   600
     ##  3                37 2001-07-11 trailer park riffle         59 direct sun…   600
-    ##  4                37 2001-07-11 trailer park riffle         59 direct sun…   600
-    ##  5                40 2001-07-12 bedrock park riffle         58 direct sun…   600
-    ##  6                41 2001-07-12 eye riffle                  63 direct sun…   600
-    ##  7                55 2001-06-11 bedrock park riffle         56 overcast      600
-    ##  8                56 2001-06-11 trailer park riffle         57 direct sun…   600
-    ##  9                56 2001-06-11 trailer park riffle         57 direct sun…   600
-    ## 10                73 2001-05-22 bedrock park riffle         55 direct sun…   600
-    ## 11               110 2001-08-21 eye riffle                  62 direct sun…   700
-    ## 12               110 2001-08-21 eye riffle                  62 direct sun…   700
-    ## 13               112 2001-04-09 trailer park riffle         52 direct sun…   600
-    ## 14               139 2001-03-14 bedrock park riffle         50 direct sun…   600
-    ## 15               140 2001-03-14 trailer park riffle         52 direct sun…   600
+    ##  4                40 2001-07-12 bedrock park riffle         58 direct sun…   600
+    ##  5                41 2001-07-12 eye riffle                  63 direct sun…   600
+    ##  6                55 2001-06-11 bedrock park riffle         56 overcast      600
+    ##  7                56 2001-06-11 trailer park riffle         57 direct sun…   600
+    ##  8                73 2001-05-22 bedrock park riffle         55 direct sun…   600
+    ##  9               110 2001-08-21 eye riffle                  62 direct sun…   700
+    ## 10               112 2001-04-09 trailer park riffle         52 direct sun…   600
+    ## 11               139 2001-03-14 bedrock park riffle         50 direct sun…   600
+    ## 12               140 2001-03-14 trailer park riffle         52 direct sun…   600
     ## # ℹ 14 more variables: number_of_divers <dbl>, reach_length <dbl>,
     ## #   reach_width <dbl>, channel_width <dbl>, channel_type <chr>,
     ## #   river_mile <dbl>, longitude <dbl>, latitude <dbl>, coordinate_method <chr>,

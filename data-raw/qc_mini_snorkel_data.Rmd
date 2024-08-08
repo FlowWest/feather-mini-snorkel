@@ -192,14 +192,29 @@ only_2001_data <- joined_fish_obs_2002 |>
 anti_join_2001_data <- only_2001_data |> 
   select(colnames(joined_fish_obs)) |>
   anti_join(joined_fish_obs)
+# The main differences are within the `dist_to_bottom` variable where the new database has values that are an order 
+# of magnitude lower (0.5 vs 5) than the older 2001 database 
 
 ggplot() +
   geom_point(data = joined_fish_obs, aes(x=date, y = count, color = "2001 dataset"), size = 4, alpha = .5) +
-  geom_point(data = anti_join_2001_data, aes(x = date, y = count, color = 'Missing Data'), alpha = 0.5, size = 4) + 
+  geom_point(data = anti_join_2001_data, aes(x = date, y = count, color = 'Data that is different in the 2002 dataset'), alpha = 0.5, size = 4) + 
   theme_minimal()+
   labs(title = "Data that Exists in 2001/2002 dataset and NOT in 2001",
        y = "Number of Fish Observations") 
 
+joined_fish_obs |> 
+  group_by(date) |> 
+  summarise(n_obs_MiniSnorkelDTB = n(),
+            sum_count_MiniSnorkelDTB = sum(count, na.rm = TRUE)) |> 
+  full_join(
+    only_2001_data |> 
+      group_by(date) |> 
+      summarise(n_obs_minisnorkdb3 = n(),
+                sum_count_minisnorkdb3 = sum(count, na.rm = TRUE)) 
+  ) |> 
+  mutate(same_value_obs = ifelse(n_obs_MiniSnorkelDTB == n_obs_minisnorkdb3, "TRUE", "FALSE"), # The only date with differences is 5/21/2001
+         same_value_count = ifelse(sum_count_minisnorkdb3 == sum_count_MiniSnorkelDTB, "TRUE", "FALSE")) 
+  
 ```
 
 -   2001 dataset goes from `r min(joined_fish_obs$date)` to

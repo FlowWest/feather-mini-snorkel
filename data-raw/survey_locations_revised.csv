@@ -23,12 +23,12 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 32,2001-07-18,herringer riffle,74,direct sunlight,46,1900,2,25,4,32,sidechannel,N 39* 19.056'  W 121* 37.394'
 33,2001-07-18,junkyard riffle,68,direct sunlight,48.5,1900,2,25,4,48,mainchannel,N 39* 20.733'  W 121* 37.574
 34,2001-07-10,hatchery riffle,60,direct sunlight,66,600,3,25,4,28,mainchannel branch,N 39º 30.519'  W 121º 30.288
+34,2001-07-10,hatchery riffle,60,direct sunlight,66,600,3,25,4,28,mainchannel branch,N 39º 30.961'  W 121º 33.529
 35,2001-07-10,auditorium riffle,57,direct sunlight,66,600,2,25,4,32,mainchannel branch,NA
 36,2001-07-10,hatchery ditch,59,direct sunlight,66.5,600,2,25,4,9,sidechannel,N 39º 30.961'  W 121º 33.529
 37,2001-07-11,trailer park riffle,59,direct sunlight,64,600,4,25,4,57,mainchannel,N 31º 29.68  W 121º 34.765
-37,2001-07-11,trailer park riffle,59,direct sunlight,64,600,4,25,4,57,mainchannel,N 39º 27.983  W 121º 35.91
 38,2001-07-11,robinson riffle,63,direct sunlight,61.5,600,3,25,4,34,mainchannel,N 39º 27.983  W 121º 35.919
-38,2001-07-11,robinson riffle,63,direct sunlight,61.5,600,3,25,4,34,mainchannel,N 39º 27.982'  W 121º 35.920
+38,2001-07-11,robinson riffle,63,direct sunlight,61.5,600,3,25,4,34,mainchannel,N 31º 29.68  W 121º 34.765
 39,2001-07-11,robinson riffle,63,direct sunlight,61,600,3,25,4,16,sidechannel,N 39º 27.982'  W 121º 35.920
 40,2001-07-12,bedrock park riffle,58,direct sunlight,66,600,2,25,4,51,mainchannel,NA
 41,2001-07-12,eye riffle,63,direct sunlight,60.1,600,2,25,4,21,sidechannel,NA
@@ -37,12 +37,11 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 44,2001-07-12,steep riffle,61,direct sunlight,61,600,2,25,4,20,sidechannel,N 39º 27.814  W 121º 36.234
 45,2001-07-12,steep riffle,62,direct sunlight,61,600,2,25,4,0,mainchannel,NA
 46,2001-06-19,lower hour,68,direct sunlight,56,1900,2,25,4,20,mainchannel branch,N 39º 19.139'  W 121º 37.216
-46,2001-06-19,lower hour,68,direct sunlight,56,1900,2,25,4,20,mainchannel branch,N 39º 24.319'  W 121º 36.976
 47,2001-06-19,lower hour,69,direct sunlight,56,1900,2,25,4,65,sidechannel,NA
 48,2001-06-19,goose riffle,69,direct sunlight,54.5,1900,2,25,4,0,mainchannel,N 39º 24.319'  W 121º 36.976
 48,2001-06-19,goose riffle,69,direct sunlight,54.5,1900,2,25,4,0,mainchannel,"N39º 24.321', W121º 36.982"
 49,2001-06-19,big bar,72,direct sunlight,53.5,1900,2,25,4,0,mainchannel,"N39º 24.321', W121º 36.982"
-49,2001-06-19,big bar,72,direct sunlight,53.5,1900,2,25,4,0,mainchannel,N 39º 24.319'  W 121º 36.976
+49,2001-06-19,big bar,72,direct sunlight,53.5,1900,2,25,4,0,mainchannel,"N39º 20.738', W121º 37.576"
 50,2001-06-19,gridley riffle,69,direct sunlight,49.5,1900,2,25,4,45,mainchannel branch,"N39*21.247', W121*37.835'"
 51,2001-06-19,junkyard riffle,70,direct sunlight,48.5,1900,2,25,4,47,mainchannel,"N39º 20.738', W121º 37.576'"
 52,2001-06-19,shallow riffle,73,direct sunlight,47,1900,2,25,4,33,sidechannel,"N39*19.765', W121*37.72'"
@@ -50,85 +49,78 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 54,2001-06-11,hatchery riffle,56,overcast,66.5,600,2,25,4,0,mainchannel,NA
 55,2001-06-11,bedrock park riffle,56,overcast,66,600,2,25,4,0,mainchannel,NA
 56,2001-06-11,trailer park riffle,57,direct sunlight,64.5,600,2,25,4,97,mainchannel,"N 39º 29.642, W121º 34.801"
-56,2001-06-11,trailer park riffle,57,direct sunlight,64.5,600,2,25,4,97,mainchannel,N 39º 29.066'  W121º 34.739'
 57,2001-06-11,matthews riffle,59,direct sunlight,64,600,2,25,4,77,mainchannel,N 39º 29.575'   W 121º 34.795'
 58,2001-06-11,aleck riffle,60.5,direct sunlight,63.5,600,1,25,4,104,mainchannel,N 39º 29.066'  W121º 34.739'
-58,2001-06-11,aleck riffle,60.5,direct sunlight,63.5,600,1,25,4,104,mainchannel,N 39° 27.895'  W 121° 35.857
 59,2001-06-12,robinson riffle,58,direct sunlight,62,600,2,25,4,18,sidechannel,N 39° 27.895'  W 121° 35.857
 60,2001-06-12,robinson riffle,59,direct sunlight,62,600,2,25,4,34,mainchannel,N 39° 27.976'  W 121° 35.981'
+60,2001-06-12,robinson riffle,59,direct sunlight,62,600,2,25,4,34,mainchannel,N 39° 27.796'  W 121° 36.242'
 61,2001-06-12,steep riffle,60,direct sunlight,61,600,2,25,4,92,mainchannel,N 39° 27.796'  W 121° 36.242'
+61,2001-06-12,steep riffle,60,direct sunlight,61,600,2,25,4,92,mainchannel,N 39° 27.976'  W 121° 35.981'
 62,2001-06-12,steep riffle,61.5,direct sunlight,61,600,2,25,4,30,sidechannel,NA
 63,2001-06-12,weir riffle,66,direct sunlight,60.5,600,2,25,4,61,mainchannel,NA
 64,2001-06-12,eye riffle,61,direct sunlight,60,600,2,25,4,19,sidechannel,NA
 65,2001-06-14,vance avenue,0,direct sunlight,58.5,1800,2,25,4,55,mainchannel,N 39° 27.795'  W 121° 36.241'
-65,2001-06-14,vance avenue,0,direct sunlight,58.5,1800,2,25,4,55,mainchannel,N 39° 27.796'  W 121° 36.242'
 66,2001-06-14,big hole,64,direct sunlight,58,1800,2,25,4,64,mainchannel,N 39° 26.601'  W 121° 38.228'
 67,2001-06-14,big hole,65,direct sunlight,57.5,1800,2,25,4,60,mainchannel branch,N 39° 26.592'  W 121° 38.212'
+67,2001-06-14,big hole,65,direct sunlight,57.5,1800,2,25,4,60,mainchannel branch,N 39° 26.601'  W 121° 38.228'
 68,2001-06-14,g95,66,direct sunlight,57,1800,2,25,4,24,sidechannel,N 39° 26.289'  W 121° 38.260'
-68,2001-06-14,g95,66,direct sunlight,57,1800,2,25,4,24,sidechannel,N 39° 26.592'  W 121° 38.212'
+68,2001-06-14,g95,66,direct sunlight,57,1800,2,25,4,24,sidechannel,N 39° 25.882'  W 121° 37.932'
 69,2001-06-14,g95,75,direct sunlight,57,1800,2,25,4,31,sidechannel,N 39° 25.882'  W 121° 37.932'
-69,2001-06-14,g95,75,direct sunlight,57,1800,2,25,4,31,sidechannel,N 39° 26.289'  W 121° 38.260'
 70,2001-05-21,hatchery ditch,54,direct sunlight,66.5,0,3,25,4,0,sidechannel,NA
 71,2001-05-21,hatchery riffle,57,direct sunlight,66.5,600,3,25,4,0,mainchannel,N 39° 30.94'  W 121° 33.28'
 72,2001-05-21,auditorium riffle,57,direct sunlight,66,600,2,25,4,60,mainchannel,N 39° 30.92'  W 121° 33.54'
 73,2001-05-22,bedrock park riffle,55,direct sunlight,65.8,600,3,25,4,56,mainchannel,N 39° 30.750'  W 121° 34.166'
 74,2001-05-22,aleck riffle,62.5,direct sunlight,63.5,600,2,25,4,44,mainchannel,N 39° 29.103'  W 121* 34.740'
 75,2001-05-21,robinson riffle,60,direct sunlight,61.5,600,2,25,4,24,sidechannel,N 39º 27.962'  W121º 35.980'
-75,2001-05-21,robinson riffle,60,direct sunlight,61.5,600,2,25,4,24,sidechannel,N 39° 29.103'  W 121* 34.740'
 76,2001-05-21,robinson riffle,57.5,direct sunlight,61.5,600,3,25,4,35,mainchannel,NA
 77,2001-05-21,steep riffle,60,direct sunlight,61,600,2,25,4,8,sidechannel,N 39° 27.754'  W 121° 36.194'
+77,2001-05-21,steep riffle,60,direct sunlight,61,600,2,25,4,8,sidechannel,N 39° 29.012'  W 121° 34.740'
 78,2001-05-22,eye riffle,61,direct sunlight,60,600,3,25,4,53,mainchannel,N 39° 29.012'  W 121° 34.740'
-78,2001-05-22,eye riffle,61,direct sunlight,60,600,3,25,4,53,mainchannel,N 39° 27.754'  W 121° 36.194'
 79,2001-05-22,eye riffle,62,direct sunlight,60,600,3,25,4,23,sidechannel,N 39° 29.012'  W 121° 34.740'
-79,2001-05-22,eye riffle,62,direct sunlight,60,600,3,25,4,23,sidechannel,N 39° 26.592'  W 121° 38.209'
 80,2001-05-22,big hole,67,direct sunlight,58,2000,2,25,4,20,mainchannel branch,N 39° 26.592'  W 121° 38.209'
 81,2001-05-22,big hole,69,direct sunlight,58,2000,2,25,4,21,mainchannel branch,N 39° 26.362'  W 121° 38.220'
-81,2001-05-22,big hole,69,direct sunlight,58,2000,2,25,4,21,mainchannel branch,N 39° 26.592'  W 121° 38.209'
 81,2001-05-22,big hole,69,direct sunlight,58,2000,2,25,4,21,mainchannel branch,N 39° 25.863'  W 121° 37.934'
 82,2001-05-22,g95,67,direct sunlight,57,2000,2,25,4,16,sidechannel,N 39° 25.863'  W 121° 37.934'
 83,2001-05-23,g95,62,direct sunlight,57,2000,3,25,4,36,mainchannel,NA
 84,2001-05-23,hour riffle,65,direct sunlight,56.5,2000,3,25,4,40,mainchannel branch,NA
 85,2001-05-23,hour bars,70,direct sunlight,56,2000,3,25,4,55,mainchannel branch,NA
 86,2001-08-22,macfarland riffle,70,direct sunlight,52,2000,2,25,4,84,mainchannel,N 39° 22.50'  W 121° 37.94'
+86,2001-08-22,macfarland riffle,70,direct sunlight,52,2000,2,25,4,84,mainchannel,N 39°22.503 W 121° 37.942
 87,2001-05-23,goose riffle,69,direct sunlight,54.7,2000,2,25,4,56,mainchannel,N 39° 24.197'  W 121° 37.094'
 88,2001-05-23,macfarland riffle,68,direct sunlight,52.4,2000,2,25,4,60,mainchannel,N 39°22.503 W 121° 37.942
 89,2001-05-23,gridley riffle,67,direct sunlight,49.5,2000,2,25,4,30,mainchannel branch,NA
 90,2001-05-24,junkyard riffle,0,direct sunlight,49,2000,2,25,4,67,NA,N 39° 20.8 W 121° 37.6
-90,2001-05-24,junkyard riffle,0,direct sunlight,49,2000,2,25,4,67,NA,N 39° 19.743 W 121° 37.741
+90,2001-05-24,junkyard riffle,0,direct sunlight,49,2000,2,25,4,67,NA,N 39° 19.14 W 121° 37.22'
 91,2001-05-24,shallow riffle,NA,direct sunlight,47,2000,2,25,4,30,sidechannel,N 39° 19.743 W 121° 37.741
+91,2001-05-24,shallow riffle,NA,direct sunlight,47,2000,2,25,4,30,sidechannel,N 39° 20.8 W 121° 37.6
 92,2001-05-24,herringer riffle,0,direct sunlight,46,2000,3,25,4,96,mainchannel,N 39° 19.14 W 121° 37.22'
+92,2001-05-24,herringer riffle,0,direct sunlight,46,2000,3,25,4,96,mainchannel,"N 39°19.068"" W 121°37.256"
 93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,"N 39°19.068"" W 121°37.256"
-93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,N 39°19.734' W 121°37.791
 93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,N 39°19.734' W 121°37.791'
+93,2001-08-23,herringer riffle,70,direct sunlight,0,0,2,25,4,115,NA,N 39° 20.8 W 121° 37.6
 94,2001-08-22,shallow riffle,68,direct sunlight,0,0,2,25,4,33,sidechannel,N 39°19.734' W 121°37.791'
 95,2001-08-23,gridley riffle,68,direct sunlight,0,0,2,25,4,48,mainchannel branch,N 39°21.261 W 121°37.779
-95,2001-08-23,gridley riffle,68,direct sunlight,0,0,2,25,4,48,mainchannel branch,N 39° 19.14 W 121° 37.22'
 96,2001-04-09,hatchery riffle,52.5,direct sunlight,66.5,600,2,25,4,32,mainchannel branch,NA
 97,2001-04-09,auditorium riffle,53,direct sunlight,66.5,600,2,25,4,51,mainchannel branch,NA
 98,2001-08-22,big bar,69,direct sunlight,52.5,0,2,25,4,40,mainchannel,N 39° 23.188'  W 121° 37.671'
 99,2001-08-22,goose riffle,68.5,direct sunlight,54.5,2000,2,25,4,73,mainchannel,N 39° 24.27'  W 121° 37.02'
+99,2001-08-22,goose riffle,68.5,direct sunlight,54.5,2000,2,25,4,73,mainchannel,N 39° 24.95'  W 121° 37.60'
 100,2001-08-22,hour bars,68.5,direct sunlight,56,2000,2,25,4,147,mainchannel branch,N 39° 24.95'  W 121° 37.60'
 100,2001-08-22,hour bars,68.5,direct sunlight,56,2000,2,25,4,147,mainchannel branch,N 39° 24.27'  W 121° 37.02'
-101,2001-08-22,lower hour,67,direct sunlight,56,2000,2,25,4,33,mainchannel,N 39° 25.24'  W 121° 38.28
 101,2001-08-22,lower hour,67,direct sunlight,56,2000,2,25,4,33,mainchannel,N 39° 25.24'  W 121° 37.54'
-102,2001-08-21,g95,68,direct sunlight,57,2000,2,25,4,0,sidechannel,N 39° 25.24'  W 121° 37.54'
 102,2001-08-21,g95,68,direct sunlight,57,2000,2,25,4,0,sidechannel,N 39° 26.24'  W 121° 38.28
-102,2001-08-21,g95,68,direct sunlight,57,2000,2,25,4,0,sidechannel,N 39° 26.24'  W 121° 38.28'
 103,2001-08-21,lower big hole,65,direct sunlight,57.5,2000,2,25,4,0,mainchannel branch,N 39° 26.24'  W 121° 38.28'
+103,2001-08-21,lower big hole,65,direct sunlight,57.5,2000,2,25,4,0,mainchannel branch,N 39° 26.24'  W 121° 38.28
 104,2001-08-21,g95,70.5,direct sunlight,57,2000,2,25,4,0,mainchannel branch,N 39° 25.75'  W 121° 37.57'
+104,2001-08-21,g95,70.5,direct sunlight,57,2000,2,25,4,0,mainchannel branch,N 39° 26.24'  W 121° 38.28'
 105,2001-08-21,vance avenue,65,direct sunlight,58.5,2000,2,25,4,20,mainchannel branch,N 39° 30.987'  W 121° 33.46'
-105,2001-08-21,vance avenue,65,direct sunlight,58.5,2000,2,25,4,20,mainchannel branch,N 39° 25.75'  W 121° 37.57'
 106,2001-08-21,auditorium riffle,56,direct sunlight,66.5,700,2,25,4,74,mainchannel,N 39° 30.906'  W 121° 33.600
-106,2001-08-21,auditorium riffle,56,direct sunlight,66.5,700,2,25,4,74,mainchannel,N 39° 25.75'  W 121° 37.57'
+106,2001-08-21,auditorium riffle,56,direct sunlight,66.5,700,2,25,4,74,mainchannel,N 39° 30.987'  W 121° 33.46'
 107,2001-08-21,aleck riffle,58,direct sunlight,63.5,700,2,25,4,42,mainchannel,N 39° 29.052'  W 121° 34.755'
-107,2001-08-21,aleck riffle,58,direct sunlight,63.5,700,2,25,4,42,mainchannel,N 39° 27.435'  W 121° 36.834'
+107,2001-08-21,aleck riffle,58,direct sunlight,63.5,700,2,25,4,42,mainchannel,N 39° 27.705'  W 121° 36.387'
 108,2001-08-21,weir riffle,62,direct sunlight,60.5,700,2,25,4,48,mainchannel,N 39° 27.705'  W 121° 36.387'
-108,2001-08-21,weir riffle,62,direct sunlight,60.5,700,2,25,4,48,mainchannel,N 39° 27.452'  W 121° 36.788'
-108,2001-08-21,weir riffle,62,direct sunlight,60.5,700,2,25,4,48,mainchannel,N 39° 29.052'  W 121° 34.755'
 109,2001-08-21,eye riffle,64,direct sunlight,60,700,2,25,4,44,sidechannel,N 39° 27.435'  W 121° 36.834'
-109,2001-08-21,eye riffle,64,direct sunlight,60,700,2,25,4,44,sidechannel,N 39° 27.705'  W 121° 36.387'
 110,2001-08-21,eye riffle,62,direct sunlight,60,700,2,25,4,22,sidechannel,N 39° 27.452'  W 121° 36.788'
-110,2001-08-21,eye riffle,62,direct sunlight,60,700,2,25,4,22,sidechannel,N 39° 27.705'  W 121° 36.387'
 111,2001-04-09,hatchery ditch,50,direct sunlight,66,0,2,25,4,5,sidechannel,NA
 112,2001-04-09,trailer park riffle,52,direct sunlight,64.5,600,2,25,4,0,mainchannel,70
 113,2001-04-09,matthews riffle,54,direct sunlight,64,600,2,25,4,40,NA,NA
@@ -259,9 +251,7 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 246,2002-08-19,hatchery riffle,57,direct sunlight,66.5,700,1,25,4,30,mainchannel branch,N39 30.947 W 121 33.272
 248,2002-04-23,NA,63.5,direct sunlight,57,1200,2,25,4,26,mainchannel branch,N39 25.74 W121 37.57
 249,2002-04-24,big bar,NA,direct sunlight,53.5,1200,2,25,4,50,mainchannel,39°23.167'N 121°37.722
-249,2002-04-24,big bar,NA,direct sunlight,53.5,1200,2,25,4,50,mainchannel,39°25.304'N 121°37.540W
 250,2002-04-24,NA,62,direct sunlight,56,1200,2,25,4,0,mainchannel branch,39°25.304'N 121°37.540W
-250,2002-04-24,NA,62,direct sunlight,56,1200,2,25,4,0,mainchannel branch,39°23.167'N 121°37.722
 251,2002-04-24,NA,54,direct sunlight,52,1200,1,25,4,49,mainchannel,N 39 22.4 W 121 38.0
 252,2002-04-24,hour bars,0,direct sunlight,46,1200,1,25,4,30,mainchannel branch,N 39 24.9 W 121 37.6
 253,2002-04-24,hour bars,0,direct sunlight,56,1200,1,25,4,30,mainchannel branch,N 39 24.9 W121 37.6
@@ -299,4 +289,3 @@ location_table_id,date,location,water_temp,weather,river_mile,flow,number_of_div
 287,2002-07-23,NA,64,direct sunlight,60.5,600,2,25,4,42,mainchannel,"39' 27.68', 121' 36.48'"
 288,2002-08-14,NA,68,direct sunlight,49.5,0,0,25,4,67,mainchannel branch,"39 21.224, 121 37.831"
 289,2002-08-19,auditorium riffle,58.5,direct sunlight,66.5,700,1,25,4,66,mainchannel,"39 30.950, 121 33.552"
-92,2001-05-24,herringer riffle,0,direct sunlight,46,2000,3,25,4,96,mainchannel,"N 39°19.068"" W 121°37.256"
