@@ -20,6 +20,8 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 
 # Feather River Mini Snorkel Data
 
+*NOTE: it was decided to use a database that contained 2001 and 2002 data instead of this one. Visit `qc_mini_snorkel_data_v2.Rmd` for more information. *
+
 ## Description of Monitoring Data
 
 **Timeframe:** March 2001 - August 2001

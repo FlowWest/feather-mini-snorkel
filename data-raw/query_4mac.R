@@ -5,14 +5,14 @@ library(knitr)
 library(Hmisc)
 library(lubridate)
 
-mini_snork_db <- here::here("data-raw", "MiniSnorkelDTB.mdb")
+mini_snork_db <- here::here("data-raw", "databases",  "MiniSnorkelDTB.mdb")
 mdb.get(mini_snork_db, tables = T)
 
-ck_db <- here::here("data-raw", "FR_S_and_S_Tables.mdb")
+ck_db <- here::here("data-raw", "databases",  "FR_S_and_S_Tables.mdb")
 mdb.get(ck_db, tables = T)
 
 snork_micro <- mdb.get(ck_db, tables = "SnorkMicrohabitat")
-write_csv(snork_micro, here::here("data-raw", "SnorkMicrohabitat.csv"))
+write_csv(snork_micro, here::here("data-raw", "databases", "SnorkMicrohabitat.csv"))
 snork <- mdb.get(ck_db, tables = "SnorkObservationsTBL")
 # tables
 all_fish_obs <- mdb.get(mini_snork_db, tables = "All fish observations") |> glimpse()
@@ -56,7 +56,7 @@ substrate_code_lookup <- mdb.get(mini_snork_db, tables = "SubstrateCodeLookUp")
 # transect_canopy <- mdb.get(mini_snork_db, tables = "TransectCanopy") # empty
 
 library(Hmisc)
-seine_db <- here::here("data-raw", "FR_S_and_S_Oroville.mdb")
+seine_db <- here::here("data-raw", "databases",  "FR_S_and_S_Oroville.mdb")
 mdb.get(seine_db, tables = T)
 
 # has no dates
@@ -66,7 +66,7 @@ snork_obs <- mdb.get(seine_db, tables = "SnorkObservationsTBL") |> glimpse()
 
 
 # add in 2002 database table ----------------------------------------------
-mini_snork_db_2002 <- here::here("data-raw", "minisnorkdb3.mdb")
+mini_snork_db_2002 <- here::here("data-raw", "databases",  "minisnorkdb3.mdb")
 mdb.get(mini_snork_db_2002, tables = T)
 
 ## tables

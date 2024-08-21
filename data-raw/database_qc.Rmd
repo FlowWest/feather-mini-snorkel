@@ -188,7 +188,7 @@ joined_fish_obs_2002 <- microhabitat_2002 |>
   filter(!is.na(date)) |> 
   write_csv('2002_fish_obs_tmp.csv') # annoying workaround to remove labeled date column 
 
-joined_fish_obs_2002 <- read_csv('2002_fish_obs_tmp.csv')  |> glimpse()
+joined_fish_obs_2002 <- read_csv('2002_fish_obs_tmp.csv') |> glimpse()
 
 ```
 

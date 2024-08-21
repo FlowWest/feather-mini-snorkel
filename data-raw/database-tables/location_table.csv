@@ -1,5 +1,5 @@
 PhysDataTblID,Location,Date,StartTime,EndTime,Crew,WaterTemp,Weather,RiverMile,Flow,NumberOfDivers,ReachLength,ReachWidth,ChannelType,ChannelWidth,GPS.Coordinate
-92,Herringer Riffle,2001-05-24,1999-12-30,1999-12-30,"do,ph, at",0,1,46,2000,3,25,4,1,96,"N 39°19.068"" W 121°37.256"
+92,Herringer Riffle,2001-05-24,1999-12-30,1999-12-30,"do,ph, at",0,1,46,2000,3,25,4,1,96,N 39° 19.14 W 121° 37.22'
 93,Herringer Riffle,2001-08-23,1999-12-30,NA,"BR, CR, TV",70,1,0,0,2,25,4,0,115,"N 39°19.068"" W 121°37.256"
 94,Shallow Riffle,2001-08-22,1999-12-30,1999-12-30,"TV, BR, CR",68,1,0,0,2,25,4,3,33,N 39°19.734' W 121°37.791'
 95,Gridley Riffle,2001-08-23,1999-12-30,1999-12-30,"TV, BR, CR",68,1,0,0,2,25,4,2,48,N 39°21.261 W 121°37.779

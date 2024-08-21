@@ -2,14 +2,16 @@
 title: "Feather River Mini Snorkel Data QC"
 author: "Maddee Rubenson"
 date: "August 21, 2024"
-output: rmarkdown::github_document
+output: 
+  html_document:
+    code_folding: hide
 editor_options: 
   markdown: 
     wrap: 72
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.width=15, fig.height=10)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 library(tidyverse)
 library(lubridate)
 library(googleCloudStorageR)
@@ -25,7 +27,7 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 
 ## Description of Monitoring Data
 
-A database was provided containing 2001 and 2002 mini snorkel data. 
+This markdown explores the data that was provided for mini snorkel data for Feather River in the database: `minisnorkdb3.mdb`. Previously, a database was provided that only contained 2001 data (`MiniSnorkelDTB.mdb`). Upon exploration and comparison between this new database and the old database, it was decided that we will move forward using this database for publishing on EDI. For details on the `MiniSnorkelDTB` database visit: `qc_mini_snorkel_data.Rmd` and for details on the database comparison, visit: `database_qc.Rmd`. 
 
 **Timeframe:** March 2001 - August 2002
 

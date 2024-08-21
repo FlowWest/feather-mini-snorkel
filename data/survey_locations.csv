@@ -29,6 +29,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 37,2001-07-11,trailer park,LFC,59,direct sunlight,600,4,25,4,57,mainchannel,64,reported in database,39.494667,-121.579417
 38,2001-07-11,robinson riffle,LFC,63,direct sunlight,600,3,25,4,34,mainchannel,61.5,reported in database,39.466383,-121.59865
 39,2001-07-11,robinson riffle,LFC,63,direct sunlight,600,3,25,4,16,sidechannel,61,reported in database,39.464917,-121.597617
+39,2001-07-11,robinson riffle,LFC,63,direct sunlight,600,3,25,4,16,sidechannel,61,reported in database,39.464917,-121.597617
 40,2001-07-12,bedrock riffle,LFC,58,direct sunlight,600,2,25,4,51,mainchannel,66,assigned based on similar location,39.513056,-121.568139
 41,2001-07-12,eye side channel,LFC,63,direct sunlight,600,2,25,4,21,sidechannel,60.1,assigned based on similar location,39.457533,-121.613133
 42,2001-07-12,matthews riffle,LFC,60.5,direct sunlight,600,2,25,4,42,mainchannel,64,assigned based on similar location,39.491579661721076,-121.5790352595597
@@ -36,9 +37,9 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 44,2001-07-12,steep riffle,LFC,61,direct sunlight,600,2,25,4,20,sidechannel,61,reported in database,39.463567,-121.6039
 45,2001-07-12,steep riffle,LFC,62,direct sunlight,600,2,25,4,0,mainchannel,61,assigned based on similar location,39.462633,-121.604383
 46,2001-06-19,lower hour,HFC,68,direct sunlight,1900,2,25,4,20,mainchannel branch,56,reported in database,39.420667,-121.62566700000001
+46,2001-06-19,lower hour,HFC,68,direct sunlight,1900,2,25,4,20,mainchannel branch,56,reported in database,39.420667,-121.62566700000001
 47,2001-06-19,lower hour,HFC,69,direct sunlight,1900,2,25,4,65,sidechannel,56,assigned based on similar location,39.417667,-121.625467
 48,2001-06-19,goose riffle,HFC,69,direct sunlight,1900,2,25,4,0,mainchannel,54.5,reported in database,39.405317,-121.616267
-49,2001-06-19,big bar,HFC,72,direct sunlight,1900,2,25,4,0,mainchannel,53.5,reported in database,39.385917,-121.6287
 49,2001-06-19,big bar,HFC,72,direct sunlight,1900,2,25,4,0,mainchannel,53.5,reported in database,39.385917,-121.6287
 50,2001-06-19,gridley riffle,HFC,69,direct sunlight,1900,2,25,4,45,mainchannel branch,49.5,reported in database,39.354117,-121.630583
 51,2001-06-19,junkyard riffle,HFC,70,direct sunlight,1900,2,25,4,47,mainchannel,48.5,reported in database,39.345633,-121.626267
@@ -58,51 +59,42 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 65,2001-06-14,vance avenue,HFC,0,direct sunlight,1800,2,25,4,55,mainchannel,58.5,reported in database,39.4509,-121.637933
 66,2001-06-14,big hole,HFC,64,direct sunlight,1800,2,25,4,64,mainchannel,58,reported in database,39.44335,-121.637133
 67,2001-06-14,big hole,HFC,65,direct sunlight,1800,2,25,4,60,mainchannel branch,57.5,reported in database,39.4432,-121.636867
-67,2001-06-14,big hole,HFC,65,direct sunlight,1800,2,25,4,60,mainchannel branch,57.5,reported in database,39.4432,-121.636867
-68,2001-06-14,g95,HFC,66,direct sunlight,1800,2,25,4,24,sidechannel,57,assigned based on similar location,39.43085,-121.631033
 68,2001-06-14,g95,HFC,66,direct sunlight,1800,2,25,4,24,sidechannel,57,assigned based on similar location,39.43085,-121.631033
 69,2001-06-14,g95,HFC,75,direct sunlight,1800,2,25,4,31,sidechannel,57,reported in database,39.431367,-121.6322
 69,2001-06-14,g95,HFC,75,direct sunlight,1800,2,25,4,31,sidechannel,57,reported in database,39.431367,-121.6322
 70,2001-05-21,hatchery ditch,LFC,54,direct sunlight,0,3,25,4,0,sidechannel,66.5,assigned based on similar location,39.516017,-121.558817
 71,2001-05-21,hatchery riffle,LFC,57,direct sunlight,600,3,25,4,0,mainchannel,66.5,reported in database,39.515667,-121.554667
 72,2001-05-21,auditorium riffle,LFC,57,direct sunlight,600,2,25,4,60,mainchannel,66,reported in database,39.515333,-121.559
-72,2001-05-21,auditorium riffle,LFC,57,direct sunlight,600,2,25,4,60,mainchannel,66,reported in database,39.515333,-121.559
-72,2001-05-21,auditorium riffle,LFC,57,direct sunlight,600,2,25,4,60,mainchannel,66,reported in database,39.515333,-121.559
 73,2001-05-22,bedrock riffle,LFC,55,direct sunlight,600,3,25,4,56,mainchannel,65.8,reported in database,39.5125,-121.569433
 74,2001-05-22,aleck riffle,LFC,62.5,direct sunlight,600,2,25,4,44,mainchannel,63.5,reported in database,39.48505,-121.579
 75,2001-05-21,robinson riffle,LFC,60,direct sunlight,600,2,25,4,24,sidechannel,61.5,reported in database,39.466033,-121.599667
-75,2001-05-21,robinson riffle,LFC,60,direct sunlight,600,2,25,4,24,sidechannel,61.5,reported in database,39.466033,-121.599667
 76,2001-05-21,robinson riffle,LFC,57.5,direct sunlight,600,3,25,4,35,mainchannel,61.5,assigned based on similar location,39.466633,-121.598383
 77,2001-05-21,steep riffle,LFC,60,direct sunlight,600,2,25,4,8,sidechannel,61,reported in database,39.462567,-121.603233
-77,2001-05-21,steep riffle,LFC,60,direct sunlight,600,2,25,4,8,sidechannel,61,reported in database,39.462567,-121.603233
 78,2001-05-22,eye riffle,LFC,61,direct sunlight,600,3,25,4,53,mainchannel,60,assigned based on similar location,39.45725,-121.6139
 78,2001-05-22,eye riffle,LFC,61,direct sunlight,600,3,25,4,53,mainchannel,60,assigned based on similar location,39.45725,-121.6139
 79,2001-05-22,eye riffle,LFC,62,direct sunlight,600,3,25,4,23,sidechannel,60,assigned based on similar location,39.45725,-121.6139
-79,2001-05-22,eye riffle,LFC,62,direct sunlight,600,3,25,4,23,sidechannel,60,assigned based on similar location,39.45725,-121.6139
-80,2001-05-22,big hole,HFC,67,direct sunlight,2000,2,25,4,20,mainchannel branch,58,reported in database,39.4432,-121.636817
 80,2001-05-22,big hole,HFC,67,direct sunlight,2000,2,25,4,20,mainchannel branch,58,reported in database,39.4432,-121.636817
 81,2001-05-22,big hole,HFC,69,direct sunlight,2000,2,25,4,21,mainchannel branch,58,reported in database,39.439367,-121.637
-81,2001-05-22,big hole,HFC,69,direct sunlight,2000,2,25,4,21,mainchannel branch,58,reported in database,39.439367,-121.637
+82,2001-05-22,g95,HFC,67,direct sunlight,2000,2,25,4,16,sidechannel,57,reported in database,39.43105,-121.632233
 82,2001-05-22,g95,HFC,67,direct sunlight,2000,2,25,4,16,sidechannel,57,reported in database,39.43105,-121.632233
 83,2001-05-23,g95,HFC,62,direct sunlight,2000,3,25,4,36,mainchannel,57,assigned based on similar location,39.43105,-121.632233
 84,2001-05-23,hour riffle,HFC,65,direct sunlight,2000,3,25,4,40,mainchannel branch,56.5,assigned based on similar location,39.420183,-121.626017
 85,2001-05-23,hour bars,HFC,70,direct sunlight,2000,3,25,4,55,mainchannel branch,56,assigned based on similar location,39.415833,-121.626667
 86,2001-08-22,macfarland riffle,HFC,70,direct sunlight,2000,2,25,4,84,mainchannel,52,reported in database,39.375,-121.632333
-86,2001-08-22,macfarland riffle,HFC,70,direct sunlight,2000,2,25,4,84,mainchannel,52,reported in database,39.375,-121.632333
 87,2001-05-23,goose riffle,HFC,69,direct sunlight,2000,2,25,4,56,mainchannel,54.7,reported in database,39.403283,-121.618233
 88,2001-05-23,macfarland riffle,HFC,68,direct sunlight,2000,2,25,4,60,mainchannel,52.4,reported in database,39.37505,-121.632367
 89,2001-05-23,gridley riffle,HFC,67,direct sunlight,2000,2,25,4,30,mainchannel branch,49.5,assigned based on similar location,39.35435,-121.62965
 90,2001-05-24,junkyard riffle,HFC,0,direct sunlight,2000,2,25,4,67,NA,49,reported in database,39.346667,-121.626667
+90,2001-05-24,junkyard riffle,HFC,0,direct sunlight,2000,2,25,4,67,NA,49,reported in database,39.346667,-121.626667
+90,2001-05-24,junkyard riffle,HFC,0,direct sunlight,2000,2,25,4,67,NA,49,reported in database,39.346667,-121.626667
+91,2001-05-24,shallow riffle,HFC,NA,direct sunlight,2000,2,25,4,30,sidechannel,47,reported in database,39.32905,-121.629017
+91,2001-05-24,shallow riffle,HFC,NA,direct sunlight,2000,2,25,4,30,sidechannel,47,reported in database,39.32905,-121.629017
 91,2001-05-24,shallow riffle,HFC,NA,direct sunlight,2000,2,25,4,30,sidechannel,47,reported in database,39.32905,-121.629017
 92,2001-05-24,herringer riffle,HFC,0,direct sunlight,2000,3,25,4,96,mainchannel,46,reported in database,39.319,-121.620333
-92,2001-05-24,herringer riffle,HFC,0,direct sunlight,2000,3,25,4,96,mainchannel,46,reported in database,39.319,-121.620333
-93,2001-08-23,herringer riffle,HFC,70,direct sunlight,0,2,25,4,115,NA,0,reported in database,39.319,-121.620333
-93,2001-08-23,herringer riffle,HFC,70,direct sunlight,0,2,25,4,115,NA,0,reported in database,39.319,-121.620333
 93,2001-08-23,herringer riffle,HFC,70,direct sunlight,0,2,25,4,115,NA,0,reported in database,39.319,-121.620333
 94,2001-08-22,shallow riffle,HFC,68,direct sunlight,0,2,25,4,33,sidechannel,0,reported in database,39.3289,-121.62985
 94,2001-08-22,shallow riffle,HFC,68,direct sunlight,0,2,25,4,33,sidechannel,0,reported in database,39.3289,-121.62985
-95,2001-08-23,gridley riffle,HFC,68,direct sunlight,0,2,25,4,48,mainchannel branch,0,reported in database,39.35435,-121.62965
-95,2001-08-23,gridley riffle,HFC,68,direct sunlight,0,2,25,4,48,mainchannel branch,0,reported in database,39.35435,-121.62965
+94,2001-08-22,shallow riffle,HFC,68,direct sunlight,0,2,25,4,33,sidechannel,0,reported in database,39.3289,-121.62985
 95,2001-08-23,gridley riffle,HFC,68,direct sunlight,0,2,25,4,48,mainchannel branch,0,reported in database,39.35435,-121.62965
 96,2001-04-09,hatchery riffle,LFC,52.5,direct sunlight,600,2,25,4,32,mainchannel branch,66.5,assigned based on similar location,39.515667,-121.554667
 97,2001-04-09,auditorium riffle,LFC,53,direct sunlight,600,2,25,4,51,mainchannel branch,66.5,assigned based on similar location,39.515333,-121.559
@@ -111,18 +103,20 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 100,2001-08-22,hour bars,HFC,68.5,direct sunlight,2000,2,25,4,147,mainchannel branch,56,reported in database,39.415833,-121.626667
 100,2001-08-22,hour bars,HFC,68.5,direct sunlight,2000,2,25,4,147,mainchannel branch,56,reported in database,39.415833,-121.626667
 101,2001-08-22,lower hour,HFC,67,direct sunlight,2000,2,25,4,33,mainchannel,56,reported in database,39.420667,-121.62566700000001
+101,2001-08-22,lower hour,HFC,67,direct sunlight,2000,2,25,4,33,mainchannel,56,reported in database,39.420667,-121.62566700000001
 102,2001-08-21,g95,HFC,68,direct sunlight,2000,2,25,4,0,sidechannel,57,assigned based on similar location,39.43085,-121.631033
-102,2001-08-21,g95,HFC,68,direct sunlight,2000,2,25,4,0,sidechannel,57,assigned based on similar location,39.43085,-121.631033
-103,2001-08-21,lower big hole,HFC,65,direct sunlight,2000,2,25,4,0,mainchannel branch,57.5,reported in database,39.437333,-121.638
 103,2001-08-21,lower big hole,HFC,65,direct sunlight,2000,2,25,4,0,mainchannel branch,57.5,reported in database,39.437333,-121.638
 103,2001-08-21,lower big hole,HFC,65,direct sunlight,2000,2,25,4,0,mainchannel branch,57.5,reported in database,39.437333,-121.638
 104,2001-08-21,g95,HFC,70.5,direct sunlight,2000,2,25,4,0,mainchannel branch,57,reported in database,39.429167,-121.626167
+104,2001-08-21,g95,HFC,70.5,direct sunlight,2000,2,25,4,0,mainchannel branch,57,reported in database,39.429167,-121.626167
 105,2001-08-21,vance avenue,HFC,65,direct sunlight,2000,2,25,4,20,mainchannel branch,58.5,reported in database,39.45055,-121.639033
+106,2001-08-21,auditorium riffle,LFC,56,direct sunlight,700,2,25,4,74,mainchannel,66.5,reported in database,39.5151,-121.56
 106,2001-08-21,auditorium riffle,LFC,56,direct sunlight,700,2,25,4,74,mainchannel,66.5,reported in database,39.5151,-121.56
 107,2001-08-21,aleck riffle,LFC,58,direct sunlight,700,2,25,4,42,mainchannel,63.5,reported in database,39.4842,-121.57925
 108,2001-08-21,weir riffle,LFC,62,direct sunlight,700,2,25,4,48,mainchannel,60.5,reported in database,39.46175,-121.60645
 109,2001-08-21,eye riffle,LFC,64,direct sunlight,700,2,25,4,44,sidechannel,60,reported in database,39.45725,-121.6139
 109,2001-08-21,eye riffle,LFC,64,direct sunlight,700,2,25,4,44,sidechannel,60,reported in database,39.45725,-121.6139
+110,2001-08-21,eye side channel,LFC,62,direct sunlight,700,2,25,4,22,sidechannel,60,reported in database,39.457533,-121.613133
 110,2001-08-21,eye side channel,LFC,62,direct sunlight,700,2,25,4,22,sidechannel,60,reported in database,39.457533,-121.613133
 111,2001-04-09,hatchery ditch,LFC,50,direct sunlight,0,2,25,4,5,sidechannel,66,assigned based on similar location,39.516017,-121.558817
 112,2001-04-09,trailer park,LFC,52,direct sunlight,600,2,25,4,0,mainchannel,64.5,assigned based on similar location,39.494033,-121.580017
