@@ -1,8 +1,11 @@
 ---
 title: "Feather River Mini Snorkel Data QC"
-author: "Erin Cain"
-date: "03/24"
+author: "Maddee Rubenson"
+date: "August 21, 2024"
 output: rmarkdown::github_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -18,52 +21,69 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 )
 ```
 
-# Feather River Mini Snorkel Data
+# Feather River Mini Snorkel Data - 2001 & 2002
 
 ## Description of Monitoring Data
 
-**Timeframe:** March 2001 - August 2001
+A database was provided containing 2001 and 2002 mini snorkel data. 
 
-**Completeness of Record throughout timeframe:** fairly complete 
+**Timeframe:** March 2001 - August 2002
 
-**Sampling Location:** Feather River 
+**Completeness of Record throughout timeframe:** fairly complete
 
-**Data Contact:** Ryon Kurth 
+**Sampling Location:** Feather River
 
-## Questions 
-
+**Data Contact:** Ryon Kurth
 
 ## Source Database pull
 
-```{r, echo=TRUE}
+-   Database name: `minisnorkdb3.mdb`
+
+```{r include=FALSE}
 source(here::here('data-raw', 'query_4mac.R'))
 ```
 
-Read in data from google cloud, glimpse raw data and domain description sheet: 
+Read in data sourced from query script, glimpse raw data and domain
+description sheet:
+
 ```{r}
 # read in data to clean 
-microhabitat |> glimpse()
+microhabitat_2002 |> glimpse()
 ```
 
 ## Data transformations
 
-### first table reviewd is the All Fish Observation Table 
-All of the substrate and cover lookups are not true look ups. Substrate and cover column indicate a percentage of cover or substrate of each type. I updated the column names to reflect this and utilized the lookup tables to understand which substrate or cover type each column was referring to. 
+### first table reviewed is the All Fish Observation Table
 
-Columns removed: 
-- SpecAge removed - just a combination of species and age
-- i_cov_sum - removed because sum of other columns
-- o_cov_sum - removed because sum of other columns
-- sub_sum - removed because sum of other columns
-- start_time - just a date that seemed wrong 
-- end_time - also just a date that seemed wrong
-- crew - specific crew names do not need to be present on public EDI dataset
+All of the substrate and cover lookups are not true look ups. Substrate
+and cover column indicate a percentage of cover or substrate of each
+type. I updated the column names to reflect this and utilized the lookup
+tables to understand which substrate or cover type each column was
+referring to.
+
+Columns removed:
+
+-   SpecAge removed - just a combination of species and age
+
+-   i_cov_sum - removed because sum of other columns
+
+-   o_cov_sum - removed because sum of other columns
+
+-   sub_sum - removed because sum of other columns
+
+-   start_time - just a date that seemed wrong
+
+-   end_time - also just a date that seemed wrong
+
+-   crew - specific crew names do not need to be present on public EDI
+    dataset
 
 ```{r}
-# For different excel sheets for each year read in and combine years here
-joined_fish_obs <- microhabitat |> 
-  left_join(fish_data, by = c("TCode" = "TCode", "PDatID" = "PDatID")) |> 
-  left_join(species_code_lookup, by = c("Species" = "SpeciesCodeID")) |> # all codes are in the lookup
+# Combine the data here
+# 2001/2002 data
+all_fish_data <- microhabitat_2002 |> 
+  left_join(fish_data_2002, by = c("TCode" = "TCode", "PDatID" = "PDatID")) |> 
+  left_join(species_code_lookup_2002, by = c("Species" = "SpeciesCodeID")) |> # all codes are in the lookup
   select(-c(SpeciesCode, Species)) |>
   rename(species = Species.y, 
          percent_fine_substrate = Sub1, 
@@ -81,12 +101,12 @@ joined_fish_obs <- microhabitat |>
          percent_cover_half_meter_overhead = Ocov1, 
          percent_cover_more_than_half_meter_overhead = Ocov2)|> 
   # Clean in separate file
-  left_join(location_table, by = c("PDatID" = "PhysDataTblID")) |> 
-  left_join(weather_code_lookup, by = c("Weather" = "WeatherCodeLookUpID")) |> # all codes are in the lookup
+  left_join(location_table_2002, by = c("PDatID" = "PhysDataTblID")) |> 
+  left_join(weather_code_lookup_2002, by = c("Weather" = "WeatherCodeLookUpID")) |> # all codes are in the lookup
   select(-WeatherCode, -Weather) |> 
   rename(weather = Weather.y) |> 
   # note that there are 0 channel types which do not map to the lookup
-  left_join(channel_lookup, by = c("ChannelType" = "ChannelTypeCode")) |> 
+  left_join(channel_lookup_2002, by = c("ChannelType" = "ChannelTypeCode")) |> 
   select(-ChannelType, -ChannelTypeCodeID) |> 
   rename(channel_type = ChannelType.y) |> 
   janitor::clean_names() |> 
@@ -96,21 +116,28 @@ joined_fish_obs <- microhabitat |>
                          cgu == "gm." ~ "gm",
                          cgu == "" ~ NA,
                          T ~ cgu)) |> 
-  left_join(cgu_code_lookup |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
+  left_join(cgu_code_lookup_2002 |> mutate(CGUCode = tolower(CGUCode)), by = c("cgu" = "CGUCode")) |> 
   select(-cgu, -CGUCodeID, -sub_sum, -i_cov_sum, -o_cov_sum, -start_time, -end_time, -crew) |> 
-  rename(channel_geomorphic_unit = CGU) |> glimpse()
-  
-# HOW many have fish 
-joined_fish_obs |> filter(count >= 0) |> nrow()
+  rename(channel_geomorphic_unit = CGU) |> 
+  filter(!is.na(date)) |> 
+  write_csv('2002_fish_obs_tmp.csv') # annoying workaround to remove labeled date column 
+
+all_fish_data <- read_csv('2002_fish_obs_tmp.csv')  |> glimpse()
+
 ```
+
+**NA and Unknown Date Values**
+
+There are `r is.na(all_fish_data$date) |> sum()` NA values
 
 ## Explore Numeric Variables: {.tabset}
 
 ```{r}
 # Filter clean data to show only numeric variables 
-joined_fish_obs %>% select_if(is.numeric) %>% colnames()
+all_fish_data %>% select_if(is.numeric) %>% colnames()
 
 ```
+
 ### Variable: `count`
 
 **Plotting Count over Period of Record**
@@ -118,7 +145,7 @@ joined_fish_obs %>% select_if(is.numeric) %>% colnames()
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs %>% 
+all_fish_data %>% 
   ggplot(aes(x = rm, y = count, group = 1))+
   # geom_line()+
   geom_point(aes(x=date, y = count))+
@@ -131,24 +158,23 @@ joined_fish_obs %>%
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$count)
+summary(all_fish_data$count)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$count) |> sum()` NA values
-
+There are `r is.na(all_fish_data$count) |> sum()` NA values
 
 ### Variable: `date`
 
 **Plotting Date over Period of Record**
 
-All observations are from 2001 
+All observations are from 2001
 
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs %>% 
+all_fish_data %>% 
   ggplot(aes(x = date, y = TRUE, group = 1))+
   # geom_line()+
   geom_point(aes(x=date, y = TRUE))+
@@ -161,22 +187,21 @@ joined_fish_obs %>%
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$date)
+summary(all_fish_data$date)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$date) |> sum()` NA values
+There are `r is.na(all_fish_data$date) |> sum()` NA values
 
-
-### Variable: `river_mile``
+### Variable: \`river_mile\`\`
 
 **Plotting river_mile over Period of Record**
 
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs %>% 
+all_fish_data %>% 
   ggplot(aes(x = river_mile, y = date, group = 1))+
   # geom_line()+
   geom_point(aes(x=river_mile, y = date))+
@@ -189,12 +214,12 @@ joined_fish_obs %>%
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$river_mile)
+summary(all_fish_data$river_mile)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
+There are `r is.na(all_fish_data$river_mile) |> sum()` NA values
 
 ### Variable: `fl_mm`
 
@@ -203,7 +228,7 @@ There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = fl_mm)) + 
   geom_histogram(breaks=seq(0, 200, by=2)) + 
@@ -213,8 +238,9 @@ joined_fish_obs |>
   theme(text = element_text(size = 18),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
+
 ```{r}
-joined_fish_obs %>% 
+all_fish_data %>% 
   mutate(year = as.factor(year(date))) %>%
   ggplot(aes(x = fl_mm, y = species)) + 
   geom_boxplot() + 
@@ -225,18 +251,16 @@ joined_fish_obs %>%
 
 ```
 
-
 **Numeric Summary of fl_mm over Period of Record**
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$fl_mm)
+summary(all_fish_data$fl_mm)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$fl_mm) |> sum()` NA values
-
+There are `r is.na(all_fish_data$fl_mm) |> sum()` NA values
 
 ### Variable: `dist_to_bottom`
 
@@ -245,7 +269,7 @@ There are `r is.na(joined_fish_obs$fl_mm) |> sum()` NA values
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = dist_to_bottom)) + 
   geom_histogram(breaks=seq(0, 200, by=2)) + 
@@ -258,7 +282,7 @@ joined_fish_obs |>
 
 ```{r}
 
-joined_fish_obs %>% 
+all_fish_data %>% 
   mutate(year = as.factor(year(date))) %>%
   ggplot(aes(x = dist_to_bottom, y = as.factor(river_mile))) + 
   geom_boxplot() + 
@@ -272,20 +296,19 @@ joined_fish_obs %>%
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$river_mile)
+summary(all_fish_data$river_mile)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
-
+There are `r is.na(all_fish_data$river_mile) |> sum()` NA values
 
 ### Variable: `focal_velocity` & `velocity`
 
 **Plotting velocities over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = focal_velocity)) + 
   geom_histogram(breaks=seq(0, 10, by=1), group = "Focal velocity", fill = "blue", alpha = .2 ) + 
@@ -303,21 +326,21 @@ Looks like velocity and focal velocity have similar distributions
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$focal_velocity)
-summary(joined_fish_obs$velocity)
+summary(all_fish_data$focal_velocity)
+summary(all_fish_data$velocity)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$focal_velocity) |> sum()` NA values
-There are `r is.na(joined_fish_obs$velocity) |> sum()` NA values
+There are `r is.na(all_fish_data$focal_velocity) |> sum()` NA values
+There are `r is.na(all_fish_data$velocity) |> sum()` NA values
 
 ### Variable: `t_code`
 
 **Plotting t_code over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = t_code)) + 
   geom_histogram(breaks=seq(0, 30, by=1)) + 
@@ -332,19 +355,19 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$t_code)
+summary(all_fish_data$t_code)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$t_code) |> sum()` NA values
+There are `r is.na(all_fish_data$t_code) |> sum()` NA values
 
 ### Variable: `depth`
 
 **Plotting depth over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = depth)) + 
   geom_histogram(breaks=seq(0, 250, by=1)) + 
@@ -359,23 +382,23 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$depth)
+summary(all_fish_data$depth)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$t_code) |> sum()` NA values
+There are `r is.na(all_fish_data$t_code) |> sum()` NA values
 
-### Variable: `substrate `
+### Variable: `substrate`
 
 **Plotting substrate over Period of Record**
 
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
-joined_fish_obs |> 
+all_fish_data |> 
   arrange(river_mile) |> 
-  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  mutate(obs_id = 1:nrow(all_fish_data)) |> 
   select(obs_id, 
          percent_fine_substrate,
          percent_sand_substrate,
@@ -398,35 +421,38 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$percent_fine_substrate)
-summary(joined_fish_obs$percent_sand_substrate)
-summary(joined_fish_obs$percent_small_gravel_substrate)
-summary(joined_fish_obs$percent_large_gravel_substrate)
-summary(joined_fish_obs$percent_boulder_substrate)
-summary(joined_fish_obs$percent_cobble_substrate)
+summary(all_fish_data$percent_fine_substrate)
+summary(all_fish_data$percent_sand_substrate)
+summary(all_fish_data$percent_small_gravel_substrate)
+summary(all_fish_data$percent_large_gravel_substrate)
+summary(all_fish_data$percent_boulder_substrate)
+summary(all_fish_data$percent_cobble_substrate)
 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_fine_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_sand_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_boulder_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cobble_substrate) |> sum()` NA values
+There are `r is.na(all_fish_data$percent_fine_substrate) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_sand_substrate) |> sum()` NA values There
+are `r is.na(all_fish_data$percent_small_gravel_substrate) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_small_gravel_substrate) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_boulder_substrate) |> sum()` NA values
+There are `r is.na(all_fish_data$percent_cobble_substrate) |> sum()` NA
+values
 
 ### Variable: `inchannel cover`
 
 **Plotting inchannel cover over Period of Record**
 
-Notes: 
-- some cover totals less than 100%
+Notes: - some cover totals less than 100%
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   arrange(river_mile) |> 
-  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  mutate(obs_id = 1:nrow(all_fish_data)) |> 
   select(obs_id, 
          percent_no_cover_inchannel,
          percent_small_woody_cover_inchannel,
@@ -445,30 +471,33 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$percent_no_cover_inchannel)
-summary(joined_fish_obs$percent_small_woody_cover_inchannel)
-summary(joined_fish_obs$percent_large_woody_cover_inchannel)
-summary(joined_fish_obs$percent_submerged_aquatic_veg_inchannel)
+summary(all_fish_data$percent_no_cover_inchannel)
+summary(all_fish_data$percent_small_woody_cover_inchannel)
+summary(all_fish_data$percent_large_woody_cover_inchannel)
+summary(all_fish_data$percent_submerged_aquatic_veg_inchannel)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_no_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_woody_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_large_woody_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_submerged_aquatic_veg_inchannel) |> sum()` NA values
+There are `r is.na(all_fish_data$percent_no_cover_inchannel) |> sum()`
+NA values There are
+`r is.na(all_fish_data$percent_small_woody_cover_inchannel) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_large_woody_cover_inchannel) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_submerged_aquatic_veg_inchannel) |> sum()`
+NA values
 
 ### Variable: `overhead cover`
 
 **Plotting overhead cover over Period of Record**
 
-Notes: 
-- some cover totals more than 100%
+Notes: - some cover totals more than 100%
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   arrange(river_mile) |> 
-  mutate(obs_id = 1:nrow(joined_fish_obs)) |> 
+  mutate(obs_id = 1:nrow(all_fish_data)) |> 
   select(obs_id, 
          percent_undercut_bank,
          percent_no_cover_overhead,
@@ -487,25 +516,29 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$percent_undercut_bank)
-summary(joined_fish_obs$percent_no_cover_overhead)
-summary(joined_fish_obs$percent_cover_half_meter_overhead)
-summary(joined_fish_obs$percent_cover_more_than_half_meter_overhead)
+summary(all_fish_data$percent_undercut_bank)
+summary(all_fish_data$percent_no_cover_overhead)
+summary(all_fish_data$percent_cover_half_meter_overhead)
+summary(all_fish_data$percent_cover_more_than_half_meter_overhead)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_undercut_bank) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_no_cover_overhead) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cover_half_meter_overhead) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cover_more_than_half_meter_overhead) |> sum()` NA values
+There are `r is.na(all_fish_data$percent_undercut_bank) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_no_cover_overhead) |> sum()` NA values
+There are
+`r is.na(all_fish_data$percent_cover_half_meter_overhead) |> sum()` NA
+values There are
+`r is.na(all_fish_data$percent_cover_more_than_half_meter_overhead) |> sum()`
+NA values
 
 ### Variable: `sur_turb`
 
 **Plotting sur_turb over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = sur_turb)) + 
   geom_histogram(breaks=seq(0, 75, by=1)) + 
@@ -520,19 +553,19 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$sur_turb)
+summary(all_fish_data$sur_turb)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$sur_turb) |> sum()` NA values
+There are `r is.na(all_fish_data$sur_turb) |> sum()` NA values
 
 ### Variable: `dist_to_bottom`
 
 **Plotting dist_to_bottom over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = dist_to_bottom)) + 
   geom_histogram(breaks=seq(0, 5, by=1)) + 
@@ -547,40 +580,41 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$dist_to_bottom)
+summary(all_fish_data$dist_to_bottom)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$dist_to_bottom) |> sum()` NA values
+There are `r is.na(all_fish_data$dist_to_bottom) |> sum()` NA values
 
 ### Variable: `fish_data_id`
 
-
-Looks like there are one more unique fish data id than there is number of rows where joined fish has a count greater than o
+Looks like there are one more unique fish data id than there is number
+of rows where joined fish has a count greater than o
 
 ```{r}
-nrow(joined_fish_obs |> filter(count > 0)) == length(unique(joined_fish_obs$fish_data_id))
+nrow(all_fish_data |> filter(count > 0)) == length(unique(all_fish_data$fish_data_id))
 ```
 
 **Numeric Summary of fish_data_id over Period of Record**
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$fish_data_id)
+summary(all_fish_data$fish_data_id)
 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$fish_data_id) |> sum()` NA values
+There are `r is.na(all_fish_data$fish_data_id) |> sum()` NA values
 
 ### Variable: `micro_hab_data_tbl_id`
 
-There are more observations than unique micro hab ids so there are some micro habitat transects that have more than one row in the table
+There are more observations than unique micro hab ids so there are some
+micro habitat transects that have more than one row in the table
 
 ```{r}
-nrow(joined_fish_obs) == length(unique(joined_fish_obs$micro_hab_data_tbl_id))
+nrow(all_fish_data) == length(unique(all_fish_data$micro_hab_data_tbl_id))
 
 ```
 
@@ -588,19 +622,21 @@ nrow(joined_fish_obs) == length(unique(joined_fish_obs$micro_hab_data_tbl_id))
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$micro_hab_data_tbl_id)
+summary(all_fish_data$micro_hab_data_tbl_id)
 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$micro_hab_data_tbl_id) |> sum()` NA values
+There are `r is.na(all_fish_data$micro_hab_data_tbl_id) |> sum()` NA
+values
 
 ### Variable: `water_temp`
+
 **Plotting water_temp over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = water_temp)) + 
   geom_histogram(breaks=seq(0, 90, by=1)) + 
@@ -615,20 +651,19 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$water_temp)
+summary(all_fish_data$water_temp)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$water_temp) |> sum()` NA values
+There are `r is.na(all_fish_data$water_temp) |> sum()` NA values
 
 ### Variable: `flow`
-
 
 **Plotting flow over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   # filter(fork_length < 250) %>% # filter out 13 points so we can more clearly see distribution
   ggplot(aes(x = flow)) + 
   geom_histogram(breaks=seq(0, 3500, by=50)) + 
@@ -643,19 +678,19 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$flow)
+summary(all_fish_data$flow)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$flow) |> sum()` NA values
+There are `r is.na(all_fish_data$flow) |> sum()` NA values
 
 ### Variable: `number_of_divers`
 
 **Plotting number_of_divers over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   ggplot(aes(x = number_of_divers)) + 
   geom_histogram(breaks=seq(0, 6, by=1)) + 
   scale_x_continuous(breaks=seq(0, 6, by=1)) +
@@ -669,12 +704,12 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$number_of_divers)
+summary(all_fish_data$number_of_divers)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$number_of_divers) |> sum()` NA values
+There are `r is.na(all_fish_data$number_of_divers) |> sum()` NA values
 
 ### Variable: `reach_length`
 
@@ -683,7 +718,7 @@ All of the reach lengths are 25 (m?)
 **Plotting reach_length over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   ggplot(aes(x = reach_length)) + 
   geom_histogram(breaks=seq(0, 100, by=1)) + 
   scale_x_continuous(breaks=seq(0, 100, by=25)) +
@@ -697,12 +732,12 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$reach_length)
+summary(all_fish_data$reach_length)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$reach_length) |> sum()` NA values
+There are `r is.na(all_fish_data$reach_length) |> sum()` NA values
 
 ### Variable: `reach_width`
 
@@ -711,7 +746,7 @@ All of the reach widths are 4 meters
 **Plotting reach_width over Period of Record**
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   ggplot(aes(x = reach_width)) + 
   geom_histogram(breaks=seq(0, 10, by=1)) + 
   scale_x_continuous(breaks=seq(0, 10, by=1)) +
@@ -725,21 +760,22 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$reach_width)
+summary(all_fish_data$reach_width)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$reach_width) |> sum()` NA values
+There are `r is.na(all_fish_data$reach_width) |> sum()` NA values
 
 ### Variable: `chanel_width`
 
 **Plotting chanel_width over Period of Record**
 
-Even through reach width measured is only ever 4 meters sometimes channel width is much larger
+Even through reach width measured is only ever 4 meters sometimes
+channel width is much larger
 
 ```{r}
-joined_fish_obs |> 
+all_fish_data |> 
   ggplot(aes(x = channel_width)) + 
   geom_histogram(breaks=seq(0, 170, by=1)) + 
   scale_x_continuous(breaks=seq(0, 170, by=50)) +
@@ -753,110 +789,109 @@ joined_fish_obs |>
 
 ```{r}
 # Table with summary statistics
-summary(joined_fish_obs$channel_width)
+summary(all_fish_data$channel_width)
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$chanel_width) |> sum()` NA values
-
+There are `r is.na(all_fish_data$chanel_width) |> sum()` NA values
 
 ## Explore Categorical variables: {.tabset}
 
-
-
 ```{r}
 # Filter clean data to show only categorical variables 
-joined_fish_obs %>% select_if(is.character) %>% colnames()
+all_fish_data %>% select_if(is.character) %>% colnames()
 ```
-
-
 
 ### Variable: `location`
+
 ```{r}
-table(joined_fish_obs$location) 
+table(all_fish_data$location) 
 ```
 
-Fix inconsistencies with spelling, capitalization, and abbreviations. 
+Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 ```{r}
 # Fix any inconsistencies with categorical variables
-joined_fish_obs$location <- tolower(joined_fish_obs$location)
-table(joined_fish_obs$location) 
+all_fish_data$location <- tolower(all_fish_data$location)
+table(all_fish_data$location) 
 
-joined_fish_obs <- joined_fish_obs |> 
+all_fish_data <- all_fish_data |> 
   mutate(location = case_when(location %in% c("aleck riffle", "alec riffle") ~ "aleck riffle",
                               location == "hatchery  ditch" ~ "hatchery ditch",
                               location %in% c("hour bars", "hour bar") ~ "hour bars",
          T ~ location))
-unique(joined_fish_obs$location)
+unique(all_fish_data$location)
 # FIX aleck riffle and alec riffle
 # FIX hatchery  ditch and hatchery ditch
 ```
 
-
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$location) |> sum()` NA values
+There are `r is.na(all_fish_data$location) |> sum()` NA values
 
 ### Variable: `species`
+
 ```{r}
-table(joined_fish_obs$species) 
+table(all_fish_data$species) 
 ```
 
-Fix inconsistencies with spelling, capitalization, and abbreviations. 
+Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$species) |> sum()` NA values
+There are `r is.na(all_fish_data$species) |> sum()` NA values
 
 ### Variable: `channel_geomorphic_unit`
+
 ```{r}
-table(joined_fish_obs$channel_geomorphic_unit) 
+table(all_fish_data$channel_geomorphic_unit) 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$channel_geomorphic_unit) |> sum()` NA values
+There are `r is.na(all_fish_data$channel_geomorphic_unit) |> sum()` NA
+values
 
 ### Variable: `gps_coordinate`
+
 ```{r}
-table(joined_fish_obs$gps_coordinate) 
+table(all_fish_data$gps_coordinate) 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$gps_coordinate) |> sum()` NA values
+There are `r is.na(all_fish_data$gps_coordinate) |> sum()` NA values
 
 ### Variable: `weather`
+
 ```{r}
-table(joined_fish_obs$weather) 
+table(all_fish_data$weather) 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$weather) |> sum()` NA values
+There are `r is.na(all_fish_data$weather) |> sum()` NA values
 
 ### Variable: `channel_type`
+
 ```{r}
-table(joined_fish_obs$channel_type) 
+table(all_fish_data$channel_type) 
 ```
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$channel_type) |> sum()` NA values
-
-
+There are `r is.na(all_fish_data$channel_type) |> sum()` NA values
 
 ## Summary of identified issues
 
-* percent cover that is > or < 100% 
-* did some location name clean up but could be better
-* remove sac squawfish 
-* other? 
+-   percent cover that is \> or \< 100%
+-   did some location name clean up but could be better
+-   remove sac squawfish
+-   other?
 
 ```{r}
-microhabitat_with_fish_detections <- joined_fish_obs |> 
+microhabitat_with_fish_detections <- all_fish_data |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
          surface_turbidity = sur_turb) |> 
@@ -870,7 +905,7 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
   
 # TODO make sure the location names that we end with are lowercase
-survey_locations <- joined_fish_obs |> 
+survey_locations <- all_fish_data |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
   mutate(weather = tolower(weather),
@@ -909,8 +944,8 @@ sort(unique(survey_locations$location))
 ```{r}
 # Ryon reviewed the list of revised locations and provided some changes
 rk_revised <- read_csv(here::here("data-raw", "check_locations_4ryon_rk.csv")) |>
-  rename(location = existing_location_name) |> 
-  distinct() |> 
+  rename(location = existing_location_name) |>
+  distinct() |>
   filter(revised_location_name != "trailer park")
 
 survey_locations_revised <- survey_locations |> 
@@ -919,11 +954,9 @@ survey_locations_revised <- survey_locations |>
   select(-c(location_revised, revised_location_name)) 
 write_csv(survey_locations_revised, here::here("data-raw","survey_locations_revised.csv"))
 
-
 # Ashley used google to QC the coordinates- looked up coordinates by entering 39 (deg symbol) XX.XXN 121 (deg symbol) XX.XXW
 survey_locations_google <- read_csv(here::here("data-raw", "survey_locations_revised_av.csv"))
 ```
-
 
 ```{r}
 # badhia pulled coordinates from kmz Casey provided, use this to try and associate coordinates with the locations (https://netorg629193.sharepoint.com/:u:/s/VA-FeatherRiver/EeHO1UrPtzVMiO1lFkFTBQwBhTzsveQ6d62gZv7fbxVldg?e=hSjJDR)
@@ -985,7 +1018,7 @@ survey_locations_with_latlong <- survey_locations_revised |>
   select(-gps_coordinate, -river_mile) |>  # this field is messy and was converted to lat/long so removing
   left_join(location_coordinates)
 
-write_csv(survey_locations_with_latlong, here::here("data", "archive", "survey_locations.csv"))
+write_csv(survey_locations_with_latlong, here::here("data", "survey_locations.csv"))
 ```
 
 ```{r}
@@ -1042,15 +1075,14 @@ survey_locations_post_ryon_revisions_qc <- survey_locations_post_ryon_revisions 
 # these edits were mapped and there are no longer any disconnect between the location name and coordinates
 ```
 
-
 ## Save cleaned data to data/
 
 ```{r}
 # Save to data folder
 # Name file [watershed]_[data type].csv
-write_csv(microhabitat_with_fish_detections, here::here("data", "archive", "microhabitat_observations.csv"))
+write_csv(microhabitat_with_fish_detections, here::here("data", "microhabitat_observations.csv"))
 #write_csv(survey_locations, "data/survey_locations.csv")
-write_csv(survey_locations_post_ryon_revisions_qc, here::here("data", "archive", "survey_locations.csv"))
+write_csv(survey_locations_post_ryon_revisions_qc, here::here("data", "survey_locations.csv"))
 
 # create list of existing locations and revised locations for casey and ryon to check
 # check_locations <- survey_locations |> 

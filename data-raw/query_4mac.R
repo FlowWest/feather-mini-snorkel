@@ -36,12 +36,12 @@ fish_data <- read_csv(here::here("data-raw/database-tables/fish_data.csv")) |> g
 
 
 # more than columns of above compareable data
-# could this be the no detection data 
+# could this be the no detection data
 microhabitat <- mdb.get(mini_snork_db, tables = "MicroHabDataTbl") |> glimpse()
 # microhabitat_rbt_use_2001 <- mdb.get(mini_snork_db, tables = "Microhabitat Avail and RBT Use 2001")
 # rbt_reach <- mdb.get(mini_snork_db, tables = "RBT Reach Data Flat 2001") |> glimpse()
 reach_summary <- mdb.get(mini_snork_db, tables = "Reach Habitat Summary") |> glimpse()
-canopy_cover <- mdb.get(mini_snork_db, tables = "CanopyCover") |> glimpse() # ASK about this one 
+canopy_cover <- mdb.get(mini_snork_db, tables = "CanopyCover") |> glimpse() # ASK about this one
 write_csv(canopy_cover, here::here("data-raw/database-tables/canopy_cover_db_table.csv"))
 comments <- mdb.get(mini_snork_db, tables = "Comments") |> glimpse()
 
