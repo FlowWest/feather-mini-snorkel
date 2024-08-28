@@ -892,6 +892,8 @@ There are `r is.na(all_fish_data$channel_type) |> sum()` NA values
 -   remove sac squawfish
 -   other?
 
+### Fixing location names and adding coordinates
+
 ```{r}
 microhabitat_with_fish_detections <- all_fish_data |> 
   rename(transect_code = t_code,
@@ -904,7 +906,7 @@ microhabitat_with_fish_detections <- all_fish_data |>
          channel_geomorphic_unit = case_when(channel_geomorphic_unit == "glide edgewater" ~ "glide margin",
                                              channel_geomorphic_unit == "riffle edgewater" ~ "riffle margin",
                                              T ~ channel_geomorphic_unit)) |> 
-  select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
+  select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit) |> View()
   
 # TODO make sure the location names that we end with are lowercase
 survey_locations <- all_fish_data |> 
@@ -912,36 +914,50 @@ survey_locations <- all_fish_data |>
          location_table_id = p_dat_id) |> 
   mutate(weather = tolower(weather),
          channel_type = tolower(channel_type),
-         location_revised = case_when(location %in% c("across big hole island ( river right)", "across from big hole", "across from big hole boat ramp", "big hole island") ~ "big hole",
-                              location == "auditorium" ~ "auditorium riffle",
+         location_revised = case_when(grepl("big hole", location) ~ "big hole",
+                              grepl("auditorium", location) ~ "auditorium riffle",
                               location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
-                              location == "big bar - middle island river right" ~ "big bar",
-                              grepl("eye riffle", location) ~ "eye riffle",
+                              grepl("bedrock", location) ~ "bedrock riffle",
+                              grepl("cox", location) ~ "cox riffle", # TODO: is this a new location? 
+                              grepl("gateway", location) ~ "gateway riffle", # TODO: is this a new location? 
+                              grepl("goose", location) ~ "goose riffle", # TODO: is this a new location? 
+                              grepl("aleck", location) ~ "aleck riffle", # TODO: is this a new location? 
+                              grepl("big bar", location) ~ "big bar",
+                              grepl("eye", location) ~ "eye riffle",
                               location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
-                              location == "gridley side channel" ~ "gridley riffle",
+                              grepl("g95", location) ~ "g95",
+                              grepl("g-95", location) ~ "g95",
+                              grepl("g 95", location) ~ "g95",
+                              grepl("gridley", location)  ~ "gridley riffle",
+                              grepl("grifley", location)  ~ "gridley riffle",
                               grepl("herringer", location) ~ "herringer riffle",
-                              location == "junkyard" ~ "junkyard riffle",
+                              grepl("junkyard", location) ~ "junkyard riffle",
                               location == "lower hole" ~ "lower big hole",
                               location == "lower hour side channel" ~ "lower hour",
-                              location == "mathews riffle" ~ "matthews riffle",
-                              location == "mcfarland riffle`" ~ "mcfarland riffle",
+                              grepl("hour", location) ~ "lower hour",
+                              grepl("matthews", location) ~ "matthews riffle",
+                              grepl("mathews", location) ~ "matthews riffle",
+                              grepl("mcfarland", location) ~ "mcfarland riffle",
+                              grepl("macfarland", location) ~ "mcfarland riffle",
                               grepl("trailer park", location) ~ "trailer park riffle",
+                              grepl("trialer", location) ~ "trailer park riffle",
                               grepl("robinson", location) ~ "robinson riffle",
+                              grepl("robinsoon", location) ~ "robinson riffle",
                               grepl("shallow", location) ~ "shallow riffle",
                               grepl("steep", location) ~ "steep riffle",
                               grepl("vance", location) ~ "vance riffle",
                               grepl("weir", location) ~ "weir riffle",
+                              grepl("hatchery riffle", location) ~ "hatchery riffle", # this wasn't in the 2001 data
+                              grepl("hatchery ditch", location) ~ "hatchery ditch", # this wasn't in the 2001 data
                               T ~ location)) |> 
   select(location_table_id, date, location, location_revised, water_temp, 
         weather, river_mile, flow, number_of_divers, 
         reach_length, reach_width, channel_width, 
         channel_type, gps_coordinate) |> 
-  distinct()
+  distinct() 
   
-sort(unique(survey_locations$location))
+sort(unique(survey_locations$location_revised))
 ```
-
-### Fixing location names and adding coordinates
 
 ```{r}
 # Ryon reviewed the list of revised locations and provided some changes
