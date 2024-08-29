@@ -149,7 +149,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 152,2002-06-20,g95,HFC,68.6,direct sunlight,4000,2,25,4,38,sidechannel,57,assigned based on similar location,39.43085,-121.631033
 152,2002-06-20,g95,HFC,68.6,direct sunlight,4000,2,25,4,38,sidechannel,57,assigned based on similar location,39.43105,-121.632233
 152,2002-06-20,g95,HFC,68.6,direct sunlight,4000,2,25,4,38,sidechannel,57,assigned based on similar location,39.43085,-121.631033
-153,2002-06-20,cox riffle,NA,NA,direct sunlight,4000,2,25,4,22,mainchannel,47.5,NA,NA,NA
+153,2002-06-20,cox riffle,NA,NA,direct sunlight,4000,2,25,4,22,mainchannel,47.5,assigned based on similar location,39.33564114789087,-121.63215000396984
 154,2002-06-20,lower hour,HFC,74,direct sunlight,4000,2,25,4,62,mainchannel,56,reported in database,39.420667,-121.62566700000001
 155,2002-06-20,g95,HFC,66,direct sunlight,4000,2,25,4,33,sidechannel,57,assigned based on similar location,39.43085,-121.631033
 155,2002-06-20,g95,HFC,66,direct sunlight,4000,2,25,4,33,sidechannel,57,assigned based on similar location,39.43085,-121.631033
@@ -169,7 +169,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 157,2002-06-19,big hole,HFC,67,direct sunlight,4000,1,25,4,NA,mainchannel branch,58,reported in database,39.439367,-121.637
 157,2002-06-19,big hole,HFC,67,direct sunlight,4000,1,25,4,NA,mainchannel branch,58,assigned based on similar location,39.439367,-121.637
 157,2002-06-19,big hole,HFC,67,direct sunlight,4000,1,25,4,NA,mainchannel branch,58,assigned based on similar location,39.44335,-121.637133
-158,2002-06-19,gateway riffle,NA,65,direct sunlight,600,2,25,4,NA,mainchannel,59.8,NA,NA,NA
+158,2002-06-19,gateway riffle,NA,65,direct sunlight,600,2,25,4,NA,mainchannel,59.8,assigned based on similar location,39.45696577928121,-121.62560364814165
 159,2002-06-19,vance avenue,HFC,68,direct sunlight,4000,2,25,4,0,mainchannel branch,58.5,reported in database,39.45055,-121.639033
 159,2002-06-19,vance avenue,HFC,68,direct sunlight,4000,2,25,4,0,mainchannel branch,58.5,assigned based on similar location,39.45055,-121.639033
 159,2002-06-19,vance avenue,HFC,68,direct sunlight,4000,2,25,4,0,mainchannel branch,58.5,assigned based on similar location,39.45055,-121.639033
@@ -215,7 +215,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 170,2002-06-24,shallow riffle,HFC,71,direct sunlight,4000,3,25,4,51,sidechannel,47,reported in database,39.32905,-121.629017
 170,2002-06-24,shallow riffle,HFC,71,direct sunlight,4000,3,25,4,51,sidechannel,47,reported in database,39.3289,-121.62985
 170,2002-06-24,shallow riffle,HFC,71,direct sunlight,4000,3,25,4,51,sidechannel,47,assigned based on similar location,39.329417,-121.628667
-171,2002-06-24,shallow riffle,HFC,67,direct sunlight,NA,2,25,4,48,mainchannel,47,NA,NA,NA
+171,2002-06-24,shallow riffle,HFC,67,direct sunlight,NA,2,25,4,48,mainchannel,47,assigned based on similar location,39.33154115157018,-121.63033927513442
 172,2002-06-24,eye riffle,LFC,62,direct sunlight,700,3,25,4,21,sidechannel,60,assigned based on similar location,39.45725,-121.6139
 172,2002-06-24,eye riffle,LFC,62,direct sunlight,700,3,25,4,21,sidechannel,60,assigned based on similar location,39.45725,-121.6139
 172,2002-06-24,eye riffle,LFC,62,direct sunlight,700,3,25,4,21,sidechannel,60,reported in database,39.45725,-121.6139
@@ -287,8 +287,8 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 191,2002-07-22,goose riffle,HFC,66,direct sunlight,6100,3,25,4,80,mainchannel,55,reported in database,39.4045,-121.617
 191,2002-07-22,goose riffle,HFC,66,direct sunlight,6100,3,25,4,80,mainchannel,55,assigned based on similar location,39.403283,-121.618233
 192,2002-07-17,gridley riffle,HFC,0,direct sunlight,0,1,25,4,6,sidechannel,49.5,assigned based on similar location,39.354117,-121.630583
-193,2002-07-17,cox riffle,NA,12,direct sunlight,6100,1,25,4,86,mainchannel,47.5,NA,NA,NA
-194,2002-07-17,shallow riffle,HFC,17,direct sunlight,NA,2,25,4,39,mainchannel branch,47,NA,NA,NA
+193,2002-07-17,cox riffle,NA,12,direct sunlight,6100,1,25,4,86,mainchannel,47.5,assigned based on similar location,39.33564114789087,-121.63215000396984
+194,2002-07-17,shallow riffle,HFC,17,direct sunlight,NA,2,25,4,39,mainchannel branch,47,assigned based on similar location,39.32967570030937,-121.6285435907359
 195,2002-07-18,g95,HFC,62,direct sunlight,6100,2,25,4,38,sidechannel,0,assigned based on similar location,39.43085,-121.631033
 195,2002-07-18,g95,HFC,62,direct sunlight,6100,2,25,4,38,sidechannel,0,assigned based on similar location,39.43085,-121.631033
 195,2002-07-18,g95,HFC,62,direct sunlight,6100,2,25,4,38,sidechannel,0,reported in database,39.431367,-121.6322
@@ -321,7 +321,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 203,2002-03-25,big hole,HFC,12,direct sunlight,1200,2,25,4,62,mainchannel branch,58,reported in database,39.439367,-121.637
 203,2002-03-25,big hole,HFC,12,direct sunlight,1200,2,25,4,62,mainchannel branch,58,assigned based on similar location,39.439367,-121.637
 203,2002-03-25,big hole,HFC,12,direct sunlight,1200,2,25,4,62,mainchannel branch,58,assigned based on similar location,39.44335,-121.637133
-204,2002-03-25,shallow riffle,HFC,53.5,overcast,1200,2,25,4,60,mainchannel,47,NA,NA,NA
+204,2002-03-25,shallow riffle,HFC,53.5,overcast,1200,2,25,4,60,mainchannel,47,assigned based on similar location,39.33154115157018,-121.63033927513442
 205,2002-03-25,herringer riffle,HFC,54,direct sunlight,1200,2,25,4,65,mainchannel,45,reported in database,39.319,-121.620333
 205,2002-03-25,herringer riffle,HFC,54,direct sunlight,1200,2,25,4,65,mainchannel,45,assigned based on similar location,39.316667,-121.6215
 206,2002-03-26,vance avenue,HFC,14.5,direct sunlight,1200,2,25,4,62,mainchannel branch,58.5,reported in database,39.45055,-121.639033
@@ -408,7 +408,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 231,2002-04-16,matthews riffle,LFC,0,overcast,600,2,25,4,41,mainchannel,64,assigned based on similar location,39.49157966172107,-121.5790352595597
 231,2002-04-16,matthews riffle,LFC,0,overcast,600,2,25,4,41,mainchannel,64,reported in database,39.492917,-121.579917
 231,2002-04-16,matthews riffle,LFC,0,overcast,600,2,25,4,41,mainchannel,64,assigned based on similar location,39.492917,-121.579917
-232,2002-04-17,gateway riffle,NA,54.5,direct sunlight,600,2,25,4,32,mainchannel,59.8,NA,NA,NA
+232,2002-04-17,gateway riffle,NA,54.5,direct sunlight,600,2,25,4,32,mainchannel,59.8,assigned based on similar location,39.45696577928121,-121.62560364814165
 233,2002-04-17,eye riffle,LFC,53,direct sunlight,NA,2,25,4,19,mainchannel,60,assigned based on similar location,39.45725,-121.6139
 233,2002-04-17,eye riffle,LFC,53,direct sunlight,NA,2,25,4,19,mainchannel,60,assigned based on similar location,39.45725,-121.6139
 233,2002-04-17,eye riffle,LFC,53,direct sunlight,NA,2,25,4,19,mainchannel,60,assigned based on similar location,39.45725,-121.6139
@@ -445,8 +445,8 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 241,2002-08-20,steep riffle,LFC,17,direct sunlight,700,2,25,4,49,mainchannel,61,assigned based on similar location,39.462633,-121.604383
 242,2002-08-14,herringer riffle,HFC,76,direct sunlight,4500,2,25,4,72,mainchannel,52,reported in database,39.319,-121.620333
 242,2002-08-14,herringer riffle,HFC,76,direct sunlight,4500,2,25,4,72,mainchannel,52,assigned based on similar location,39.316667,-121.6215
-243,2002-08-14,cox riffle,NA,72,direct sunlight,4500,2,25,4,86,mainchannel,47.5,NA,NA,NA
-244,2002-08-14,shallow riffle,HFC,66,direct sunlight,0,2,25,4,37,mainchannel branch,47,NA,NA,NA
+243,2002-08-14,cox riffle,NA,72,direct sunlight,4500,2,25,4,86,mainchannel,47.5,assigned based on similar location,39.33564114789087,-121.63215000396984
+244,2002-08-14,shallow riffle,HFC,66,direct sunlight,0,2,25,4,37,mainchannel branch,47,assigned based on similar location,39.32967570030937,-121.6285435907359
 246,2002-08-19,hatchery riffle,LFC,57,direct sunlight,700,1,25,4,30,mainchannel branch,66.5,assigned based on similar location,39.515667,-121.554667
 246,2002-08-19,hatchery riffle,LFC,57,direct sunlight,700,1,25,4,30,mainchannel branch,66.5,assigned based on similar location,39.515667,-121.554667
 246,2002-08-19,hatchery riffle,LFC,57,direct sunlight,700,1,25,4,30,mainchannel branch,66.5,assigned based on similar location,39.515667,-121.554667
@@ -463,7 +463,7 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 251,2002-04-24,macfarland riffle,HFC,54,direct sunlight,1200,1,25,4,49,mainchannel,52,assigned based on similar location,39.37505,-121.632367
 252,2002-04-24,lower hour,HFC,0,direct sunlight,1200,1,25,4,30,mainchannel branch,46,reported in database,39.420667,-121.62566700000001
 253,2002-04-24,lower hour,HFC,0,direct sunlight,1200,1,25,4,30,mainchannel branch,56,reported in database,39.420667,-121.62566700000001
-254,2002-04-25,cox riffle,NA,62,direct sunlight,1200,2,25,4,55,mainchannel,47.5,NA,NA,NA
+254,2002-04-25,cox riffle,NA,62,direct sunlight,1200,2,25,4,55,mainchannel,47.5,assigned based on similar location,39.33564114789087,-121.63215000396984
 255,2002-04-25,shallow riffle,HFC,62.5,overcast,1200,1,25,4,28,sidechannel,47,reported in database,39.329283,-121.630683
 255,2002-04-25,shallow riffle,HFC,62.5,overcast,1200,1,25,4,28,sidechannel,47,reported in database,39.329417,-121.628667
 255,2002-04-25,shallow riffle,HFC,62.5,overcast,1200,1,25,4,28,sidechannel,47,reported in database,39.32905,-121.629017
@@ -518,16 +518,16 @@ location_table_id,date,location,channel_location,water_temp,weather,flow,number_
 268,2002-05-20,eye riffle,LFC,4,overcast,650,2,25,4,13,sidechannel,60,reported in database,39.45725,-121.6139
 268,2002-05-20,eye riffle,LFC,4,overcast,650,2,25,4,13,sidechannel,60,assigned based on similar location,39.457533,-121.613133
 269,2002-05-20,eye riffle,LFC,54,precipitation,4650,2,25,4,13,mainchannel branch,60,assigned based on similar location,39.45725,-121.6139
-270,2002-05-20,gateway riffle,NA,54,direct sunlight,600,2,25,4,45,mainchannel,59.8,NA,NA,NA
+270,2002-05-20,gateway riffle,NA,54,direct sunlight,600,2,25,4,45,mainchannel,59.8,assigned based on similar location,39.45696577928121,-121.62560364814165
 271,2002-05-30,lower hour,HFC,67,direct sunlight,0,2,25,4,38,mainchannel,56,reported in database,39.420667,-121.62566700000001
-272,2002-05-30,shallow riffle,HFC,67,direct sunlight,1300,2,25,4,52,mainchannel,47,NA,NA,NA
+272,2002-05-30,shallow riffle,HFC,67,direct sunlight,1300,2,25,4,52,mainchannel,47,assigned based on similar location,39.33154115157018,-121.63033927513442
 273,2002-05-30,big bar,HFC,72,direct sunlight,1300,2,25,4,32,mainchannel,0,reported in database,39.385917,-121.6287
 273,2002-05-30,big bar,HFC,72,direct sunlight,1300,2,25,4,32,mainchannel,0,reported in database,39.385917,-121.6287
 273,2002-05-30,big bar,HFC,72,direct sunlight,1300,2,25,4,32,mainchannel,0,reported in database,39.386467,-121.62785
 273,2002-05-30,big bar,HFC,72,direct sunlight,1300,2,25,4,32,mainchannel,0,assigned based on similar location,39.385917,-121.6287
 274,2002-05-30,junkyard riffle,HFC,68,direct sunlight,1300,2,25,4,63,mainchannel,48.5,reported in database,39.34555,-121.626233
 274,2002-05-30,junkyard riffle,HFC,68,direct sunlight,1300,2,25,4,63,mainchannel,48.5,reported in database,39.345633,-121.626267
-275,2002-05-30,cox riffle,NA,0,direct sunlight,1300,2,25,4,50,mainchannel,47.5,NA,NA,NA
+275,2002-05-30,cox riffle,NA,0,direct sunlight,1300,2,25,4,50,mainchannel,47.5,assigned based on similar location,39.33564114789087,-121.63215000396984
 276,2002-05-30,macfarland riffle,HFC,0,direct sunlight,0,2,25,4,45,mainchannel,52,assigned based on similar location,39.375,-121.632333
 276,2002-05-30,macfarland riffle,HFC,0,direct sunlight,0,2,25,4,45,mainchannel,52,reported in database,39.375,-121.632333
 276,2002-05-30,macfarland riffle,HFC,0,direct sunlight,0,2,25,4,45,mainchannel,52,reported in database,39.37505,-121.632367

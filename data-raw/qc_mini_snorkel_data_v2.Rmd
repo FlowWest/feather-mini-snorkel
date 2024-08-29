@@ -930,8 +930,8 @@ survey_locations <- all_fish_data |>
                               grepl("bedrock", location) ~ "bedrock riffle",
                               grepl("cox", location) ~ "cox riffle", # TODO: is this a new location? 
                               grepl("gateway", location) ~ "gateway riffle", # TODO: is this a new location? 
-                              grepl("goose", location) ~ "goose riffle", # TODO: is this a new location? 
-                              grepl("aleck", location) ~ "aleck riffle", # TODO: is this a new location? 
+                              grepl("goose", location) ~ "goose riffle", 
+                              grepl("aleck", location) ~ "aleck riffle", 
                               grepl("big bar", location) ~ "big bar",
                               grepl("eye", location) ~ "eye riffle",
                               location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
@@ -957,8 +957,8 @@ survey_locations <- all_fish_data |>
                               grepl("steep", location) ~ "steep riffle",
                               grepl("vance", location) ~ "vance avenue",
                               grepl("weir", location) ~ "weir riffle",
-                              grepl("hatchery riffle", location) ~ "hatchery riffle", # this wasn't in the 2001 data
-                              grepl("hatchery ditch", location) ~ "hatchery ditch", # this wasn't in the 2001 data
+                              grepl("hatchery riffle", location) ~ "hatchery riffle", 
+                              grepl("hatchery ditch", location) ~ "hatchery ditch", 
                               T ~ location)) |> 
   select(location_table_id, date, location, location_revised, water_temp, 
         weather, river_mile, flow, number_of_divers, 
@@ -991,7 +991,20 @@ location_data_updated <- survey_locations |>
   select(colnames(survey_locations_2001)) |> 
   bind_rows(survey_locations_2001) |> 
   arrange(location_table_id) |> 
-  mutate(channel_location = case_when(location == "shallow riffle" ~ "HFC",
+  mutate(latitude = case_when(location == "cox riffle" ~  39.33564114789087, # based off of gps_coordinates
+                              location == "gateway riffle" ~ 39.45696577928121, 
+                              (location == "shallow riffle" & channel_type == "mainchannel branch") ~ 39.32967570030937,
+                              (location == "shallow riffle" & channel_type == "mainchannel") ~ 39.33154115157018, 
+                              T ~ latitude), 
+         longitude = case_when(location == "cox riffle" ~ -121.63215000396984, # based off of gps_coordinates
+                               location == "gateway riffle" ~ -121.62560364814165,
+                                (location == "shallow riffle" & channel_type == "mainchannel branch") ~ -121.6285435907359,
+                               (location == "shallow riffle" & channel_type == "mainchannel") ~ -121.63033927513442,
+                               T ~ longitude), 
+         coordinate_method = case_when(location %in% c("cox riffle", "gateway riffle") ~ "assigned based on similar location",
+                                       (location == "shallow riffle" & channel_type %in%  c("mainchannel branch", "mainchannel")) ~ "assigned based on similar location", 
+                                       T ~ coordinate_method),
+        channel_location = case_when(location == "shallow riffle" ~ "HFC",
                                       location == "trailer park" ~ "LFC", # this removes 1 NA but is consistent with all other trailer parks
                                       T ~ channel_location),
          channel_type = case_when(location == "trailer park" ~ "mainchannel",
@@ -1006,14 +1019,7 @@ location_data_updated <- survey_locations |>
 
 Location reconciliation that still needs to be done for 2002 data:
 
--   For 2002 shallow riffle locations there are channel types that
-    include `mainchannel`and `mainchannel branch`. These channel types
-    don't exist in the 2001 lookup so there are NAs. To resolve, we can
-    receive the coordinates for `mainchannel` and `mainchannel branch`
-    or change the channel type to `side channel`
-
--   All remaining lat and longs are related to cox riffle and gateway
-    riffle. We will need these coordinates and whether they are LFC/HFC
+-   cox riffle and gateway riffles need HFC/LFC designation 
 
 Save data:
 
