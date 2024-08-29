@@ -1582,7 +1582,7 @@ table(all_fish_data$location) </code></pre>
   mutate(location = case_when(location %in% c(&quot;aleck riffle&quot;, &quot;alec riffle&quot;) ~ &quot;aleck riffle&quot;,
                               location == &quot;hatchery  ditch&quot; ~ &quot;hatchery ditch&quot;,
                               location %in% c(&quot;hour bars&quot;, &quot;hour bar&quot;) ~ &quot;hour bars&quot;,
-         T ~ location))
+                              T ~ location))
 unique(all_fish_data$location)</code></pre>
 <pre><code>##   [1] &quot;hatchery ditch&quot;                         
 ##   [2] &quot;hour bars&quot;                              
@@ -1790,9 +1790,9 @@ abbreviations.</p>
 ##           39.29.058 121.34.742        39&#39; 27.68&#39;, 121&#39; 36.48&#39; 
 ##                             36                             36 
 ##         39°23.167&#39;N 121°37.722        39°25.304&#39;N 121°37.540W 
-##                             36                             36 
+##                             37                             35 
 ##                             70     N 31º 29.68  W 121º 34.765 
-##                             35                             37 
+##                             35                             35 
 ##    N 39  24.340  W 121  37.030      N 39 19.065  W 121 37.381 
 ##                             36                             36 
 ##       N 39 19.212 W 121 37.185        N 39 19.743 W121 37.729 
@@ -1904,57 +1904,57 @@ abbreviations.</p>
 ##      N 39*23.154&#39; W121*37.723&#39;   N 39*27.758&#39;, w 121* 36.263&#39; 
 ##                             36                             36 
 ##       n 39*30.950, w 21*33.212      N 39° 19.14 W 121° 37.22&#39; 
-##                             36                             36 
+##                             36                             37 
 ##     N 39° 19.743 W 121° 37.741         N 39° 20.8 W 121° 37.6 
-##                             35                             37 
+##                             35                             36 
 ##    N 39° 22.50&#39;  W 121° 37.94&#39;  N 39° 23.188&#39;  W 121° 37.671&#39; 
-##                             37                             36 
+##                             36                             36 
 ##  N 39° 24.197&#39;  W 121° 37.094&#39;    N 39° 24.27&#39;  W 121° 37.02&#39; 
 ##                             36                             36 
-##    N 39° 24.95&#39;  W 121° 37.60&#39;     N 39° 25.24&#39;  W 121° 37.54 
-##                             36                              1 
-##    N 39° 25.24&#39;  W 121° 37.54&#39;    N 39° 25.75&#39;  W 121° 37.57&#39; 
+##    N 39° 24.95&#39;  W 121° 37.60&#39;    N 39° 25.24&#39;  W 121° 37.54&#39; 
 ##                             36                             37 
-##  N 39° 25.863&#39;  W 121° 37.934&#39;  N 39° 25.882&#39;  W 121° 37.932&#39; 
-##                             37                             36 
-##     N 39° 26.24&#39;  W 121° 38.28    N 39° 26.24&#39;  W 121° 38.28&#39; 
+##    N 39° 25.75&#39;  W 121° 37.57&#39;  N 39° 25.863&#39;  W 121° 37.934&#39; 
+##                             34                             35 
+##  N 39° 25.882&#39;  W 121° 37.932&#39;     N 39° 26.24&#39;  W 121° 38.28 
+##                             36                             37 
+##    N 39° 26.24&#39;  W 121° 38.28&#39;  N 39° 26.289&#39;  W 121° 38.260&#39; 
+##                             36                             35 
+##  N 39° 26.362&#39;  W 121° 38.220&#39;  N 39° 26.592&#39;  W 121° 38.209&#39; 
+##                             37                             31 
+##  N 39° 26.592&#39;  W 121° 38.212&#39;  N 39° 26.601&#39;  W 121° 38.228&#39; 
+##                             36                             38 
+##  N 39° 27.435&#39;  W 121° 36.834&#39;  N 39° 27.452&#39;  W 121° 36.788&#39; 
 ##                             34                             36 
-##  N 39° 26.289&#39;  W 121° 38.260&#39;  N 39° 26.362&#39;  W 121° 38.220&#39; 
-##                             37                             37 
-##  N 39° 26.592&#39;  W 121° 38.209&#39;  N 39° 26.592&#39;  W 121° 38.212&#39; 
-##                             37                             36 
-##  N 39° 26.601&#39;  W 121° 38.228&#39;  N 39° 27.435&#39;  W 121° 36.834&#39; 
-##                             37                             35 
-##  N 39° 27.452&#39;  W 121° 36.788&#39;  N 39° 27.705&#39;  W 121° 36.387&#39; 
-##                             36                             37 
-##  N 39° 27.754&#39;  W 121° 36.194&#39;  N 39° 27.795&#39;  W 121° 36.241&#39; 
-##                             36                             34 
-##  N 39° 27.796&#39;  W 121° 36.242&#39;   N 39° 27.895&#39;  W 121° 35.857 
-##                             37                             36 
-##  N 39° 27.976&#39;  W 121° 35.981&#39;  N 39° 29.012&#39;  W 121° 34.740&#39; 
-##                             35                             70 
-##  N 39° 29.052&#39;  W 121° 34.755&#39;  N 39° 29.103&#39;  W 121* 34.740&#39; 
-##                             36                             36 
-##  N 39° 30.750&#39;  W 121° 34.166&#39;   N 39° 30.906&#39;  W 121° 33.600 
-##                             37                             36 
-##    N 39° 30.92&#39;  W 121° 33.54&#39;    N 39° 30.94&#39;  W 121° 33.28&#39; 
-##                             44                             38 
-##   N 39° 30.987&#39;  W 121° 33.46&#39;      N 39°19.068&quot; W 121°37.256 
-##                             36                             36 
-##     N 39°19.734&#39; W 121°37.791&#39;       N 39°21.261 W 121°37.779 
-##                             36                             36 
-##      N 39°22.503 W 121° 37.942   N 39º 19.139&#39;  W 121º 37.216 
-##                             35                             36 
-##   N 39º 24.319&#39;  W 121º 36.976    N 39º 27.814  W 121º 36.234 
-##                             36                             36 
-##   N 39º 27.962&#39;  W121º 35.980&#39;   N 39º 27.982&#39;  W 121º 35.920 
-##                             36                             36 
-##    N 39º 27.983  W 121º 35.919   N 39º 29.066&#39;  W121º 34.739&#39; 
+##  N 39° 27.705&#39;  W 121° 36.387&#39;  N 39° 27.754&#39;  W 121° 36.194&#39; 
 ##                             36                             39 
+##  N 39° 27.795&#39;  W 121° 36.241&#39;  N 39° 27.796&#39;  W 121° 36.242&#39; 
+##                             35                             36 
+##   N 39° 27.895&#39;  W 121° 35.857  N 39° 27.976&#39;  W 121° 35.981&#39; 
+##                             35                             36 
+##  N 39° 29.012&#39;  W 121° 34.740&#39;  N 39° 29.052&#39;  W 121° 34.755&#39; 
+##                             75                             38 
+##  N 39° 29.103&#39;  W 121* 34.740&#39;  N 39° 30.750&#39;  W 121° 34.166&#39; 
+##                             36                             37 
+##   N 39° 30.906&#39;  W 121° 33.600    N 39° 30.92&#39;  W 121° 33.54&#39; 
+##                             36                             44 
+##    N 39° 30.94&#39;  W 121° 33.28&#39;   N 39° 30.987&#39;  W 121° 33.46&#39; 
+##                             38                             36 
+##      N 39°19.068&quot; W 121°37.256     N 39°19.734&#39; W 121°37.791&#39; 
+##                             36                             35 
+##       N 39°21.261 W 121°37.779      N 39°22.503 W 121° 37.942 
+##                             37                             36 
+##   N 39º 19.139&#39;  W 121º 37.216   N 39º 24.319&#39;  W 121º 36.976 
+##                             36                             36 
+##    N 39º 27.814  W 121º 36.234   N 39º 27.962&#39;  W121º 35.980&#39; 
+##                             36                             36 
+##   N 39º 27.982&#39;  W 121º 35.920   N 39º 27.983   W 121º 35.920 
+##                             36                              2 
+##    N 39º 27.983  W 121º 35.919   N 39º 29.066&#39;  W121º 34.739&#39; 
+##                             35                             40 
 ## N 39º 29.575&#39;   W 121º 34.795&#39;     N 39º 29.642, W121º 34.801 
 ##                             36                             36 
 ##   N 39º 30.519&#39;  W 121º 30.288   N 39º 30.961&#39;  W 121º 33.529 
-##                             37                             35 
+##                             36                             37 
 ##      N: 39.29.084 W:121.34.741      N. 39 20.132 W 121 37.929 
 ##                             37                             36 
 ##     N. 39.26.122 W. 121.38.204     N. 39.27.424  W:121.36.863 
@@ -2027,52 +2027,52 @@ reconciled names and add the 2002 data.</p>
                                              channel_geomorphic_unit == &quot;riffle edgewater&quot; ~ &quot;riffle margin&quot;,
                                              T ~ channel_geomorphic_unit)) |&gt; 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit) 
-  
+
 survey_locations &lt;- all_fish_data |&gt; 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |&gt; 
   mutate(weather = tolower(weather),
          channel_type = tolower(channel_type),
          location_revised = case_when(grepl(&quot;big hole&quot;, location) ~ &quot;big hole&quot;,
-                              grepl(&quot;auditorium&quot;, location) ~ &quot;auditorium riffle&quot;,
-                              location %in% c(&quot;bedrock&quot;, &quot;bedrock park&quot;, &quot;bedrock park, unit #50&quot;) ~ &quot;bedrock riffle&quot;,
-                              grepl(&quot;bedrock&quot;, location) ~ &quot;bedrock riffle&quot;,
-                              grepl(&quot;cox&quot;, location) ~ &quot;cox riffle&quot;, # TODO: is this a new location? 
-                              grepl(&quot;gateway&quot;, location) ~ &quot;gateway riffle&quot;, # TODO: is this a new location? 
-                              grepl(&quot;goose&quot;, location) ~ &quot;goose riffle&quot;, 
-                              grepl(&quot;aleck&quot;, location) ~ &quot;aleck riffle&quot;, 
-                              grepl(&quot;big bar&quot;, location) ~ &quot;big bar&quot;,
-                              grepl(&quot;eye&quot;, location) ~ &quot;eye riffle&quot;,
-                              location %in% c(&quot;east g 95&quot;, &quot;g 95&quot;, &quot;g-95 side channel&quot;, &quot;g95&quot;, &quot;g95 (area)&quot;, &quot;g95 east&quot;, &quot;g95 rr downstream head&quot;, &quot;g95 west side channel&quot;) ~ &quot;g95&quot;,
-                              grepl(&quot;g95&quot;, location) ~ &quot;g95&quot;,
-                              grepl(&quot;g-95&quot;, location) ~ &quot;g95&quot;,
-                              grepl(&quot;g 95&quot;, location) ~ &quot;g95&quot;,
-                              grepl(&quot;gridley&quot;, location)  ~ &quot;gridley riffle&quot;,
-                              grepl(&quot;grifley&quot;, location)  ~ &quot;gridley riffle&quot;,
-                              grepl(&quot;herringer&quot;, location) ~ &quot;herringer riffle&quot;,
-                              grepl(&quot;junkyard&quot;, location) ~ &quot;junkyard riffle&quot;,
-                              location == &quot;lower hole&quot; ~ &quot;lower big hole&quot;,
-                              location == &quot;lower hour side channel&quot; ~ &quot;lower hour&quot;,
-                              grepl(&quot;hour&quot;, location) ~ &quot;lower hour&quot;,
-                              grepl(&quot;matthews&quot;, location) ~ &quot;matthews riffle&quot;,
-                              grepl(&quot;mathews&quot;, location) ~ &quot;matthews riffle&quot;,
-                              grepl(&quot;mcfarland&quot;, location) ~ &quot;macfarland riffle&quot;,
-                              grepl(&quot;macfarland&quot;, location) ~ &quot;macfarland riffle&quot;,
-                              grepl(&quot;trailer park&quot;, location) ~ &quot;trailer park&quot;,
-                              grepl(&quot;trialer&quot;, location) ~ &quot;trailer park&quot;,
-                              grepl(&quot;robinson&quot;, location) ~ &quot;robinson riffle&quot;,
-                              grepl(&quot;robinsoon&quot;, location) ~ &quot;robinson riffle&quot;,
-                              grepl(&quot;shallow&quot;, location) ~ &quot;shallow riffle&quot;,
-                              grepl(&quot;steep&quot;, location) ~ &quot;steep riffle&quot;,
-                              grepl(&quot;vance&quot;, location) ~ &quot;vance avenue&quot;,
-                              grepl(&quot;weir&quot;, location) ~ &quot;weir riffle&quot;,
-                              grepl(&quot;hatchery riffle&quot;, location) ~ &quot;hatchery riffle&quot;, 
-                              grepl(&quot;hatchery ditch&quot;, location) ~ &quot;hatchery ditch&quot;, 
-                              T ~ location)) |&gt; 
+                                      grepl(&quot;auditorium&quot;, location) ~ &quot;auditorium riffle&quot;,
+                                      location %in% c(&quot;bedrock&quot;, &quot;bedrock park&quot;, &quot;bedrock park, unit #50&quot;) ~ &quot;bedrock riffle&quot;,
+                                      grepl(&quot;bedrock&quot;, location) ~ &quot;bedrock riffle&quot;,
+                                      grepl(&quot;cox&quot;, location) ~ &quot;cox riffle&quot;, # TODO: is this a new location? 
+                                      grepl(&quot;gateway&quot;, location) ~ &quot;gateway riffle&quot;, # TODO: is this a new location? 
+                                      grepl(&quot;goose&quot;, location) ~ &quot;goose riffle&quot;, 
+                                      grepl(&quot;aleck&quot;, location) ~ &quot;aleck riffle&quot;, 
+                                      grepl(&quot;big bar&quot;, location) ~ &quot;big bar&quot;,
+                                      grepl(&quot;eye&quot;, location) ~ &quot;eye riffle&quot;,
+                                      location %in% c(&quot;east g 95&quot;, &quot;g 95&quot;, &quot;g-95 side channel&quot;, &quot;g95&quot;, &quot;g95 (area)&quot;, &quot;g95 east&quot;, &quot;g95 rr downstream head&quot;, &quot;g95 west side channel&quot;) ~ &quot;g95&quot;,
+                                      grepl(&quot;g95&quot;, location) ~ &quot;g95&quot;,
+                                      grepl(&quot;g-95&quot;, location) ~ &quot;g95&quot;,
+                                      grepl(&quot;g 95&quot;, location) ~ &quot;g95&quot;,
+                                      grepl(&quot;gridley&quot;, location)  ~ &quot;gridley riffle&quot;,
+                                      grepl(&quot;grifley&quot;, location)  ~ &quot;gridley riffle&quot;,
+                                      grepl(&quot;herringer&quot;, location) ~ &quot;herringer riffle&quot;,
+                                      grepl(&quot;junkyard&quot;, location) ~ &quot;junkyard riffle&quot;,
+                                      location == &quot;lower hole&quot; ~ &quot;lower big hole&quot;,
+                                      location == &quot;lower hour side channel&quot; ~ &quot;lower hour&quot;,
+                                      grepl(&quot;hour&quot;, location) ~ &quot;lower hour&quot;,
+                                      grepl(&quot;matthews&quot;, location) ~ &quot;matthews riffle&quot;,
+                                      grepl(&quot;mathews&quot;, location) ~ &quot;matthews riffle&quot;,
+                                      grepl(&quot;mcfarland&quot;, location) ~ &quot;macfarland riffle&quot;,
+                                      grepl(&quot;macfarland&quot;, location) ~ &quot;macfarland riffle&quot;,
+                                      grepl(&quot;trailer park&quot;, location) ~ &quot;trailer park&quot;,
+                                      grepl(&quot;trialer&quot;, location) ~ &quot;trailer park&quot;,
+                                      grepl(&quot;robinson&quot;, location) ~ &quot;robinson riffle&quot;,
+                                      grepl(&quot;robinsoon&quot;, location) ~ &quot;robinson riffle&quot;,
+                                      grepl(&quot;shallow&quot;, location) ~ &quot;shallow riffle&quot;,
+                                      grepl(&quot;steep&quot;, location) ~ &quot;steep riffle&quot;,
+                                      grepl(&quot;vance&quot;, location) ~ &quot;vance avenue&quot;,
+                                      grepl(&quot;weir&quot;, location) ~ &quot;weir riffle&quot;,
+                                      grepl(&quot;hatchery riffle&quot;, location) ~ &quot;hatchery riffle&quot;, 
+                                      grepl(&quot;hatchery ditch&quot;, location) ~ &quot;hatchery ditch&quot;, 
+                                      T ~ location)) |&gt; 
   select(location_table_id, date, location, location_revised, water_temp, 
-        weather, river_mile, flow, number_of_divers, 
-        reach_length, reach_width, channel_width, 
-        channel_type, gps_coordinate) |&gt; 
+         weather, river_mile, flow, number_of_divers, 
+         reach_length, reach_width, channel_width, 
+         channel_type, gps_coordinate) |&gt; 
   select(-location) |&gt; 
   rename(location = location_revised) |&gt; 
   distinct() </code></pre>
@@ -2110,14 +2110,16 @@ location_data_updated &lt;- survey_locations |&gt;
                               T ~ latitude), 
          longitude = case_when(location == &quot;cox riffle&quot; ~ -121.63215000396984, # based off of gps_coordinates
                                location == &quot;gateway riffle&quot; ~ -121.62560364814165,
-                                (location == &quot;shallow riffle&quot; &amp; channel_type == &quot;mainchannel branch&quot;) ~ -121.6285435907359,
+                               (location == &quot;shallow riffle&quot; &amp; channel_type == &quot;mainchannel branch&quot;) ~ -121.6285435907359,
                                (location == &quot;shallow riffle&quot; &amp; channel_type == &quot;mainchannel&quot;) ~ -121.63033927513442,
                                T ~ longitude), 
          coordinate_method = case_when(location %in% c(&quot;cox riffle&quot;, &quot;gateway riffle&quot;) ~ &quot;assigned based on similar location&quot;,
                                        (location == &quot;shallow riffle&quot; &amp; channel_type %in%  c(&quot;mainchannel branch&quot;, &quot;mainchannel&quot;)) ~ &quot;assigned based on similar location&quot;, 
                                        T ~ coordinate_method),
-        channel_location = case_when(location == &quot;shallow riffle&quot; ~ &quot;HFC&quot;,
-                                      location == &quot;trailer park&quot; ~ &quot;LFC&quot;, # this removes 1 NA but is consistent with all other trailer parks
+         channel_location = case_when(location == &quot;shallow riffle&quot; ~ &quot;HFC&quot;,
+                                      location == &quot;trailer park&quot; ~ &quot;LFC&quot;, # this removes 1 NA but is consistent with all other trailer parks            
+                                      location == &quot;cox riffle&quot; ~ &quot;HFC&quot;,
+                                      location == &quot;gateway riffle&quot; ~ &quot;LFC&quot;, 
                                       T ~ channel_location),
          channel_type = case_when(location == &quot;trailer park&quot; ~ &quot;mainchannel&quot;,
                                   T ~ channel_type)) # this removes 1 NA but is consistent with all other trailer parks</code></pre>
@@ -2126,11 +2128,6 @@ location_data_updated &lt;- survey_locations |&gt;
 # test_2001 &lt;- location_data_2002 |&gt; 
 #   filter(year(date) == 2001) 
 # unique(test_2001 == survey_locations_2001)</code></pre>
-<p>Location reconciliation that still needs to be done for 2002
-data:</p>
-<ul>
-<li>cox riffle and gateway riffles need HFC/LFC designation</li>
-</ul>
 <p>Save data:</p>
 <pre class="r"><code>write_csv(location_data_updated, here::here(&quot;data&quot;, &quot;survey_locations.csv&quot;))
 write_csv(microhabitat_with_fish_detections, here::here(&quot;data&quot;, &quot;microhabitat_observations.csv&quot;))</code></pre>

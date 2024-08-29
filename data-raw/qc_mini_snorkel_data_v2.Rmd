@@ -85,7 +85,7 @@ Columns removed:
 -   end_time - also just a date that seemed wrong
 
 -   crew - specific crew names do not need to be present on public EDI
-    dataset
+dataset
 
 ```{r}
 # Combine the data here
@@ -829,7 +829,7 @@ all_fish_data <- all_fish_data |>
   mutate(location = case_when(location %in% c("aleck riffle", "alec riffle") ~ "aleck riffle",
                               location == "hatchery  ditch" ~ "hatchery ditch",
                               location %in% c("hour bars", "hour bar") ~ "hour bars",
-         T ~ location))
+                              T ~ location))
 unique(all_fish_data$location)
 # FIX aleck riffle and alec riffle
 # FIX hatchery  ditch and hatchery ditch
@@ -918,56 +918,56 @@ microhabitat_with_fish_detections <- all_fish_data |>
                                              channel_geomorphic_unit == "riffle edgewater" ~ "riffle margin",
                                              T ~ channel_geomorphic_unit)) |> 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit) 
-  
+
 survey_locations <- all_fish_data |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
   mutate(weather = tolower(weather),
          channel_type = tolower(channel_type),
          location_revised = case_when(grepl("big hole", location) ~ "big hole",
-                              grepl("auditorium", location) ~ "auditorium riffle",
-                              location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
-                              grepl("bedrock", location) ~ "bedrock riffle",
-                              grepl("cox", location) ~ "cox riffle", # TODO: is this a new location? 
-                              grepl("gateway", location) ~ "gateway riffle", # TODO: is this a new location? 
-                              grepl("goose", location) ~ "goose riffle", 
-                              grepl("aleck", location) ~ "aleck riffle", 
-                              grepl("big bar", location) ~ "big bar",
-                              grepl("eye", location) ~ "eye riffle",
-                              location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
-                              grepl("g95", location) ~ "g95",
-                              grepl("g-95", location) ~ "g95",
-                              grepl("g 95", location) ~ "g95",
-                              grepl("gridley", location)  ~ "gridley riffle",
-                              grepl("grifley", location)  ~ "gridley riffle",
-                              grepl("herringer", location) ~ "herringer riffle",
-                              grepl("junkyard", location) ~ "junkyard riffle",
-                              location == "lower hole" ~ "lower big hole",
-                              location == "lower hour side channel" ~ "lower hour",
-                              grepl("hour", location) ~ "lower hour",
-                              grepl("matthews", location) ~ "matthews riffle",
-                              grepl("mathews", location) ~ "matthews riffle",
-                              grepl("mcfarland", location) ~ "macfarland riffle",
-                              grepl("macfarland", location) ~ "macfarland riffle",
-                              grepl("trailer park", location) ~ "trailer park",
-                              grepl("trialer", location) ~ "trailer park",
-                              grepl("robinson", location) ~ "robinson riffle",
-                              grepl("robinsoon", location) ~ "robinson riffle",
-                              grepl("shallow", location) ~ "shallow riffle",
-                              grepl("steep", location) ~ "steep riffle",
-                              grepl("vance", location) ~ "vance avenue",
-                              grepl("weir", location) ~ "weir riffle",
-                              grepl("hatchery riffle", location) ~ "hatchery riffle", 
-                              grepl("hatchery ditch", location) ~ "hatchery ditch", 
-                              T ~ location)) |> 
+                                      grepl("auditorium", location) ~ "auditorium riffle",
+                                      location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
+                                      grepl("bedrock", location) ~ "bedrock riffle",
+                                      grepl("cox", location) ~ "cox riffle", # TODO: is this a new location? 
+                                      grepl("gateway", location) ~ "gateway riffle", # TODO: is this a new location? 
+                                      grepl("goose", location) ~ "goose riffle", 
+                                      grepl("aleck", location) ~ "aleck riffle", 
+                                      grepl("big bar", location) ~ "big bar",
+                                      grepl("eye", location) ~ "eye riffle",
+                                      location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
+                                      grepl("g95", location) ~ "g95",
+                                      grepl("g-95", location) ~ "g95",
+                                      grepl("g 95", location) ~ "g95",
+                                      grepl("gridley", location)  ~ "gridley riffle",
+                                      grepl("grifley", location)  ~ "gridley riffle",
+                                      grepl("herringer", location) ~ "herringer riffle",
+                                      grepl("junkyard", location) ~ "junkyard riffle",
+                                      location == "lower hole" ~ "lower big hole",
+                                      location == "lower hour side channel" ~ "lower hour",
+                                      grepl("hour", location) ~ "lower hour",
+                                      grepl("matthews", location) ~ "matthews riffle",
+                                      grepl("mathews", location) ~ "matthews riffle",
+                                      grepl("mcfarland", location) ~ "macfarland riffle",
+                                      grepl("macfarland", location) ~ "macfarland riffle",
+                                      grepl("trailer park", location) ~ "trailer park",
+                                      grepl("trialer", location) ~ "trailer park",
+                                      grepl("robinson", location) ~ "robinson riffle",
+                                      grepl("robinsoon", location) ~ "robinson riffle",
+                                      grepl("shallow", location) ~ "shallow riffle",
+                                      grepl("steep", location) ~ "steep riffle",
+                                      grepl("vance", location) ~ "vance avenue",
+                                      grepl("weir", location) ~ "weir riffle",
+                                      grepl("hatchery riffle", location) ~ "hatchery riffle", 
+                                      grepl("hatchery ditch", location) ~ "hatchery ditch", 
+                                      T ~ location)) |> 
   select(location_table_id, date, location, location_revised, water_temp, 
-        weather, river_mile, flow, number_of_divers, 
-        reach_length, reach_width, channel_width, 
-        channel_type, gps_coordinate) |> 
+         weather, river_mile, flow, number_of_divers, 
+         reach_length, reach_width, channel_width, 
+         channel_type, gps_coordinate) |> 
   select(-location) |> 
   rename(location = location_revised) |> 
   distinct() 
-  
+
 ```
 
 Okay, let's compare the names of the 2001/2002 data with the reconciled
@@ -998,14 +998,16 @@ location_data_updated <- survey_locations |>
                               T ~ latitude), 
          longitude = case_when(location == "cox riffle" ~ -121.63215000396984, # based off of gps_coordinates
                                location == "gateway riffle" ~ -121.62560364814165,
-                                (location == "shallow riffle" & channel_type == "mainchannel branch") ~ -121.6285435907359,
+                               (location == "shallow riffle" & channel_type == "mainchannel branch") ~ -121.6285435907359,
                                (location == "shallow riffle" & channel_type == "mainchannel") ~ -121.63033927513442,
                                T ~ longitude), 
          coordinate_method = case_when(location %in% c("cox riffle", "gateway riffle") ~ "assigned based on similar location",
                                        (location == "shallow riffle" & channel_type %in%  c("mainchannel branch", "mainchannel")) ~ "assigned based on similar location", 
                                        T ~ coordinate_method),
-        channel_location = case_when(location == "shallow riffle" ~ "HFC",
-                                      location == "trailer park" ~ "LFC", # this removes 1 NA but is consistent with all other trailer parks
+         channel_location = case_when(location == "shallow riffle" ~ "HFC",
+                                      location == "trailer park" ~ "LFC", # this removes 1 NA but is consistent with all other trailer parks            
+                                      location == "cox riffle" ~ "HFC",
+                                      location == "gateway riffle" ~ "LFC", 
                                       T ~ channel_location),
          channel_type = case_when(location == "trailer park" ~ "mainchannel",
                                   T ~ channel_type)) # this removes 1 NA but is consistent with all other trailer parks
@@ -1017,9 +1019,6 @@ location_data_updated <- survey_locations |>
 
 ```
 
-Location reconciliation that still needs to be done for 2002 data:
-
--   cox riffle and gateway riffles need HFC/LFC designation 
 
 Save data:
 
@@ -1088,7 +1087,7 @@ coordinates_from_kmz <- coordinates_from_kmz_raw |>
                               T ~ location))
 # find an average lat/long by location name
 coordinate_from_google <- combined_survey_locations |> 
-    mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
+  mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
          longitude_google = as.numeric(longitude_google)) |> 
   group_by(location) |> 
   summarize(longitude_google = mean(longitude_google, na.rm = T),
@@ -1118,9 +1117,9 @@ location_coordinates <- combined_survey_locations |>
   mutate(coordinate_method = case_when(is.na(longitude) & !is.na(longitude_google) ~ "location average",
                                        T ~ coordinate_method),
          longitude = case_when(is.na(longitude) & !is.na(longitude_google) ~ longitude_google,
-                                      T ~ longitude),
+                               T ~ longitude),
          latitude = case_when(is.na(latitude) & !is.na(latitude_google) ~ latitude_google,
-                                     T ~ latitude)) |> 
+                              T ~ latitude)) |> 
   select(-c(longitude_google, latitude_google))
 
 survey_locations_with_latlong <- survey_locations_revised |> 
@@ -1139,7 +1138,7 @@ ryon_coordinates <- readxl::read_xlsx(here::here("data-raw", "survey_locations_n
   rename(rk_latitude = latitude,
          rk_longitude = longitude,
          #rk_location = location,
-        # rk_location_revised = location,
+         # rk_location_revised = location,
          channel_location = channel) |> 
   glimpse()
 
@@ -1152,41 +1151,41 @@ locations_ck <- survey_locations_with_latlong |>
 #   filter(location != rk_location_revised)
 
 survey_locations_post_ryon_revisions <- locations_ck |> 
-  mutate(#location = rk_location_revised,
-         rk_latitude = ifelse(is.na(rk_latitude), latitude, rk_latitude),
-         rk_longitude = ifelse(is.na(rk_longitude), longitude, rk_longitude),
-         coordinate_method = case_when(coordinate_method %in% c("location average","kmz from casey") | 
-                                         is.na(coordinate_method) ~ "assigned based on similar location",
-                                       T ~ coordinate_method)) |> # assume all from ryon are assigned from similar location (these are the same ones that I tried to fill in)
-  select(-c(latitude, longitude)) |> # rk_location, rk_location_revised
-  rename(latitude = rk_latitude,
-         longitude = rk_longitude)
+mutate(#location = rk_location_revised,
+rk_latitude = ifelse(is.na(rk_latitude), latitude, rk_latitude),
+rk_longitude = ifelse(is.na(rk_longitude), longitude, rk_longitude),
+coordinate_method = case_when(coordinate_method %in% c("location average","kmz from casey") | 
+is.na(coordinate_method) ~ "assigned based on similar location",
+T ~ coordinate_method)) |> # assume all from ryon are assigned from similar location (these are the same ones that I tried to fill in)
+select(-c(latitude, longitude)) |> # rk_location, rk_location_revised
+rename(latitude = rk_latitude,
+longitude = rk_longitude)
 
 # i plotted these locations on the map and noticed some disconnect between the name and coordinate
 # suggested to ryon that we update these coordinates based on his method of selecting another with same name, he agreed
 #      * 79 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
-     # * 78 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
-     # * 68 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
-     # * 102 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
-     # * 146 - Location name = big bar. Shows up near Goose Riffle. This is one of the coordinates you changed.
-     # * 30 - Location name = macfarland riffle. Shows up near Big Bar. Adjust coordinates?
-     # * 27 - Location name = gridley riffle. Shows up near macfarland riffle. Adjust coordinates?
+# * 78 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
+# * 68 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+# * 102 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+# * 146 - Location name = big bar. Shows up near Goose Riffle. This is one of the coordinates you changed.
+# * 30 - Location name = macfarland riffle. Shows up near Big Bar. Adjust coordinates?
+# * 27 - Location name = gridley riffle. Shows up near macfarland riffle. Adjust coordinates?
 
 coordinate_by_name <- survey_locations_post_ryon_revisions |> 
-  filter(!location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27)) |> 
-  select(location, latitude, longitude) |> 
-  group_by(location) |> 
-  slice_head() |> 
-  rename(loc_lat = latitude,
-         loc_long = longitude) |> 
-  filter(!is.na(location)) # removes one field of all NAs
+filter(!location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27)) |> 
+select(location, latitude, longitude) |> 
+group_by(location) |> 
+slice_head() |> 
+rename(loc_lat = latitude,
+loc_long = longitude) |> 
+filter(!is.na(location)) # removes one field of all NAs
 
 survey_locations_post_ryon_revisions_qc <- survey_locations_post_ryon_revisions |> 
-  left_join(coordinate_by_name) |> 
-  mutate(latitude = ifelse(location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27), loc_lat, latitude),
-         longitude = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), loc_long, longitude),
-         coordinate_method = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), "assigned based on similar location", coordinate_method)) |> 
-  select(location_table_id, date, location, channel_location, water_temp, weather, flow, number_of_divers, reach_length, reach_width, channel_width, channel_type, river_mile, coordinate_method, latitude, longitude)
+left_join(coordinate_by_name) |> 
+mutate(latitude = ifelse(location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27), loc_lat, latitude),
+longitude = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), loc_long, longitude),
+coordinate_method = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), "assigned based on similar location", coordinate_method)) |> 
+select(location_table_id, date, location, channel_location, water_temp, weather, flow, number_of_divers, reach_length, reach_width, channel_width, channel_type, river_mile, coordinate_method, latitude, longitude)
 
 # these edits were mapped and there are no longer any disconnect between the location name and coordinates
 ```

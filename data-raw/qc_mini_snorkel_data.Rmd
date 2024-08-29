@@ -20,20 +20,19 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 
 # Feather River Mini Snorkel Data
 
-*NOTE: it was decided to use a database that contained 2001 and 2002 data instead of this one. Visit `qc_mini_snorkel_data_v2.Rmd` for more information. *
+*NOTE: it was decided to use a database that contained 2001 and 2002 data instead of this one. Visit `qc_mini_snorkel_data_v2.Rmd` for more information.*
 
 ## Description of Monitoring Data
 
 **Timeframe:** March 2001 - August 2001
 
-**Completeness of Record throughout timeframe:** fairly complete 
+**Completeness of Record throughout timeframe:** fairly complete
 
-**Sampling Location:** Feather River 
+**Sampling Location:** Feather River
 
-**Data Contact:** Ryon Kurth 
+**Data Contact:** Ryon Kurth
 
-## Questions 
-
+## Questions
 
 ## Source Database pull
 
@@ -41,7 +40,8 @@ colors_small <-  c("#9A8822", "#F5CDB4", "#F8AFA8", "#FDDDA0", "#74A089", #Royal
 source(here::here('data-raw', 'query_4mac.R'))
 ```
 
-Read in data from google cloud, glimpse raw data and domain description sheet: 
+Read in data from google cloud, glimpse raw data and domain description sheet:
+
 ```{r}
 # read in data to clean 
 microhabitat |> glimpse()
@@ -49,17 +49,11 @@ microhabitat |> glimpse()
 
 ## Data transformations
 
-### first table reviewd is the All Fish Observation Table 
-All of the substrate and cover lookups are not true look ups. Substrate and cover column indicate a percentage of cover or substrate of each type. I updated the column names to reflect this and utilized the lookup tables to understand which substrate or cover type each column was referring to. 
+### first table reviewd is the All Fish Observation Table
 
-Columns removed: 
-- SpecAge removed - just a combination of species and age
-- i_cov_sum - removed because sum of other columns
-- o_cov_sum - removed because sum of other columns
-- sub_sum - removed because sum of other columns
-- start_time - just a date that seemed wrong 
-- end_time - also just a date that seemed wrong
-- crew - specific crew names do not need to be present on public EDI dataset
+All of the substrate and cover lookups are not true look ups. Substrate and cover column indicate a percentage of cover or substrate of each type. I updated the column names to reflect this and utilized the lookup tables to understand which substrate or cover type each column was referring to.
+
+Columns removed: - SpecAge removed - just a combination of species and age - i_cov_sum - removed because sum of other columns - o_cov_sum - removed because sum of other columns - sub_sum - removed because sum of other columns - start_time - just a date that seemed wrong - end_time - also just a date that seemed wrong - crew - specific crew names do not need to be present on public EDI dataset
 
 ```{r}
 # For different excel sheets for each year read in and combine years here
@@ -113,6 +107,7 @@ joined_fish_obs |> filter(count >= 0) |> nrow()
 joined_fish_obs %>% select_if(is.numeric) %>% colnames()
 
 ```
+
 ### Variable: `count`
 
 **Plotting Count over Period of Record**
@@ -140,12 +135,11 @@ summary(joined_fish_obs$count)
 
 There are `r is.na(joined_fish_obs$count) |> sum()` NA values
 
-
 ### Variable: `date`
 
 **Plotting Date over Period of Record**
 
-All observations are from 2001 
+All observations are from 2001
 
 ```{r}
 # Make whatever plot is appropriate 
@@ -170,8 +164,7 @@ summary(joined_fish_obs$date)
 
 There are `r is.na(joined_fish_obs$date) |> sum()` NA values
 
-
-### Variable: `river_mile``
+### Variable: \`river_mile\`\`
 
 **Plotting river_mile over Period of Record**
 
@@ -215,6 +208,7 @@ joined_fish_obs |>
   theme(text = element_text(size = 18),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
+
 ```{r}
 joined_fish_obs %>% 
   mutate(year = as.factor(year(date))) %>%
@@ -227,7 +221,6 @@ joined_fish_obs %>%
 
 ```
 
-
 **Numeric Summary of fl_mm over Period of Record**
 
 ```{r}
@@ -238,7 +231,6 @@ summary(joined_fish_obs$fl_mm)
 **NA and Unknown Values**
 
 There are `r is.na(joined_fish_obs$fl_mm) |> sum()` NA values
-
 
 ### Variable: `dist_to_bottom`
 
@@ -281,7 +273,6 @@ summary(joined_fish_obs$river_mile)
 
 There are `r is.na(joined_fish_obs$river_mile) |> sum()` NA values
 
-
 ### Variable: `focal_velocity` & `velocity`
 
 **Plotting velocities over Period of Record**
@@ -311,8 +302,7 @@ summary(joined_fish_obs$velocity)
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$focal_velocity) |> sum()` NA values
-There are `r is.na(joined_fish_obs$velocity) |> sum()` NA values
+There are `r is.na(joined_fish_obs$focal_velocity) |> sum()` NA values There are `r is.na(joined_fish_obs$velocity) |> sum()` NA values
 
 ### Variable: `t_code`
 
@@ -368,7 +358,7 @@ summary(joined_fish_obs$depth)
 
 There are `r is.na(joined_fish_obs$t_code) |> sum()` NA values
 
-### Variable: `substrate `
+### Variable: `substrate`
 
 **Plotting substrate over Period of Record**
 
@@ -411,19 +401,13 @@ summary(joined_fish_obs$percent_cobble_substrate)
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_fine_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_sand_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_boulder_substrate) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cobble_substrate) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_fine_substrate) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_sand_substrate) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_small_gravel_substrate) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_boulder_substrate) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_cobble_substrate) |> sum()` NA values
 
 ### Variable: `inchannel cover`
 
 **Plotting inchannel cover over Period of Record**
 
-Notes: 
-- some cover totals less than 100%
+Notes: - some cover totals less than 100%
 
 ```{r}
 joined_fish_obs |> 
@@ -455,17 +439,13 @@ summary(joined_fish_obs$percent_submerged_aquatic_veg_inchannel)
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_no_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_small_woody_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_large_woody_cover_inchannel) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_submerged_aquatic_veg_inchannel) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_no_cover_inchannel) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_small_woody_cover_inchannel) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_large_woody_cover_inchannel) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_submerged_aquatic_veg_inchannel) |> sum()` NA values
 
 ### Variable: `overhead cover`
 
 **Plotting overhead cover over Period of Record**
 
-Notes: 
-- some cover totals more than 100%
+Notes: - some cover totals more than 100%
 
 ```{r}
 joined_fish_obs |> 
@@ -497,10 +477,7 @@ summary(joined_fish_obs$percent_cover_more_than_half_meter_overhead)
 
 **NA and Unknown Values**
 
-There are `r is.na(joined_fish_obs$percent_undercut_bank) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_no_cover_overhead) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cover_half_meter_overhead) |> sum()` NA values
-There are `r is.na(joined_fish_obs$percent_cover_more_than_half_meter_overhead) |> sum()` NA values
+There are `r is.na(joined_fish_obs$percent_undercut_bank) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_no_cover_overhead) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_cover_half_meter_overhead) |> sum()` NA values There are `r is.na(joined_fish_obs$percent_cover_more_than_half_meter_overhead) |> sum()` NA values
 
 ### Variable: `sur_turb`
 
@@ -558,7 +535,6 @@ There are `r is.na(joined_fish_obs$dist_to_bottom) |> sum()` NA values
 
 ### Variable: `fish_data_id`
 
-
 Looks like there are one more unique fish data id than there is number of rows where joined fish has a count greater than o
 
 ```{r}
@@ -599,6 +575,7 @@ summary(joined_fish_obs$micro_hab_data_tbl_id)
 There are `r is.na(joined_fish_obs$micro_hab_data_tbl_id) |> sum()` NA values
 
 ### Variable: `water_temp`
+
 **Plotting water_temp over Period of Record**
 
 ```{r}
@@ -625,7 +602,6 @@ summary(joined_fish_obs$water_temp)
 There are `r is.na(joined_fish_obs$water_temp) |> sum()` NA values
 
 ### Variable: `flow`
-
 
 **Plotting flow over Period of Record**
 
@@ -762,24 +738,20 @@ summary(joined_fish_obs$channel_width)
 
 There are `r is.na(joined_fish_obs$chanel_width) |> sum()` NA values
 
-
 ## Explore Categorical variables: {.tabset}
-
-
 
 ```{r}
 # Filter clean data to show only categorical variables 
 joined_fish_obs %>% select_if(is.character) %>% colnames()
 ```
 
-
-
 ### Variable: `location`
+
 ```{r}
 table(joined_fish_obs$location) 
 ```
 
-Fix inconsistencies with spelling, capitalization, and abbreviations. 
+Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 ```{r}
 # Fix any inconsistencies with categorical variables
@@ -796,23 +768,24 @@ unique(joined_fish_obs$location)
 # FIX hatchery  ditch and hatchery ditch
 ```
 
-
 **NA and Unknown Values**
 
 There are `r is.na(joined_fish_obs$location) |> sum()` NA values
 
 ### Variable: `species`
+
 ```{r}
 table(joined_fish_obs$species) 
 ```
 
-Fix inconsistencies with spelling, capitalization, and abbreviations. 
+Fix inconsistencies with spelling, capitalization, and abbreviations.
 
 **NA and Unknown Values**
 
 There are `r is.na(joined_fish_obs$species) |> sum()` NA values
 
 ### Variable: `channel_geomorphic_unit`
+
 ```{r}
 table(joined_fish_obs$channel_geomorphic_unit) 
 ```
@@ -822,6 +795,7 @@ table(joined_fish_obs$channel_geomorphic_unit)
 There are `r is.na(joined_fish_obs$channel_geomorphic_unit) |> sum()` NA values
 
 ### Variable: `gps_coordinate`
+
 ```{r}
 table(joined_fish_obs$gps_coordinate) 
 ```
@@ -831,6 +805,7 @@ table(joined_fish_obs$gps_coordinate)
 There are `r is.na(joined_fish_obs$gps_coordinate) |> sum()` NA values
 
 ### Variable: `weather`
+
 ```{r}
 table(joined_fish_obs$weather) 
 ```
@@ -840,6 +815,7 @@ table(joined_fish_obs$weather)
 There are `r is.na(joined_fish_obs$weather) |> sum()` NA values
 
 ### Variable: `channel_type`
+
 ```{r}
 table(joined_fish_obs$channel_type) 
 ```
@@ -848,14 +824,12 @@ table(joined_fish_obs$channel_type)
 
 There are `r is.na(joined_fish_obs$channel_type) |> sum()` NA values
 
-
-
 ## Summary of identified issues
 
-* percent cover that is > or < 100% 
-* did some location name clean up but could be better
-* remove sac squawfish 
-* other? 
+-   percent cover that is \> or \< 100%
+-   did some location name clean up but could be better
+-   remove sac squawfish
+-   other?
 
 ```{r}
 microhabitat_with_fish_detections <- joined_fish_obs |> 
@@ -925,7 +899,6 @@ write_csv(survey_locations_revised, here::here("data-raw","survey_locations_revi
 # Ashley used google to QC the coordinates- looked up coordinates by entering 39 (deg symbol) XX.XXN 121 (deg symbol) XX.XXW
 survey_locations_google <- read_csv(here::here("data-raw", "survey_locations_revised_av.csv"))
 ```
-
 
 ```{r}
 # badhia pulled coordinates from kmz Casey provided, use this to try and associate coordinates with the locations (https://netorg629193.sharepoint.com/:u:/s/VA-FeatherRiver/EeHO1UrPtzVMiO1lFkFTBQwBhTzsveQ6d62gZv7fbxVldg?e=hSjJDR)
@@ -1043,7 +1016,6 @@ survey_locations_post_ryon_revisions_qc <- survey_locations_post_ryon_revisions 
 
 # these edits were mapped and there are no longer any disconnect between the location name and coordinates
 ```
-
 
 ## Save cleaned data to data/
 
