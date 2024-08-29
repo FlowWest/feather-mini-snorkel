@@ -5,6 +5,10 @@ Erin Cain
 
 # Feather River Mini Snorkel Data
 
+*NOTE: it was decided to use a database that contained 2001 and 2002
+data instead of this one. Visit `qc_mini_snorkel_data_v2.Rmd` for more
+information. *
+
 ## Description of Monitoring Data
 
 **Timeframe:** March 2001 - August 2001
@@ -20,14 +24,8 @@ Erin Cain
 ## Source Database pull
 
 ``` r
-source("data-raw/query_4mac.R")
+source(here::here('data-raw', 'query_4mac.R'))
 ```
-
-    ## Loading required package: lattice
-
-    ## Loading required package: survival
-
-    ## Loading required package: Formula
 
     ## 
     ## Attaching package: 'Hmisc'
@@ -122,9 +120,9 @@ source("data-raw/query_4mac.R")
     ## Rows: 136 Columns: 16
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr   (5): Location, StartTime, EndTime, Crew, GPS.Coordinate
+    ## chr   (3): Location, Crew, GPS.Coordinate
     ## dbl  (10): PhysDataTblID, WaterTemp, Weather, RiverMile, Flow, NumberOfDiver...
-    ## date  (1): Date
+    ## date  (3): Date, StartTime, EndTime
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -134,8 +132,8 @@ source("data-raw/query_4mac.R")
     ## $ PhysDataTblID  <dbl> 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104…
     ## $ Location       <chr> "Herringer Riffle", "Herringer Riffle", "Shallow Riffle…
     ## $ Date           <date> 2001-05-24, 2001-08-23, 2001-08-22, 2001-08-23, 2001-0…
-    ## $ StartTime      <chr> "(12/30/99 13:35:00)", "(12/30/99 13:10:00)", "(12/30/9…
-    ## $ EndTime        <chr> "(12/30/99 13:50:00)", "(NA NA)", "(12/30/99 12:15:00)"…
+    ## $ StartTime      <date> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 1999-1…
+    ## $ EndTime        <date> 1999-12-30, NA, 1999-12-30, 1999-12-30, 1999-12-30, 19…
     ## $ Crew           <chr> "do,ph, at", "BR, CR, TV", "TV, BR, CR", "TV, BR, CR", …
     ## $ WaterTemp      <dbl> 0.0, 70.0, 68.0, 68.0, 52.5, 53.0, 69.0, 68.5, 68.5, 67…
     ## $ Weather        <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
@@ -233,6 +231,195 @@ source("data-raw/query_4mac.R")
     ## Columns: 2
     ## $ PDatID   <int> 94, 95, 96, 97, 111, 112, 112, 112, 114, 114, 114, 115, 116, …
     ## $ Comments <chr> "No flow or river mile recorded", "Flow and river mile not re…
+    ## Rows: 617
+    ## Columns: 18
+    ## $ Month        <chr> "April/May", "April/May", "April/May", "April/May", "Apri…
+    ## $ UnitNum      <int> 338, 337, 333, 327, 337, 239, 229, 191, 193, 216, 218, 22…
+    ## $ UnitCode     <chr> "338", "337", "333", "327", "337", "239", "229", "191", "…
+    ## $ SideChannel  <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
+    ## $ RiverMile    <dbl> 56.9, 57.0, 57.0, 57.1, 57.0, 59.5, NA, 60.9, 60.9, 60.2,…
+    ## $ Number       <int> 1, 4, 1, 2, 2, 2, 1, 1, 1, 8, 2, 1, 1, 1, 1, 3, 6, 1, 2, …
+    ## $ MinFL        <int> 50, 60, 25, 40, 50, 45, 40, 50, 40, 50, 45, 35, 40, 40, 4…
+    ## $ MaxFL        <int> 50, 75, 25, 40, 65, 45, 50, 50, 50, 75, 55, 45, 50, 50, 5…
+    ## $ Depth        <dbl> 0.50, 0.60, 1.00, 0.30, 0.40, 0.40, 0.30, 0.30, 0.20, 0.5…
+    ## $ DepthCat     <chr> "", "0.5 to 1.0", "", "0 to 0.5", "0 to 0.5", "0 to 0.5",…
+    ## $ FishDepth    <dbl> 0.30, 0.40, 0.80, 0.20, 0.35, 0.30, 0.10, 0.25, 0.20, 0.3…
+    ## $ HUCsubstrate <int> 2, 2, 2, 2, 2, 2, 1, 2, 3, 2, 2, 3, 2, 2, 1, 2, 2, 2, 2, …
+    ## $ HUCunit      <chr> "G", "G", "G", "G", "G", "G", "G", "G", "", "R", "", "P",…
+    ## $ HUCcover     <chr> "A", "A", "A", "A", "A", "A", "BD", "A", "B", "B", "DF", …
+    ## $ Velocity     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## $ VelocityCat  <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+    ## $ BankDistance <int> NA, 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+    ## $ BankDistCat  <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## Rows: 417
+    ## Columns: 21
+    ## $ SurveyID            <labelled> 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 17, 18…
+    ## $ Date                <labelled> 1999-06-30, 1999-06-30, 1999-07-01, 1999-07-0…
+    ## $ SnorkelCrew         <labelled> "PH DG", "PH DG", "PH JK TS", "PH, TS, JK", "…
+    ## $ ShoreCrew           <labelled> "TV", "TV", "BC", "BC", "BC", "PH", "PH", "JK…
+    ## $ Recorder            <labelled> "TV", "TV", "BC", "BC", "BC", "PH", "PH", "JK…
+    ## $ RiverFlow           <labelled> 7788, 7788, 8050, 8050, 8050, 621, 621, 628, …
+    ## $ Weather             <labelled> "CLR", "CLR", "CLR", "CLR", "CLR", "CLR", "CL…
+    ## $ VisibilityComments  <labelled> "", "", "", "", "", "", "", "EXCELLENT VIS.",…
+    ## $ TempTime            <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
+    ## $ Location            <labelled> "G95", "Big Hole Island", "McFarland Bend", "…
+    ## $ SnorkelTimeStart    <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
+    ## $ SnorkelTimeStop     <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-3…
+    ## $ Comments            <labelled> "Units 323 A+B", "Units 300, 301, 303, 305", …
+    ## $ SurveyType          <labelled> "Unit", "Unit", "Unit", "Unit", "Unit", "Unit…
+    ## $ SectionType         <labelled> "Permanent", "Permanent", "Permanent", "Rando…
+    ## $ Units               <labelled> "", "", "", "", "", "", "", "", "", "", "", "…
+    ## $ X..of.Divers        <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## $ X..of.Center.Passes <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## $ Pass.width          <labelled> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## $ Visibility          <labelled> NA, NA, 1.5, 1.5, NA, 3.5, 3.5, 4.1, 4.1, NA,…
+    ## $ Temperature         <labelled> 64.0, 64.0, 65.0, 64.0, 64.5, 61.5, 60.5, 62.…
+    ## Rows: 11,212
+    ## Columns: 18
+    ## $ ObsID        <int> 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, …
+    ## $ SurveyID     <int> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, …
+    ## $ Snorkler     <chr> "DG", "PH", "DG", "DG", "PH", "PH", "PH", "DG", "DG", "DG…
+    ## $ Unit         <chr> "335", "337", "335", "335", "337", "337", "337", "335", "…
+    ## $ Species      <chr> "SPD", "RBTS", "SASQ", "MIN", "RBTS", "SASU", "SASQ", "RB…
+    ## $ Number       <int> 6, 2, 1, 1, 3, 6, 1, 1, 1, 1, 1, 1, 2, 2, 2, 4, 5, 1, 1, …
+    ## $ FL           <int> 35, 85, 90, 45, 95, 50, 150, 110, 90, 95, 115, 110, 65, 1…
+    ## $ MaxFL        <int> 65, 90, 90, 45, 105, 60, 150, 110, 90, 95, 115, 110, 75, …
+    ## $ FishDepth    <dbl> 0.35, 0.45, 0.20, 0.20, 0.45, 0.45, 0.55, 0.58, 0.53, 0.5…
+    ## $ HUCsubstrate <int> 1, 3, 1, 1, 3, 2, 3, 2, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, NA,…
+    ## $ HUCIcover    <chr> "E", "A", "E", "E", "A", "A", "A", "A", "A", "A", "A", "A…
+    ## $ HUCunit      <chr> "RM", "GM", "RM", "RM", "RM", "GM", "GM", "G", "G", "G", …
+    ## $ Velocity     <dbl> NA, 0.50, NA, NA, 2.00, NA, NA, 2.49, 2.48, 3.85, 2.65, 3…
+    ## $ AdjVelocity  <dbl> NA, 3.27, NA, NA, 2.50, NA, NA, 3.44, 3.58, 5.16, NA, NA,…
+    ## $ Comments     <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+    ## $ BankDistance <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+    ## $ HUCOcover    <chr> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "…
+    ## $ Depth        <dbl> 0.40, 0.51, 0.40, 0.40, 0.50, 0.50, 0.60, 0.63, 0.58, 0.5…
+    ## Rows: 671
+    ## Columns: 19
+    ## $ PDatID         <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
+    ## $ FishDataID     <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
+    ## $ Species        <int> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3, 1, 3…
+    ## $ Count          <int> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
+    ## $ FL..mm.        <int> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
+    ## $ WaterDepth     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ DistToBottom   <dbl> 0.5, 0.1, 0.5, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.5, 1.0, …
+    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
+    ## $ AvVel          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ Substrate      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ I.CovCode      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ OCoverCodeID   <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ X.SurfTurb     <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
+    ## $ FishInTran     <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+    ## $ FocalClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AdjFocalVel    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AvVelClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AdjAvVel       <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## Rows: 275
+    ## Columns: 16
+    ## $ PhysDataTblID  <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
+    ## $ Location       <chr> "hatchery ditch", "Hour Bar", "Hatchery riffle", "Hatch…
+    ## $ Date           <labelled> 2001-03-14, 2001-03-15, 2001-08-20, 2001-08-20, 20…
+    ## $ StartTime      <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
+    ## $ EndTime        <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
+    ## $ Crew           <chr> "rk, cd, jr,as", "rk, ph, sm", "tv, cr", "tv, cr", "tv,…
+    ## $ WaterTemp      <dbl> 47.0, 56.0, 57.0, 55.0, 58.0, 58.0, 63.5, 59.5, 62.5, 6…
+    ## $ Weather        <int> 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+    ## $ RiverMile      <dbl> 66.6, 56.0, 66.5, 66.6, 64.0, 65.5, 61.0, 61.5, 61.0, 6…
+    ## $ Flow           <int> 12, 1700, 600, 600, 600, 600, 600, 600, 600, 600, 1900,…
+    ## $ NumberOfDivers <int> 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+    ## $ ReachLength    <int> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
+    ## $ ReachWidth     <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+    ## $ ChannelType    <int> 3, 2, 1, 3, 1, 1, 1, 3, 3, 1, 2, 1, 3, 2, 2, 2, 1, 1, 1…
+    ## $ ChannelWidth   <int> 7, 160, 0, 0, 0, 0, 17, 14, 8, 31, 50, 50, 39, 45, 43, …
+    ## $ GPS.Coordinate <chr> "", "", "n 39*30.950, w 21*33.212", "N 39* 30.952,  W 2…
+    ## Rows: 671
+    ## Columns: 19
+    ## $ PDatID         <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11,…
+    ## $ FishDataID     <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
+    ## $ Species        <int> 3, 1, 3, 3, 1, 3, 3, 1, 3, 3, 3, 3, 1, 3, 1, 3, 3, 1, 3…
+    ## $ Count          <int> 1, 1, 50, 6, 3, 8, 15, 2, 5, 75, 2, 3, 1, 2, 3, 10, 20,…
+    ## $ FL..mm.        <int> 40, 25, 40, 75, 25, 50, 40, 25, 45, 45, 35, 35, 25, 35,…
+    ## $ WaterDepth     <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ DistToBottom   <dbl> 0.5, 0.1, 0.5, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.5, 1.0, …
+    ## $ Focal.Velocity <dbl> 0.51, 0.64, 1.08, 0.80, 0.44, 0.18, 0.50, 0.50, 0.50, 0…
+    ## $ AvVel          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ Substrate      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ I.CovCode      <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ OCoverCodeID   <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ X.SurfTurb     <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ TCode          <dbl> 3.4, 6.4, 6.4, 6.4, 9.4, 12.4, 12.4, 12.4, 18.4, 24.4, …
+    ## $ FishInTran     <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+    ## $ FocalClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AdjFocalVel    <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AvVelClicks    <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## $ AdjAvVel       <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+    ## Rows: 9,645
+    ## Columns: 26
+    ## $ MicroHabDataTblID <int> 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, …
+    ## $ PDatID            <int> 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, …
+    ## $ TCode             <dbl> 0.1, 0.2, 0.3, 0.4, 3.1, 3.2, 3.3, 3.4, 6.1, 6.2, 6.…
+    ## $ Depth             <dbl> 17, 19, 11, 12, 11, 10, 8, 9, 10, 19, 19, 37, 16, 14…
+    ## $ Velocity          <dbl> 0.22, 0.35, 1.95, 2.14, 1.19, 1.54, 1.26, 1.97, 0.75…
+    ## $ Sub1              <int> 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 15,…
+    ## $ Sub2              <int> 40, 50, 25, 0, 70, 30, 0, 0, 0, 60, 30, 65, 80, 0, 0…
+    ## $ Sub3              <int> 20, 40, 75, 80, 30, 50, 60, 70, 40, 30, 50, 25, 20, …
+    ## $ Sub4              <int> 30, 10, 0, 20, 0, 20, 40, 30, 20, 10, 20, 10, 0, 15,…
+    ## $ Sub5              <int> 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+    ## $ Sub6              <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+    ## $ IcovA             <int> 75, 100, 100, 100, 10, 100, 100, 100, 50, 100, 100, …
+    ## $ IcovB             <int> 15, 0, 0, 0, 20, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, …
+    ## $ IcovC             <int> 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+    ## $ IcovE             <int> 10, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0…
+    ## $ IcovF             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, …
+    ## $ Ocov0             <int> 100, 100, 100, 100, 100, 100, 100, 100, 75, 100, 100…
+    ## $ Ocov1             <int> 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 50, 0, 0, 0, 0,…
+    ## $ Ocov2             <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+    ## $ SurTurb           <int> 20, 30, 30, 30, 10, 10, 10, 10, 0, 10, 20, 30, 0, 0,…
+    ## $ CGU               <chr> "g", "g", "g", "g", "gm", "g", "g", "g", "gm", "gm",…
+    ## $ SubSum            <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
+    ## $ ICovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
+    ## $ OCovSum           <int> 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
+    ## $ VelClicks         <int> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+    ## $ AdjVel            <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+    ## Rows: 9
+    ## Columns: 3
+    ## $ SpeciesCodeID <int> 1, 2, 3, 4, 5, 6, 7, 8, 9
+    ## $ SpeciesCode   <chr> "RBTS", "RBTC", "CHN", "SASQ", "HH", "TP", "SMB", "LMB",…
+    ## $ Species       <chr> "Steelhead trout (wild)", "Steelhead trout, (clipped)", …
+    ## Rows: 275
+    ## Columns: 16
+    ## $ PhysDataTblID  <int> 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,…
+    ## $ Location       <chr> "hatchery ditch", "Hour Bar", "Hatchery riffle", "Hatch…
+    ## $ Date           <labelled> 2001-03-14, 2001-03-15, 2001-08-20, 2001-08-20, 20…
+    ## $ StartTime      <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
+    ## $ EndTime        <labelled> 1999-12-30, 1999-12-30, 1999-12-30, 1999-12-30, 19…
+    ## $ Crew           <chr> "rk, cd, jr,as", "rk, ph, sm", "tv, cr", "tv, cr", "tv,…
+    ## $ WaterTemp      <dbl> 47.0, 56.0, 57.0, 55.0, 58.0, 58.0, 63.5, 59.5, 62.5, 6…
+    ## $ Weather        <int> 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+    ## $ RiverMile      <dbl> 66.6, 56.0, 66.5, 66.6, 64.0, 65.5, 61.0, 61.5, 61.0, 6…
+    ## $ Flow           <int> 12, 1700, 600, 600, 600, 600, 600, 600, 600, 600, 1900,…
+    ## $ NumberOfDivers <int> 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+    ## $ ReachLength    <int> 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,…
+    ## $ ReachWidth     <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+    ## $ ChannelType    <int> 3, 2, 1, 3, 1, 1, 1, 3, 3, 1, 2, 1, 3, 2, 2, 2, 1, 1, 1…
+    ## $ ChannelWidth   <int> 7, 160, 0, 0, 0, 0, 17, 14, 8, 31, 50, 50, 39, 45, 43, …
+    ## $ GPS.Coordinate <chr> "", "", "n 39*30.950, w 21*33.212", "N 39* 30.952,  W 2…
+    ## Rows: 5
+    ## Columns: 3
+    ## $ WeatherCodeLookUpID <int> 1, 2, 3, 4, 5
+    ## $ WeatherCode         <chr> "CLR", "CLD", "RAN", "FOG", "NIT"
+    ## $ Weather             <chr> "Direct Sunlight", "Overcast", "Precipitation", "F…
+    ## Rows: 3
+    ## Columns: 3
+    ## $ ChannelTypeCodeID <int> 1, 2, 3
+    ## $ ChannelTypeCode   <int> 1, 2, 3
+    ## $ ChannelType       <chr> "Mainchannel", "Mainchannel Branch", "Sidechannel"
+    ## Rows: 6
+    ## Columns: 3
+    ## $ CGUCodeID <int> 1, 2, 3, 4, 5, 6
+    ## $ CGUCode   <chr> "R", "G", "P", "W", "RM", "GM"
+    ## $ CGU       <chr> "Riffle", "Glide", "Pool", "Backwater", "Riffle Edgewater", …
 
 Read in data from google cloud, glimpse raw data and domain description
 sheet:
@@ -1565,58 +1752,58 @@ table(joined_fish_obs$gps_coordinate)
     ##                             36                             36 
     ##  N 39° 23.188'  W 121° 37.671'  N 39° 24.197'  W 121° 37.094' 
     ##                             36                             36 
-    ##    N 39° 24.27'  W 121° 37.02'    N 39° 24.95'  W 121° 37.60' 
+    ##    N 39° 24.27'  W 121° 37.02'    N 39° 25.24'  W 121° 37.54' 
+    ##                             72                             36 
+    ##    N 39° 25.75'  W 121° 37.57'  N 39° 25.863'  W 121° 37.934' 
     ##                             36                             36 
-    ##    N 39° 25.24'  W 121° 37.54'    N 39° 25.75'  W 121° 37.57' 
+    ##  N 39° 25.882'  W 121° 37.932'     N 39° 26.24'  W 121° 38.28 
     ##                             36                             36 
-    ##  N 39° 25.863'  W 121° 37.934'  N 39° 25.882'  W 121° 37.932' 
+    ##    N 39° 26.24'  W 121° 38.28'  N 39° 26.289'  W 121° 38.260' 
     ##                             36                             36 
-    ##     N 39° 26.24'  W 121° 38.28    N 39° 26.24'  W 121° 38.28' 
+    ##  N 39° 26.362'  W 121° 38.220'  N 39° 26.592'  W 121° 38.209' 
     ##                             36                             36 
-    ##  N 39° 26.289'  W 121° 38.260'  N 39° 26.362'  W 121° 38.220' 
+    ##  N 39° 26.592'  W 121° 38.212'  N 39° 26.601'  W 121° 38.228' 
     ##                             36                             36 
-    ##  N 39° 26.592'  W 121° 38.209'  N 39° 26.592'  W 121° 38.212' 
+    ##  N 39° 27.435'  W 121° 36.834'  N 39° 27.452'  W 121° 36.788' 
     ##                             36                             36 
-    ##  N 39° 26.601'  W 121° 38.228'  N 39° 27.435'  W 121° 36.834' 
+    ##  N 39° 27.705'  W 121° 36.387'  N 39° 27.754'  W 121° 36.194' 
     ##                             36                             36 
-    ##  N 39° 27.452'  W 121° 36.788'  N 39° 27.705'  W 121° 36.387' 
+    ##  N 39° 27.795'  W 121° 36.241'  N 39° 27.796'  W 121° 36.242' 
     ##                             36                             36 
-    ##  N 39° 27.754'  W 121° 36.194'  N 39° 27.795'  W 121° 36.241' 
+    ##   N 39° 27.895'  W 121° 35.857  N 39° 27.976'  W 121° 35.981' 
     ##                             36                             36 
-    ##  N 39° 27.796'  W 121° 36.242'   N 39° 27.895'  W 121° 35.857 
-    ##                             36                             36 
-    ##  N 39° 27.976'  W 121° 35.981'  N 39° 29.012'  W 121° 34.740' 
-    ##                             36                             73 
-    ##  N 39° 29.052'  W 121° 34.755'  N 39° 29.103'  W 121* 34.740' 
-    ##                             36                             36 
-    ##  N 39° 30.750'  W 121° 34.166'   N 39° 30.906'  W 121° 33.600 
-    ##                             37                             36 
-    ##    N 39° 30.92'  W 121° 33.54'    N 39° 30.94'  W 121° 33.28' 
-    ##                             44                             38 
-    ##   N 39° 30.987'  W 121° 33.46'      N 39°19.068" W 121°37.256 
-    ##                             36                             36 
-    ##     N 39°19.734' W 121°37.791'       N 39°21.261 W 121°37.779 
-    ##                             36                             36 
-    ##      N 39°22.503 W 121° 37.942   N 39º 19.139'  W 121º 37.216 
-    ##                             36                             36 
-    ##   N 39º 24.319'  W 121º 36.976    N 39º 27.814  W 121º 36.234 
-    ##                             36                             36 
-    ##   N 39º 27.962'  W121º 35.980'   N 39º 27.982'  W 121º 35.920 
-    ##                             36                             36 
-    ##    N 39º 27.983  W 121º 35.919   N 39º 29.066'  W121º 34.739' 
-    ##                             36                             39 
-    ## N 39º 29.575'   W 121º 34.795'     N 39º 29.642, W121º 34.801 
-    ##                             36                             36 
-    ##   N 39º 30.519'  W 121º 30.288   N 39º 30.961'  W 121º 33.529 
+    ##  N 39° 29.012'  W 121° 34.740'  N 39° 29.052'  W 121° 34.755' 
+    ##                             73                             36 
+    ##  N 39° 29.103'  W 121* 34.740'  N 39° 30.750'  W 121° 34.166' 
     ##                             36                             37 
-    ##       N39*19.765', W121*37.72'      N39*21.247', W121*37.835' 
+    ##   N 39° 30.906'  W 121° 33.600    N 39° 30.92'  W 121° 33.54' 
+    ##                             36                             44 
+    ##    N 39° 30.94'  W 121° 33.28'   N 39° 30.987'  W 121° 33.46' 
+    ##                             38                             36 
+    ##      N 39°19.068" W 121°37.256     N 39°19.734' W 121°37.791' 
     ##                             36                             36 
-    ##        N39*23.155  W121*37.722         N39*24.340 W121*37.029 
+    ##       N 39°21.261 W 121°37.779      N 39°22.503 W 121° 37.942 
     ##                             36                             36 
-    ##    N39º 20.738', W121º 37.576'     N39º 24.321', W121º 36.982 
+    ##   N 39º 19.139'  W 121º 37.216   N 39º 24.319'  W 121º 36.976 
     ##                             36                             36 
-    ##                           None                      not taken 
-    ##                            108                             36
+    ##    N 39º 27.814  W 121º 36.234   N 39º 27.962'  W121º 35.980' 
+    ##                             36                             36 
+    ##   N 39º 27.982'  W 121º 35.920    N 39º 27.983  W 121º 35.919 
+    ##                             36                             36 
+    ##   N 39º 29.066'  W121º 34.739' N 39º 29.575'   W 121º 34.795' 
+    ##                             39                             36 
+    ##     N 39º 29.642, W121º 34.801   N 39º 30.519'  W 121º 30.288 
+    ##                             36                             36 
+    ##   N 39º 30.961'  W 121º 33.529       N39*19.765', W121*37.72' 
+    ##                             37                             36 
+    ##      N39*21.247', W121*37.835'        N39*23.155  W121*37.722 
+    ##                             36                             36 
+    ##         N39*24.340 W121*37.029    N39º 20.738', W121º 37.576' 
+    ##                             36                             36 
+    ##     N39º 24.321', W121º 36.982                           None 
+    ##                             36                            108 
+    ##                      not taken 
+    ##                             36
 
 **NA and Unknown Values**
 
@@ -1665,7 +1852,10 @@ microhabitat_with_fish_detections <- joined_fish_obs |>
   mutate(species = tolower(species),
          species = ifelse(species == "sacramento squawfish","sacramento pikeminnow", species),
          count = ifelse(is.na(count), 0, count),
-         channel_geomorphic_unit = tolower(channel_geomorphic_unit)) |> 
+         channel_geomorphic_unit = tolower(channel_geomorphic_unit),
+         channel_geomorphic_unit = case_when(channel_geomorphic_unit == "glide edgewater" ~ "glide margin",
+                                             channel_geomorphic_unit == "riffle edgewater" ~ "riffle margin",
+                                             T ~ channel_geomorphic_unit)) |> 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit)
   
 # TODO make sure the location names that we end with are lowercase
@@ -1772,20 +1962,265 @@ sort(unique(survey_locations$location))
     ## [67] "weir"                                   
     ## [68] "weir riffle"
 
+### Fixing location names and adding coordinates
+
+``` r
+# Ryon reviewed the list of revised locations and provided some changes
+rk_revised <- read_csv(here::here("data-raw", "check_locations_4ryon_rk.csv")) |>
+  rename(location = existing_location_name) |> 
+  distinct() |> 
+  filter(revised_location_name != "trailer park")
+```
+
+    ## Rows: 136 Columns: 2
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (2): existing_location_name, revised_location_name
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+survey_locations_revised <- survey_locations |> 
+  left_join(rk_revised) |> 
+  mutate(location = revised_location_name) |> 
+  select(-c(location_revised, revised_location_name)) 
+```
+
+    ## Joining with `by = join_by(location)`
+
+``` r
+write_csv(survey_locations_revised, here::here("data-raw","survey_locations_revised.csv"))
+
+
+# Ashley used google to QC the coordinates- looked up coordinates by entering 39 (deg symbol) XX.XXN 121 (deg symbol) XX.XXW
+survey_locations_google <- read_csv(here::here("data-raw", "survey_locations_revised_av.csv"))
+```
+
+    ## Rows: 136 Columns: 15
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (6): date, location, weather, channel_type, gps_coordinate, longitude_go...
+    ## dbl (9): location_table_id, water_temp, river_mile, flow, number_of_divers, ...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+# badhia pulled coordinates from kmz Casey provided, use this to try and associate coordinates with the locations (https://netorg629193.sharepoint.com/:u:/s/VA-FeatherRiver/EeHO1UrPtzVMiO1lFkFTBQwBhTzsveQ6d62gZv7fbxVldg?e=hSjJDR)
+# There are multiple coordinates for each location so take the average
+detach("package:Hmisc", unload = TRUE)
+coordinates_from_kmz_raw <- read_csv(here::here("data-raw", "Coordinates_Snorkel_Survey_Locations.csv"))
+```
+
+    ## Rows: 4721 Columns: 3
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (1): Name
+    ## dbl (2): Longitude, Latitude
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+coordinates_from_kmz <- coordinates_from_kmz_raw |> 
+  rename(location = Name) |> 
+  mutate(location = tolower(location)) |> 
+  group_by(location) |> 
+  summarize(longitude = mean(Longitude),
+            latitude = mean(Latitude)) |> 
+  # adjusting some names to match with the survey locations
+  mutate(location = case_when(location == "alec riffle" ~ "aleck riffle",
+                              location == "bedrock riffle" ~ "bedrock park riffle",
+                              location == "g95 side channel" ~ "g95",
+                              location == "gridley side channel" ~ "gridley riffle",
+                              location == "upper mcfarland" ~ "macfarland riffle",
+                              location == "vance west" ~ "vance avenue",
+                              T ~ location))
+# find an average lat/long by location name
+coordinate_from_google <- survey_locations_google |> 
+    mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
+         longitude_google = as.numeric(longitude_google)) |> 
+  group_by(location) |> 
+  summarize(longitude_google = mean(longitude_google, na.rm = T),
+            latitude_google = mean(latitude_google, na.rm = T))
+
+# summary of assigning coordinates
+# 1. use the coordinates reported in the db (if when QCd the coordinate makes sense), convert to lat/long
+# 2. for missing coordinates use the average location level as provided by Casey in kmz file or the average location level as reported
+
+# following these steps we have 2 missing coordinates for sites - hour riffle and upper big hole
+location_coordinates <- survey_locations_google |> 
+  select(location_table_id, location, river_mile, longitude_google, latitude_google) |> 
+  mutate(longitude_google = ifelse(location_table_id %in% c(25,34,112), NA, longitude_google),
+         longitude_google = as.numeric(longitude_google)) |> 
+  left_join(coordinates_from_kmz) |> 
+  mutate(coordinate_method = case_when(!is.na(longitude_google) ~ "reported in database",
+                                       is.na(longitude_google) & !is.na(longitude) ~ "kmz from casey"),
+         longitude_google = case_when(is.na(longitude_google) & !is.na(longitude) ~ longitude,
+                                      T ~ longitude_google),
+         latitude_google = case_when(is.na(latitude_google) & !is.na(latitude) ~ latitude,
+                                     T ~ latitude_google)) |> 
+  select(location_table_id, location, river_mile, longitude_google, latitude_google, coordinate_method) |> 
+  rename(longitude = longitude_google,
+         latitude = latitude_google) |> 
+  left_join(coordinate_from_google) |> 
+  mutate(coordinate_method = case_when(is.na(longitude) & !is.na(longitude_google) ~ "location average",
+                                       T ~ coordinate_method),
+         longitude = case_when(is.na(longitude) & !is.na(longitude_google) ~ longitude_google,
+                                      T ~ longitude),
+         latitude = case_when(is.na(latitude) & !is.na(latitude_google) ~ latitude_google,
+                                     T ~ latitude)) |> 
+  select(-c(longitude_google, latitude_google))
+```
+
+    ## Joining with `by = join_by(location)`
+    ## Joining with `by = join_by(location)`
+
+``` r
+survey_locations_with_latlong <- survey_locations_revised |> 
+  select(-gps_coordinate, -river_mile) |>  # this field is messy and was converted to lat/long so removing
+  left_join(location_coordinates)
+```
+
+    ## Joining with `by = join_by(location_table_id, location)`
+
+``` r
+write_csv(survey_locations_with_latlong, here::here("data", "archive", "survey_locations.csv"))
+```
+
+``` r
+ryon_coordinates <- readxl::read_xlsx(here::here("data-raw", "survey_locations_name_cleanup_rk.xlsx"))
+
+locations_ck <- survey_locations_with_latlong |> 
+  left_join(ryon_coordinates |> 
+  rename(rk_latitude = latitude,
+         rk_longitude = longitude,
+         rk_location = location,
+         rk_location_revised = location_revised,
+         channel_location = channel) |> 
+    select(location_table_id, rk_location, rk_location_revised, rk_latitude, rk_longitude, channel_location))
+```
+
+    ## Joining with `by = join_by(location_table_id)`
+
+``` r
+# there are some locations where ryon updated name
+locations_ck |> 
+  filter(location != rk_location_revised)
+```
+
+    ##    location_table_id       date            location water_temp         weather
+    ## 1                 15 2001-08-20 trailer park riffle         58 direct sunlight
+    ## 2                 16 2001-08-20 bedrock park riffle         58 direct sunlight
+    ## 3                 37 2001-07-11 trailer park riffle         59 direct sunlight
+    ## 4                 40 2001-07-12 bedrock park riffle         58 direct sunlight
+    ## 5                 41 2001-07-12          eye riffle         63 direct sunlight
+    ## 6                 55 2001-06-11 bedrock park riffle         56        overcast
+    ## 7                 56 2001-06-11 trailer park riffle         57 direct sunlight
+    ## 8                 73 2001-05-22 bedrock park riffle         55 direct sunlight
+    ## 9                110 2001-08-21          eye riffle         62 direct sunlight
+    ## 10               112 2001-04-09 trailer park riffle         52 direct sunlight
+    ## 11               139 2001-03-14 bedrock park riffle         50 direct sunlight
+    ## 12               140 2001-03-14 trailer park riffle         52 direct sunlight
+    ##    flow number_of_divers reach_length reach_width channel_width channel_type
+    ## 1   600                2           25           4             0  mainchannel
+    ## 2   600                2           25           4             0  mainchannel
+    ## 3   600                4           25           4            57  mainchannel
+    ## 4   600                2           25           4            51  mainchannel
+    ## 5   600                2           25           4            21  sidechannel
+    ## 6   600                2           25           4             0  mainchannel
+    ## 7   600                2           25           4            97  mainchannel
+    ## 8   600                3           25           4            56  mainchannel
+    ## 9   700                2           25           4            22  sidechannel
+    ## 10  600                2           25           4             0  mainchannel
+    ## 11  600                3           25           4            65  mainchannel
+    ## 12  600                3           25           4            70  mainchannel
+    ##    river_mile longitude latitude    coordinate_method            rk_location
+    ## 1        64.0 -121.6232 39.31758 reported in database    trailer park riffle
+    ## 2        65.5 -121.5682 39.51305 reported in database           bedrock park
+    ## 3        64.0 -121.5794 39.49467 reported in database    trailer park riffle
+    ## 4        66.0 -121.5697 39.51228       kmz from casey         bedrock riffle
+    ## 5        60.1 -121.6138 39.45718       kmz from casey       eye side channel
+    ## 6        66.0 -121.5697 39.51228       kmz from casey         bedrock riffle
+    ## 7        64.5 -121.5800 39.49403 reported in database           trailer park
+    ## 8        65.8 -121.5694 39.51250 reported in database                bedrock
+    ## 9        60.0 -121.6131 39.45753 reported in database       eye side channel
+    ## 10       64.5 -121.5797 39.49584       kmz from casey           trailer park
+    ## 11       65.9 -121.5697 39.51228       kmz from casey bedrock park, unit #50
+    ## 12       64.4 -121.5797 39.49584       kmz from casey trailer park, unit #98
+    ##    rk_location_revised rk_latitude rk_longitude channel_location
+    ## 1         trailer park    39.49403    -121.5800              LFC
+    ## 2       bedrock riffle          NA           NA              LFC
+    ## 3         trailer park          NA           NA              LFC
+    ## 4       bedrock riffle    39.51306    -121.5681              LFC
+    ## 5     eye side channel    39.45753    -121.6131              LFC
+    ## 6       bedrock riffle    39.51305    -121.5682              LFC
+    ## 7         trailer park          NA           NA              LFC
+    ## 8       bedrock riffle          NA           NA              LFC
+    ## 9     eye side channel          NA           NA              LFC
+    ## 10        trailer park    39.49403    -121.5800              LFC
+    ## 11      bedrock riffle    39.51250    -121.5694              LFC
+    ## 12        trailer park    39.49403    -121.5800              LFC
+
+``` r
+survey_locations_post_ryon_revisions <- locations_ck |> 
+  mutate(location = rk_location_revised,
+         rk_latitude = ifelse(is.na(rk_latitude), latitude, rk_latitude),
+         rk_longitude = ifelse(is.na(rk_longitude), longitude, rk_longitude),
+         coordinate_method = case_when(coordinate_method %in% c("location average","kmz from casey") | is.na(coordinate_method) ~ "assigned based on similar location",
+                                       T ~ coordinate_method)) |> # assume all from ryon are assigned from similar location (these are the same ones that I tried to fill in)
+  select(-c(latitude, longitude, rk_location, rk_location_revised)) |> 
+  rename(latitude = rk_latitude,
+         longitude = rk_longitude)
+
+# i plotted these locations on the map and noticed some disconnect between the name and coordinate
+# suggested to ryon that we update these coordinates based on his method of selecting another with same name, he agreed
+#      * 79 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
+     # * 78 - Location name = eye riffle. This is how name was reported on database. Coordinates were reported in the database, but when mapped it shows next to aleck riffle. Adjust coordinates to be near eye riffle?
+     # * 68 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+     # * 102 - Location name = g95. Coordinates were reported in the database, but when mapped it shows next to lower big hole. Adjust coordinates to be near g95?
+     # * 146 - Location name = big bar. Shows up near Goose Riffle. This is one of the coordinates you changed.
+     # * 30 - Location name = macfarland riffle. Shows up near Big Bar. Adjust coordinates?
+     # * 27 - Location name = gridley riffle. Shows up near macfarland riffle. Adjust coordinates?
+
+coordinate_by_name <- survey_locations_post_ryon_revisions |> 
+  filter(!location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27)) |> 
+  select(location, latitude, longitude) |> 
+  group_by(location) |> 
+  slice_head() |> 
+  rename(loc_lat = latitude,
+         loc_long = longitude)
+
+survey_locations_post_ryon_revisions_qc <- survey_locations_post_ryon_revisions |> 
+  left_join(coordinate_by_name) |> 
+  mutate(latitude = ifelse(location_table_id  %in% c(79, 78, 68, 102, 146, 30, 27), loc_lat, latitude),
+         longitude = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), loc_long, longitude),
+         coordinate_method = ifelse(location_table_id %in% c(79, 78, 68, 102, 146, 30, 27), "assigned based on similar location", coordinate_method)) |> 
+  select(location_table_id, date, location, channel_location, water_temp, weather, flow, number_of_divers, reach_length, reach_width, channel_width, channel_type, river_mile, coordinate_method, latitude, longitude)
+```
+
+    ## Joining with `by = join_by(location)`
+
+``` r
+# these edits were mapped and there are no longer any disconnect between the location name and coordinates
+```
+
 ## Save cleaned data to data/
 
 ``` r
 # Save to data folder
 # Name file [watershed]_[data type].csv
-write_csv(microhabitat_with_fish_detections, "data/microhabitat_with_fish_observations.csv")
-write_csv(survey_locations, "data/survey_locations.csv")
+write_csv(microhabitat_with_fish_detections, here::here("data", "archive", "microhabitat_observations.csv"))
+#write_csv(survey_locations, "data/survey_locations.csv")
+write_csv(survey_locations_post_ryon_revisions_qc, here::here("data", "archive", "survey_locations.csv"))
 
 # create list of existing locations and revised locations for casey and ryon to check
-check_locations <- survey_locations |> 
-  select(location, location_revised) |> 
-  rename(existing_location_name = location,
-         revised_location_name = location_revised)
-write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
+# check_locations <- survey_locations |> 
+#   select(location, location_revised) |> 
+#   rename(existing_location_name = location,
+#          revised_location_name = location_revised)
+# write_csv(check_locations, "data-raw/check_locations_4ryon.csv")
 # TODO add coordinates for survey locations
 # From Casey kmz we have the following: aleck riffle, auditorium riffle, bedrock riffle, eye riffle, eye side channel, g95, goose riffle, gridley riffle, hatchery riffle, junkyard riffle, matthews riffle, robinson riffle, steep riffle, trailer park riffle, vance riffle
 # Missing big bar, big hole, hatchery ditch, herringer riffle, hour bars, hour riffle, lower big hole, lower hour, mcfarland riffle, shallow riffle, upper big hole, weir riffle
