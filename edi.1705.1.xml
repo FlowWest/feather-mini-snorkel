@@ -325,7 +325,7 @@
         </dataFormat>
         <distribution>
           <online>
-            <url function="download">https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data/survey_locations.csv</url>
+            <url function="download">https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/update-metadata/data/survey_locations.csv</url>
           </online>
         </distribution>
       </physical>
@@ -635,7 +635,7 @@
         </dataFormat>
         <distribution>
           <online>
-            <url function="download">https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data/microhabitat_observations.csv</url>
+            <url function="download">https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/update-metadata/data/microhabitat_observations.csv</url>
           </online>
         </distribution>
       </physical>

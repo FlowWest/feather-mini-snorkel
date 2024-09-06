@@ -11,7 +11,7 @@ datatable_metadata <-
                                    "data-raw/metadata/microhabitat_metadata.xlsx"),
                 datatable_description = c("Feather river mini snorkel survey locations data",
                                           "Feather river mini snorkel survey microhabitat data"),
-                datatable_url = paste0("https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/main/data/", # make sure to use this type of link rather than "https://github.com/FlowWest/feather-mini-snorkel/blob/main/data/microhabitat_observations.csv"
+                datatable_url = paste0("https://raw.githubusercontent.com/FlowWest/feather-mini-snorkel/update-metadata/data/", # make sure to use this type of link rather than "https://github.com/FlowWest/feather-mini-snorkel/blob/main/data/microhabitat_observations.csv"
                                        c("survey_locations.csv",
                                          "microhabitat_observations.csv")))
 
