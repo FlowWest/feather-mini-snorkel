@@ -30,7 +30,7 @@
       <electronicMailAddress>bcavallo@fishsciences.net</electronicMailAddress>
       <role>associate</role>
     </associatedParty>
-    <pubDate>2024-07-03</pubDate>
+    <pubDate>2024-09-06</pubDate>
     <abstract>
       <para>
     Understanding how fish presence is related to habitat features is
@@ -41,10 +41,10 @@
     Feather River. The goal of this study was to identify relationships
     between habitat conditions (depth, substrate, velocity, and cover)
     and where juvenile Chinook salmon and steelhead occur. Snorkel
-    surveys were conducted monthly March through August in 2001 across
-    24 different sites, which were selected at random (12 in Low Flow
-    Channel, and 12 in High Flow Channel). Each sampling section covered
-    an area 25 meters long by 4 meters wide, running parallel to
+    surveys were conducted monthly March through August in 2001 and 2002
+    across 29 different sites, which were selected at random (13 in Low
+    Flow Channel, and 16 in High Flow Channel). Each sampling section
+    covered an area 25 meters long by 4 meters wide, running parallel to
     riverbank. These data were published to support the Healthy Rivers
     and Landscapes Science Program.
   </para>
@@ -88,7 +88,7 @@
             <calendarDate>2001-03-13</calendarDate>
           </beginDate>
           <endDate>
-            <calendarDate>2001-08-22</calendarDate>
+            <calendarDate>2002-08-20</calendarDate>
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
@@ -311,8 +311,8 @@
       <entityDescription>Feather river mini snorkel survey locations data</entityDescription>
       <physical>
         <objectName>survey_locations.csv</objectName>
-        <size unit="bytes">18014</size>
-        <authentication method="MD5">06c77f8fa7ce62e8222a333deef0fc84</authentication>
+        <size unit="bytes">75956</size>
+        <authentication method="MD5">41c623b1fcdb84293db7033226729855</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -354,7 +354,7 @@
               <dateTimeDomain>
                 <bounds>
                   <minimum exclusive="false">36963</minimum>
-                  <maximum exclusive="false">37125</maximum>
+                  <maximum exclusive="false">37488</maximum>
                 </bounds>
               </dateTimeDomain>
             </dateTime>
@@ -412,8 +412,8 @@
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">47</minimum>
-                  <maximum exclusive="false">69</maximum>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">85</maximum>
                 </bounds>
               </numericDomain>
             </interval>
@@ -446,7 +446,7 @@
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">2000</maximum>
+                  <maximum exclusive="false">6100</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -464,8 +464,8 @@
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">1</minimum>
-                  <maximum exclusive="false">3</maximum>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">4</maximum>
                 </bounds>
               </numericDomain>
             </interval>
@@ -554,8 +554,8 @@
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">46</minimum>
-                  <maximum exclusive="false">66.6</maximum>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">66.9</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -614,15 +614,15 @@
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>136</numberOfRecords>
+      <numberOfRecords>580</numberOfRecords>
     </dataTable>
     <dataTable>
       <entityName>microhabitat_observations.csv</entityName>
       <entityDescription>Feather river mini snorkel survey microhabitat data</entityDescription>
       <physical>
         <objectName>microhabitat_observations.csv</objectName>
-        <size unit="bytes">472107</size>
-        <authentication method="MD5">c7a45b34e90c5979838206bb0c52e294</authentication>
+        <size unit="bytes">920182</size>
+        <authentication method="MD5">9ea3fa9378464b270e04bee0f631abc9</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -706,7 +706,7 @@
               <dateTimeDomain>
                 <bounds>
                   <minimum exclusive="false">36963</minimum>
-                  <maximum exclusive="false">37125</maximum>
+                  <maximum exclusive="false">37488</maximum>
                 </bounds>
               </dateTimeDomain>
             </dateTime>
@@ -759,8 +759,8 @@
               <numericDomain>
                 <numberType>whole</numberType>
                 <bounds>
-                  <minimum exclusive="false">25</minimum>
-                  <maximum exclusive="false">500</maximum>
+                  <minimum exclusive="false">20</minimum>
+                  <maximum exclusive="false">1000</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -797,8 +797,8 @@
               <numericDomain>
                 <numberType>real</numberType>
                 <bounds>
-                  <minimum exclusive="false">3</minimum>
-                  <maximum exclusive="false">200</maximum>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">316</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -836,7 +836,7 @@
                 <numberType>integer</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">3.38</maximum>
+                  <maximum exclusive="false">5.73</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -855,7 +855,7 @@
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">50</maximum>
+                  <maximum exclusive="false">100</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -1026,7 +1026,7 @@
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">40</maximum>
+                  <maximum exclusive="false">100</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -1064,7 +1064,7 @@
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">20</maximum>
+                  <maximum exclusive="false">75</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -1102,7 +1102,7 @@
                 <numberType>real</numberType>
                 <bounds>
                   <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">75</maximum>
+                  <maximum exclusive="false">100</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -1142,7 +1142,7 @@
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>5029</numberOfRecords>
+      <numberOfRecords>9827</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
