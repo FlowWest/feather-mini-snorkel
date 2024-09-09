@@ -66,3 +66,8 @@ eml <- list(packageId = edi_number,
 edi_number
 EML::write_eml(eml, paste0(edi_number, ".xml"))
 EML::eml_validate(paste0(edi_number, ".xml"))
+# EMLaide::update_edi_package(Sys.getenv("EDI_USER_ID"),
+#                             Sys.getenv("EDI_PASSWORD"),
+#                             "edi.1705.1",
+#                             "edi.1705.2.xml",
+#                             environment = "production")
