@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1705.1" system="EDI" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.1705.2" system="EDI" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
   <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
     <allow>
       <principal>public</principal>
@@ -30,14 +30,14 @@
       <electronicMailAddress>bcavallo@fishsciences.net</electronicMailAddress>
       <role>associate</role>
     </associatedParty>
-    <pubDate>2024-09-06</pubDate>
+    <pubDate>2024-09-09</pubDate>
     <abstract>
       <para>
     Understanding how fish presence is related to habitat features is
     useful in restoration planning and monitoring as better information
     about how fish use habitat may lead to more impactful restoration
     projects. The California Department of Water Resources (DWR),
-    conducted a one-year study of microhabitat and mesohabitat in
+    conducted a two-year study of microhabitat and mesohabitat in
     Feather River. The goal of this study was to identify relationships
     between habitat conditions (depth, substrate, velocity, and cover)
     and where juvenile Chinook salmon and steelhead occur. Snorkel
