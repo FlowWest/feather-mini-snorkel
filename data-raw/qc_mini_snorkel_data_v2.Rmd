@@ -924,6 +924,7 @@ survey_locations <- all_fish_data |>
          location_table_id = p_dat_id) |> 
   mutate(weather = tolower(weather),
          channel_type = tolower(channel_type),
+         location = tolower(location),
          location_revised = case_when(grepl("big hole", location) ~ "big hole",
                                       grepl("auditorium", location) ~ "auditorium riffle",
                                       location %in% c("bedrock", "bedrock park", "bedrock park, unit #50") ~ "bedrock riffle",
@@ -931,7 +932,7 @@ survey_locations <- all_fish_data |>
                                       grepl("cox", location) ~ "cox riffle", # TODO: is this a new location? 
                                       grepl("gateway", location) ~ "gateway riffle", # TODO: is this a new location? 
                                       grepl("goose", location) ~ "goose riffle", 
-                                      grepl("aleck", location) ~ "aleck riffle", 
+                                      grepl("alec", location) ~ "aleck riffle", 
                                       grepl("big bar", location) ~ "big bar",
                                       grepl("eye", location) ~ "eye riffle",
                                       location %in% c("east g 95", "g 95", "g-95 side channel", "g95", "g95 (area)", "g95 east", "g95 rr downstream head", "g95 west side channel") ~ "g95",
@@ -982,7 +983,8 @@ setdiff(sort(unique(survey_locations$location)), sort(unique(survey_locations_20
 
 # create a location lookup using the 2001 reconciled locations that can be used for 2002 data 
 lookup <- survey_locations_2001 |> 
-  select(location, channel_type, longitude, latitude, coordinate_method, channel_location) # river_mile
+  select(location, channel_type, longitude, latitude, coordinate_method, channel_location) |>  # river_mile
+  distinct(location, .keep_all=T) # we need one location, not multiple or will end up with duplicates
 
 # joined by location and channel type
 location_data_updated <- survey_locations |> 
