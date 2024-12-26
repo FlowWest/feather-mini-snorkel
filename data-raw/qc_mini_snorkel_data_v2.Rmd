@@ -178,8 +178,6 @@ There are `r is.na(all_fish_data$count) |> sum()` NA values
 
 **Plotting Date over Period of Record**
 
-All observations are from 2001
-
 ```{r}
 # Make whatever plot is appropriate 
 # maybe 2+ plots are appropriate
@@ -901,11 +899,15 @@ There are `r is.na(all_fish_data$channel_type) |> sum()` NA values
 
 ## Fixing location names and adding coordinates
 
-The location names were reconciled for the 2001 data (see
-`qc_mini_snorkel_data.Rmd`). Here we will read in the reconciled names
-and add the 2002 data.
+The location names and coordinates were reconciled for the 2001 data (see
+`qc_mini_snorkel_data.Rmd`). 
+
+Here we will apply the same logic to reconcile names so that 2002 can be cleaned as well.
+
+We will then clean the coordinates for 2002.
 
 ```{r}
+# create fish obs table
 microhabitat_with_fish_detections <- all_fish_data |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id,
@@ -919,6 +921,7 @@ microhabitat_with_fish_detections <- all_fish_data |>
                                              T ~ channel_geomorphic_unit)) |> 
   select(micro_hab_data_tbl_id, location_table_id, transect_code, fish_data_id, date, count, species, fl_mm, dist_to_bottom, depth, focal_velocity, velocity, surface_turbidity, percent_fine_substrate, percent_sand_substrate, percent_small_gravel_substrate, percent_large_gravel_substrate, percent_cobble_substrate, percent_boulder_substrate, percent_no_cover_inchannel, percent_small_woody_cover_inchannel, percent_large_woody_cover_inchannel, percent_submerged_aquatic_veg_inchannel, percent_undercut_bank, percent_no_cover_overhead, percent_cover_half_meter_overhead, percent_cover_more_than_half_meter_overhead, channel_geomorphic_unit) 
 
+# create locations table with logic to clean names
 survey_locations <- all_fish_data |> 
   rename(transect_code = t_code,
          location_table_id = p_dat_id) |> 
@@ -968,56 +971,119 @@ survey_locations <- all_fish_data |>
   select(-location) |> 
   rename(location = location_revised) |> 
   distinct() 
-
 ```
 
-Okay, let's compare the names of the 2001/2002 data with the reconciled
-name list from 2001.
+The following code cleans the coordinates for 2002 as 2001 had previously been cleaned.
 
-```{r}
+```{r, include = F}
+# filter for 2002 location data to clean
+locations_2002 <- survey_locations |> 
+  filter(year(date) == 2002)
+# convert gps coordinates for 2002 data where we are able to
+temp_df <- locations_2002 |> 
+  filter(!location_table_id %in% c(288,187,259,258,182,289,261,263,260,287,249,250,190,232,161,231,180,233,234)) |> # filter out rows that have wonky format and wont work
+  filter(!is.na(gps_coordinate)) |> 
+  select(location_table_id, gps_coordinate)
+
+# function for converting to lat/long
+convert_gps <- function(coordinate) {
+# Split the coordinate into components
+parts <- strsplit(coordinate, " ")[[1]]
+
+# Extract components
+lat_direction <- parts[1]
+lat_degrees <- as.numeric(parts[2])
+lat_minutes <- as.numeric(parts[3])
+
+lon_direction <- parts[4]
+lon_degrees <- as.numeric(parts[5])
+lon_minutes <- as.numeric(parts[6])
+
+# Convert to decimal degrees
+latitude <- lat_degrees + (lat_minutes / 60)
+longitude <- lon_degrees + (lon_minutes / 60)
+
+# Adjust for direction
+if (lat_direction == "S") latitude <- -latitude
+if (lon_direction == "W") longitude <- -longitude
+
+list(latitude = latitude, longitude = longitude)
+}
+# Convert gps to latitude and longtidue
+df <- temp_df %>%
+  rowwise() %>%
+  mutate(
+    result = list(convert_gps(gps_coordinate)),
+    latitude = result$latitude,
+    longitude = result$longitude
+  ) %>%
+  select(-result)
+
+# Find remaining 2002 rows that need to fix
+# For these remaining ones we will use a coordinate for that location previously cleaned for 2001
+locations_2002_to_fix <- full_join(locations_2002, df) |> 
+  filter(is.na(latitude) | is.na(longitude))
+
 # This is created in the qc_mini_snorkel_data.Rmd
 survey_locations_2001 <- read_csv(here::here("data", "archive", "survey_locations.csv")) 
 
 # the only two names that exist in the 2002 dataset are and NOT the 2001 are: cox riffle and gateway riffle
 setdiff(sort(unique(survey_locations$location)), sort(unique(survey_locations_2001$location)))
 
-# create a location lookup using the 2001 reconciled locations that can be used for 2002 data 
+# create a location lookup using the 2001 reconciled locations that can be used for 2002 data that have messy coordinates
 lookup <- survey_locations_2001 |> 
-  select(location, channel_type, longitude, latitude, coordinate_method, channel_location) |>  # river_mile
+  select(location, longitude, latitude, channel_location) |> 
   distinct(location, .keep_all=T) # we need one location, not multiple or will end up with duplicates
 
-# joined by location and channel type
-location_data_updated <- survey_locations |> 
-  filter(year(date) == 2002) |> 
-  left_join(lookup) |> 
-  select(colnames(survey_locations_2001)) |> 
-  bind_rows(survey_locations_2001) |> 
-  arrange(location_table_id) |> 
-  mutate(latitude = case_when(location == "cox riffle" ~  39.33564114789087, # based off of gps_coordinates
-                              location == "gateway riffle" ~ 39.45696577928121, 
-                              (location == "shallow riffle" & channel_type == "mainchannel branch") ~ 39.32967570030937,
-                              (location == "shallow riffle" & channel_type == "mainchannel") ~ 39.33154115157018, 
-                              T ~ latitude), 
-         longitude = case_when(location == "cox riffle" ~ -121.63215000396984, # based off of gps_coordinates
-                               location == "gateway riffle" ~ -121.62560364814165,
-                               (location == "shallow riffle" & channel_type == "mainchannel branch") ~ -121.6285435907359,
-                               (location == "shallow riffle" & channel_type == "mainchannel") ~ -121.63033927513442,
-                               T ~ longitude), 
-         coordinate_method = case_when(location %in% c("cox riffle", "gateway riffle") ~ "assigned based on similar location",
-                                       (location == "shallow riffle" & channel_type %in%  c("mainchannel branch", "mainchannel")) ~ "assigned based on similar location", 
-                                       T ~ coordinate_method),
-         channel_location = case_when(location == "shallow riffle" ~ "HFC",
-                                      location == "trailer park" ~ "LFC", # this removes 1 NA but is consistent with all other trailer parks            
-                                      location == "cox riffle" ~ "HFC",
-                                      location == "gateway riffle" ~ "LFC", 
-                                      T ~ channel_location),
-         channel_type = case_when(location == "trailer park" ~ "mainchannel",
-                                  T ~ channel_type)) # this removes 1 NA but is consistent with all other trailer parks
+location_data_updated <- locations_2002_to_fix |>
+  select(-c(latitude, longitude)) |>
+  left_join(lookup) |> # fix messy 2002 coordinates by finding coordinate from 2001 same location
+  mutate(coordinate_method = "assigned based on similar location from 2001") |>
+  bind_rows(
+      full_join(locations_2002, df) |> # add the 2002 converted lat/long
+      filter(!is.na(latitude) & !is.na(longitude)) |>
+      left_join(lookup |>
+                  select(location, channel_location))
+  ) |>
+  mutate(coordinate_method = "reported in database") |>
+  bind_rows(survey_locations_2001) |> # add on the 2001 survey locations
+  arrange(location_table_id) |>
+  # clean remaining locations
+  mutate(
+    coordinate_method = case_when(
+      location %in% c("cox riffle", "gateway riffle") &
+        is.na(latitude)  ~ "assigned based on similar location",
+      T ~ coordinate_method
+    ),
+    latitude = case_when(
+      location == "cox riffle" &
+        is.na(latitude) ~  39.33564114789087,
+      # based off of gps_coordinates
+      location == "gateway riffle" &
+        is.na(latitude) ~ 39.45696577928121,
+      T ~ latitude
+    ),
+    longitude = case_when(
+      location == "cox riffle" &
+        is.na(longitude) ~ -121.63215000396984,
+      # based off of gps_coordinates
+      location == "gateway riffle" &
+        is.na(longitude) ~ -121.62560364814165,
+      location_table_id == 168 ~ -121.61602,
+      location_table_id == 283 ~ -121.60900,
+      T ~ longitude
+    ),
+    channel_location = case_when(
+      location == "cox riffle" ~ "HFC",
+      location == "gateway riffle" ~ "LFC",
+      T ~ channel_location
+    ),
+    channel_type = case_when(location == "trailer park" ~ "mainchannel", T ~ channel_type) # this removes 1 NA but is consistent with all other trailer parks
+  ) |> 
+  select(-gps_coordinate)
 
 # QC
-# test_2001 <- location_data_2002 |> 
-#   filter(year(date) == 2001) 
-# unique(test_2001 == survey_locations_2001)
+# length(unique(all_fish_data$p_dat_id))
 
 ```
 
